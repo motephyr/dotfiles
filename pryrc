@@ -1,5 +1,9 @@
-require "awesome_print"
-AwesomePrint.pry!
+begin
+  require 'awesome_print'
+  rescue LoadError
+else
+  AwesomePrint.pry!
+end
 
 begin
   require "hirb"

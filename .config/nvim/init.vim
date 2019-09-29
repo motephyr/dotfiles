@@ -1,5 +1,18 @@
+call plug#begin()
+
+  " search
+  " Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'mileszs/ack.vim'
+  " Plug 'fntlnz/atags.vim' " file tags generating with ctags
+  Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+call plug#end()
+
+let mapleader = "'"
+" <Leader>f{char} to move to {char}
+map  <Leader>c <Plug>(easymotion-bd-f)
+
 syntax on                                                                                                             
-set nocompatible " VIM 不使用和 VI 相容的模式
+"set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
 set tabstop=2    " tab 的字元數
 set softtabstop=2

@@ -57,7 +57,7 @@ spec/spec.opts
 # Guardfile
 
 # Whiskey disk configuration.
-config/deploy
+#config/deploy
 config/deploy/local.yml
 
 # Rails Assets.
