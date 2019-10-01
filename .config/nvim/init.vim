@@ -10,6 +10,8 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'mhinz/vim-startify'
+  Plug 'mileszs/ack.vim'
+
 call plug#end()
 
 syntax on                                                                                                             
@@ -42,6 +44,7 @@ set nu
 "noremap j h
 "set ai           " 自動縮排
 set mouse=a
+set splitright
 
 let mapleader = "'"
 " <Leader>f{char} to move to {char}
@@ -113,4 +116,6 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif

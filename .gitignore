@@ -1,3 +1,4 @@
 gitconfig
 mkmf.log
 dotfiles_backup
+.config/nvim/plugged
