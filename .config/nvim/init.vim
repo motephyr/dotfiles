@@ -14,6 +14,7 @@ call plug#begin()
 
 call plug#end()
 
+
 syntax on                                                                                                             
 "set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
@@ -44,9 +45,22 @@ set nu
 "noremap j h
 "set ai           " 自動縮排
 set mouse=a
-set splitright
+
+" for gf
+set suffixesadd=.js,.jsx
+set hidden 
+set path+=**
 
 let mapleader = "'"
+" global
+nnoremap <Leader>n :set invnu<cr>
+
+" nerdtree
+set splitright
+let g:NERDTreeMouseMode=3
+nnoremap <Leader>t :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>r :NERDTreeFind<cr>
+
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -119,3 +133,4 @@ command! -bang -nargs=* Rg
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
