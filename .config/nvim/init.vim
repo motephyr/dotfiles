@@ -11,11 +11,15 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'mhinz/vim-startify'
   Plug 'mileszs/ack.vim'
-
+  Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
+"syntax
+syntax on
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
-syntax on                                                                                                             
 "set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
 set tabstop=2    " tab 的字元數
@@ -33,7 +37,6 @@ set history=100  " 保留 100 個使用過的指令
 set cursorline   " 顯示目前的游標位置
 set laststatus=2
 set statusline=%4*%<\%m%<[%f\%r%h%w]\ [%{&ff},%{&fileencoding},%Y]%=\[Position=%l,%v,%p%%]
-colorscheme torte
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
@@ -133,4 +136,6 @@ command! -bang -nargs=* Rg
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+ 
 
