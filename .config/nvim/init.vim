@@ -81,6 +81,7 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 " fzf
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 " with fzf.vim
 noremap <C-j> :Files<CR>
@@ -137,5 +138,17 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
- 
+" for move block
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
