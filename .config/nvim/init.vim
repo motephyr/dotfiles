@@ -12,8 +12,11 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'thaerkh/vim-workspace'
   Plug 'altercation/vim-colors-solarized'
-call plug#end()
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+call plug#end()
+"coc
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
 "syntax
 syntax on
 let g:solarized_termcolors=256
@@ -91,6 +94,7 @@ set splitright
 let g:NERDTreeMouseMode=3
 nnoremap <Leader>t :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
+let NERDTreeMinimalUI = 1
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
