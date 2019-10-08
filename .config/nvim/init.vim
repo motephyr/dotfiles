@@ -2,15 +2,15 @@ call plug#begin()
 
   " search
   " Plug 'ctrlpvim/ctrlp.vim'
-  " Plug 'mileszs/ack.vim'
+  Plug 'mileszs/ack.vim'
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-    " browse
+  
+  " browse
   Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'mhinz/vim-startify'
-  Plug 'mileszs/ack.vim'
+  Plug 'thaerkh/vim-workspace'
   Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
@@ -55,18 +55,24 @@ set hidden
 set path+=**
 
 let mapleader = "'"
+
 " global
 nnoremap <Leader>n :set invnu<cr>
 
-" nerdtree
-set splitright
-let g:NERDTreeMouseMode=3
-nnoremap <Leader>t :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>r :NERDTreeFind<cr>
+" for move block
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -79,6 +85,21 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+
+" nerdtree
+set splitright
+let g:NERDTreeMouseMode=3
+nnoremap <Leader>t :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>r :NERDTreeFind<cr>
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" save session
+nnoremap <leader>s :ToggleWorkspace<CR>
+let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+autocmd VimLeave * NERDTreeClose
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -138,17 +159,4 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" for move block
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
 
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
