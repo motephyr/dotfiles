@@ -5,7 +5,7 @@ call plug#begin()
   Plug 'mileszs/ack.vim'
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  
+
   " browse
   Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -15,13 +15,6 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
-"coc
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
-"syntax
-syntax on
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
 
 "set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
@@ -95,6 +88,16 @@ let g:NERDTreeMouseMode=3
 nnoremap <Leader>t :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
 let NERDTreeMinimalUI = 1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeAutoDeleteBuffer = 1
+
+"syntax
+syntax on
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -108,10 +111,14 @@ autocmd VimLeave * NERDTreeClose
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
 " with fzf.vim
 noremap <C-j> :Files<CR>
 vnoremap <C-j> :Files<CR>
 inoremap <C-j> :Files<CR>
+
+"coc
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
