@@ -33,7 +33,7 @@ set mouse=a
 
 " for gf
 set suffixesadd=.js,.jsx
-set hidden 
+set hidden
 set path+=**
 
 " for move block

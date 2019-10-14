@@ -66,8 +66,8 @@ inoremap <C-t> :Files<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-s': 'vsplit' }
 
 " fzf.vim
 "
