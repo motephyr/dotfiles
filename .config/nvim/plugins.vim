@@ -37,14 +37,14 @@ let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 nnoremap <Leader>t :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimLeave * NERDTreeClose
 
 "workspace save session
 nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+let g:workspace_autosave = 0
+let g:workspace_undodir= $HOME . '/.vim/undodir/'
 
 "vim-colors-solarized syntax
 syntax on
