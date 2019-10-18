@@ -10,7 +10,7 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'thaerkh/vim-workspace'
-  Plug 'altercation/vim-colors-solarized'
+  Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -46,11 +46,10 @@ let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 
-"vim-colors-solarized syntax
+"vim-colorschemes syntax
 syntax on
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
+colorscheme deus
+highlight Normal ctermbg=black
 
 "coc
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
