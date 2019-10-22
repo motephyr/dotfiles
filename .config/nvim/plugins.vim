@@ -9,6 +9,7 @@ call plug#begin()
   " browse
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-workspace'
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
