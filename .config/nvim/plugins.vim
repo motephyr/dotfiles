@@ -1,3 +1,8 @@
+"if'fff'asdf fff" 'dfasdfasdf bbb' {asdfasdf asdfasdf} [fasdfafd asdfasd] (asdfa ffff)   \adsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
+"vi(text obj) va
+"ci
+"di
+
 call plug#begin()
 
   " search
@@ -18,7 +23,7 @@ call plug#begin()
 
 call plug#end()
 
-let mapleader = "'"
+let mapleader = " "
 
 "ack for ag
 if executable('ag')
@@ -36,7 +41,7 @@ let g:NERDTreeMouseMode=3
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
-nnoremap <Leader>t :NERDTreeToggle<Enter>
+noremap <Leader>t <Esc>:NERDTreeToggle<cr>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimLeave * NERDTreeClose
@@ -60,9 +65,8 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " with fzf.vim
-noremap <C-t> :Files<CR>
-vnoremap <C-t> :Files<CR>
-inoremap <C-t> :Files<CR>
+noremap <C-t> <Esc>:Files<CR>
+inoremap <C-t> <Esc>:Files<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -112,7 +116,7 @@ command! -bang -nargs=* Rg
 
 
 "global
-nnoremap <Leader>n :set invnu<cr>
+noremap <Leader>n <Esc>:set invnu<cr>
 
 " Go to tab by number
 noremap <leader>1 1gt

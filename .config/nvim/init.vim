@@ -28,6 +28,12 @@ set clipboard=unnamed
 "noremap i k
 "noremap k j
 "noremap j h
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+noremap lkj <Esc>
+noremap! lkj <Esc>
 "set ai           " 自動縮排
 set mouse=a
 
@@ -36,7 +42,7 @@ set suffixesadd=.js,.jsx
 set hidden
 set path+=**
 
-" for move block
+" for move block(linux, window)
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -44,6 +50,7 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+" for move block(mac)
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
