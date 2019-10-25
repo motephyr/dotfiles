@@ -28,12 +28,14 @@ set clipboard=unnamed
 "noremap i k
 "noremap k j
 "noremap j h
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 noremap lkj <Esc>
 noremap! lkj <Esc>
+tnoremap lkj <C-c>
+
 "set ai           " 自動縮排
 set mouse=a
 

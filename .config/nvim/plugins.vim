@@ -20,7 +20,7 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-
+  Plug 't9md/vim-choosewin'
 call plug#end()
 
 let mapleader = " "
@@ -114,6 +114,11 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+"vim-choosewin
+" invoke with '-'
+nmap <Leader>- <Plug>(choosewin)
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
 
 "global
 noremap <Leader>n <Esc>:set invnu<cr>
