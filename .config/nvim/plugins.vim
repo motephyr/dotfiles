@@ -37,13 +37,14 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " nerdtree
 set splitright
-let g:NERDTreeMouseMode=3
+let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 noremap <Leader>t <Esc>:NERDTreeToggle<cr>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
 
 "workspace save session
