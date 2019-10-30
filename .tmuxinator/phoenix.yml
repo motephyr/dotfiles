@@ -24,9 +24,6 @@ windows:
   - masterdata:
       layout: main-vertical
       panes:
-        - a:
-          - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
-          - vi
         - b:
           - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
           - tig
@@ -35,9 +32,6 @@ windows:
   - phxui:
       layout: main-vertical
       panes:
-        - a:
-          - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
-          - vi
         - b:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
           - tig
