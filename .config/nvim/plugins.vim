@@ -21,6 +21,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 't9md/vim-choosewin'
+  Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 let mapleader = " "
