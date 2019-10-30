@@ -277,7 +277,7 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -292,7 +292,8 @@ tmux_conf_copy_to_os_clipboard=true
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+# set -g status-position top
+set-option -g status-position top
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -304,4 +305,4 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run -b '~/dotfiles/.tmux/plugins/tpm/tpm'
+run -b '~/.tmux/plugins/tpm/tpm'
