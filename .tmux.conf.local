@@ -293,7 +293,6 @@ tmux_conf_copy_to_os_clipboard=true
 
 # move status line to top
 # set -g status-position top
-# set-option -g status-position top
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'

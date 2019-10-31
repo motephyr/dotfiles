@@ -37,3 +37,9 @@ windows:
           - tig
         - c:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
+  - dotfiles:
+      layout: main-vertical
+      panes:
+        - a:
+          - cd ~/dotfiles
+          - git pull
