@@ -26,7 +26,6 @@ windows:
       panes:
         - b:
           - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
-          - tig
         - c:
           - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
   - phxui:
@@ -34,7 +33,6 @@ windows:
       panes:
         - b:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
-          - tig
         - c:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
   - dotfiles:
