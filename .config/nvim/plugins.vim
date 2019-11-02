@@ -7,7 +7,7 @@ call plug#begin()
 
   " search
   " Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mileszs/ack.vim'
+  " Plug 'mileszs/ack.vim'
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
 
@@ -26,11 +26,12 @@ call plug#end()
 
 let mapleader = " "
 
-"ack for ag
+"ag
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  cnoreabbrev ag Ag
+  noremap <Leader>a <Esc>:Ag<Space>
+  inoremap <Leader>a <Esc>:Ag<Space>
 endif
-cnoreabbrev ag Ag
 
 "easymotion <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -107,13 +108,11 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
 
-" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                         : fzf#vim#with_preview('right:50%'),
   \                 <bang>0)
-
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 "command! -bang -nargs=* Rg
 "  \ call fzf#vim#grep(
