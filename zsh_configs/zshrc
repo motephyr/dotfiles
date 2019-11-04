@@ -74,11 +74,26 @@ export PATH="$PATH:/Users/motephyr/.rvm/bin:/usr/local/bin:/usr/local/sbin:/bin:
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+##unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+##MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-source ~/.nvm/nvm.sh
+##source ~/.nvm/nvm.sh
+##export DOCKER_HOST=tcp://localhost:2375
+##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
+alias vim="nvim"
+alias vi="nvim"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
