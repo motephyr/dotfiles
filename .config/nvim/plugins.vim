@@ -64,7 +64,6 @@ highlight Normal ctermbg=black
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " with fzf.vim
