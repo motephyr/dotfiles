@@ -1,7 +1,12 @@
-"if'fff'asdf fff" 'dfasdfasdf bbb' {asdfasdf asdfasdf} [fasdfafd asdfasd] (asdfa ffff)   \adsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
+"if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
 "vi(text obj) va
-"ci
-"di
+"di"
+"da"
+"dw
+"
+"diw
+"ciw
+"viw
 
 call plug#begin()
 
@@ -45,8 +50,7 @@ let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 noremap <Leader>t <Esc>:NERDTreeToggle<cr>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
-"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
+autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && bufwinnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
 
 "workspace save session
