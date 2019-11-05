@@ -97,3 +97,18 @@ export PATH="$GOPATH/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+fag() {
+  local file
+
+  file="$(ag -l $@ | fzf -0 -1 --preview 'bat --color=always --style=header,grid --line-range :300 {}'| awk -F: '{print $1}')"
+
+  if [[ -n $file ]]
+  then
+     nvim $file
+  fi
+}
+
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  ag -l "$1" | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
+}
