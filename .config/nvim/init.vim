@@ -92,6 +92,6 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
-nnoremap <leader>x "_d
-xnoremap <leader>x "_d
+nnoremap x "_d
+xnoremap x "_d
 xnoremap <leader>p "_dP

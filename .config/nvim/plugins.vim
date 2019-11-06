@@ -35,7 +35,6 @@ let mapleader = " "
 if executable('ag')
   cnoreabbrev ag Ag
   noremap <Leader>a <Esc>:Ag<Space>
-  inoremap <Leader>a <Esc>:Ag<Space>
 endif
 
 "easymotion <Leader>f{char} to move to {char}
