@@ -50,7 +50,7 @@ let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 noremap <Leader>t <Esc>:NERDTreeToggle<cr>
 nnoremap <silent> <Leader>r :NERDTreeFind<cr>
-autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && bufwinnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
+autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
 
 "workspace save session
@@ -68,6 +68,7 @@ highlight Normal ctermbg=black
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
 
 " fzf
+autocmd TermOpen,BufEnter term://* startinsert
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " with fzf.vim
