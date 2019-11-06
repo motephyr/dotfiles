@@ -82,6 +82,7 @@ export PATH="$PATH:/Users/motephyr/.rvm/bin:/usr/local/bin:/usr/local/sbin:/bin:
 ##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
 alias vim="nvim"
 alias vi="nvim"
+alias tig="tig --date-order --all"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
@@ -113,5 +114,10 @@ fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   ag -l "$1" | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
 }
-    export LC_ALL=C.UTF-8
-    export LANG=C.UTF-8
+
+agr() {
+  ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
+}
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
