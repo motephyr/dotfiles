@@ -68,6 +68,7 @@ highlight Normal ctermbg=black
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
 
 " fzf
+autocmd TermOpen,BufEnter term://* startinsert
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " with fzf.vim
