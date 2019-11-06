@@ -11,8 +11,6 @@
 call plug#begin()
 
   " search
-  " Plug 'ctrlpvim/ctrlp.vim'
-  " Plug 'mileszs/ack.vim'
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
 
@@ -26,7 +24,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 't9md/vim-choosewin'
-  Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 let mapleader = " "
