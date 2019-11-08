@@ -48,6 +48,7 @@ set statusline+=%#CursorIM#     " colour
 set statusline+=\ %3l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
 set statusline+=\ %3p%%\                " percentage
+set statusline+=\ %{winnr()}\           " window number
 
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
@@ -94,3 +95,29 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 
 nnoremap x "_x
 xnoremap x "_x
+map <Enter> o<ESC>
+
+"global
+noremap <Leader>n <Esc>:set invnu<cr>
+
+" Go to tab by number
+noremap <leader>t1 1gt
+noremap <leader>t2 2gt
+noremap <leader>t3 3gt
+noremap <leader>t4 4gt
+noremap <leader>t5 5gt
+noremap <leader>t6 6gt
+noremap <leader>t7 7gt
+noremap <leader>t8 8gt
+noremap <leader>t9 9gt
+noremap <leader>t0 :tablast<cr>
+
+noremap <leader>1 :1wincmd w<cr>
+noremap <leader>2 :2wincmd w<cr>
+noremap <leader>3 :3wincmd w<cr>
+noremap <leader>4 :4wincmd w<cr>
+noremap <leader>5 :5wincmd w<cr>
+noremap <leader>6 :6wincmd w<cr>
+noremap <leader>7 :7wincmd w<cr>
+noremap <leader>8 :8wincmd w<cr>
+noremap <leader>9 :9wincmd w<cr>

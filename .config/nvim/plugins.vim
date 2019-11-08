@@ -23,7 +23,8 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 't9md/vim-choosewin'
+  Plug 'iberianpig/tig-explorer.vim'
+  Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 
 let mapleader = " "
@@ -37,6 +38,7 @@ endif
 "easymotion <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
+let g:EasyMotion_smartcase = 1
 
 " nerdtree
 set splitright
@@ -44,8 +46,8 @@ let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
-noremap <Leader>t <Esc>:NERDTreeToggle<cr>
-nnoremap <silent> <Leader>r :NERDTreeFind<cr>
+noremap <Leader>e <Esc>:NERDTreeToggle<cr>
+"nnoremap <silent> <Leader>w :NERDTreeFind<cr>
 autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
 
@@ -74,7 +76,7 @@ inoremap <C-t> <Esc>:Files<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-i': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \ 'ctrl-s': 'vsplit' }
 
 " fzf.vim
 " Files! // ! for full screen
@@ -125,23 +127,23 @@ command! -bang -nargs=* Ag
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-"vim-choosewin
-" invoke with '-'
-nmap <Leader>- <Plug>(choosewin)
-" if you want to use overlay feature
-let g:choosewin_overlay_enable = 1
+" open tig with current file
+nnoremap <Leader>T :TigOpenCurrentFile<CR>
 
-"global
-noremap <Leader>n <Esc>:set invnu<cr>
+" open tig with Project root path
+nnoremap <Leader>t :TigOpenProjectRootDir<CR>
 
-" Go to tab by number
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+" open tig grep
+nnoremap <Leader>g :TigGrep<CR>
+
+" resume from last grep
+nnoremap <Leader>r :TigGrepResume<CR>
+
+" open tig grep with the selected word
+vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
+
+" open tig grep with the word under the cursor
+nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
+
+" open tig blame with current file
+nnoremap <Leader>b :TigBlame<CR>
