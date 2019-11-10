@@ -1,0 +1,44 @@
+
+name: phoenix
+root: ~/Projects/phoenix
+
+windows:
+  - phxserver:
+      layout: main-vertical
+      panes:
+        - a:
+          - cd ~/Projects/phoenix/master-data-api/
+          - bundle exec hanami server --host 0.0.0.0 -p 2301 --no-code-reload
+          - sleep 30
+        - b:
+          - cd ~/Projects/phoenix/users-api/
+          - bundle exec hanami server --host 0.0.0.0 -p 2300 --no-code-reload
+          - sleep 30
+        - c:
+          - cd ~/Projects/phoenix/phoenix-api-gateway
+          - sleep 60
+          - yarn start
+        - d:
+          - cd ~/Projects/phoenix/phoenix-ui
+          - node_modules/.bin/webpack-dev-server --mode development --hot
+
+  - masterdata:
+      layout: main-vertical
+      panes:
+        - b:
+          - cd ~/Projects/phoenix/master-data-api
+        - c:
+          - cd ~/Projects/phoenix/master-data-api
+  - phxui:
+      layout: main-vertical
+      panes:
+        - b:
+          - cd ~/Projects/phoenix/phoenix-ui
+        - c:
+          - cd ~/Projects/phoenix/phoenix-ui
+  - dotfiles:
+      layout: main-vertical
+      panes:
+        - a:
+          - cd ~/dotfiles
+          - git pull
