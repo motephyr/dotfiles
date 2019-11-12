@@ -25,16 +25,12 @@ windows:
   - masterdata:
       layout: main-vertical
       panes:
-        - b:
-          - cd ~/Projects/phoenix/master-data-api
-        - c:
+        - a:
           - cd ~/Projects/phoenix/master-data-api
   - phxui:
       layout: main-vertical
       panes:
-        - b:
-          - cd ~/Projects/phoenix/phoenix-ui
-        - c:
+        - a:
           - cd ~/Projects/phoenix/phoenix-ui
   - dotfiles:
       layout: main-vertical
