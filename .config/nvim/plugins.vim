@@ -4,9 +4,9 @@
 "da"
 "dw
 "
-"diw
-"ciw
-"viw
+"delete diw
+"replace ciw cw 
+"visual viw
 
 call plug#begin()
 
@@ -17,14 +17,16 @@ call plug#begin()
   " browse
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
+  Plug 'zefei/vim-wintabs'
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'iberianpig/tig-explorer.vim'
   Plug 'rbgrouleff/bclose.vim'
+
 call plug#end()
 
 let mapleader = " "
@@ -48,8 +50,11 @@ let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 noremap <Leader>e <Esc>:NERDTreeToggle<cr>
 "nnoremap <silent> <Leader>w :NERDTreeFind<cr>
-autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable) | NERDTreeFind | wincmd p | endif
+autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree") && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
+
+"git
+set updatetime=500
 
 "workspace save session
 nnoremap <leader>s :ToggleWorkspace<CR>
@@ -58,13 +63,16 @@ let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set noswapfile
 
+"vim-wintabs
+set sessionoptions+=globals
+
 "vim-colorschemes syntax
 syntax on
 colorscheme deus
 highlight Normal ctermbg=black
 
 "coc
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier','coc-tsserver','coc-json', 'coc-yaml']
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml', 'coc-solargraph']
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert

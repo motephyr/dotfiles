@@ -77,6 +77,10 @@ set hidden
 set directory=/tmp
 set path+=**
 
+"macro
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
+
 " for move block(linux, window)
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -95,8 +99,8 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 
 nnoremap x "_x
 xnoremap x "_x
-map <Enter> o<ESC>
-
+nnoremap <Enter> i<Enter><ESC>
+"nnoremap <Space> a<Space><ESC>
 "global
 noremap <Leader>n <Esc>:set invnu<cr>
 
