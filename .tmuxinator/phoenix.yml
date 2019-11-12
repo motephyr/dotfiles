@@ -7,11 +7,11 @@ windows:
       panes:
         - a:
           - cd /c/Users/mark.wu/Projects/phoenix/master-data-api/
-          - bundle exec hanami server --host 0.0.0.0 -p 2301 --no-code-reload
+          - bin/server 
           - sleep 30
         - b:
           - cd /c/Users/mark.wu/Projects/phoenix/users-api/
-          - bundle exec hanami server --host 0.0.0.0 -p 2300 --no-code-reload
+          - bin/server
           - sleep 30
         - c:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-api-gateway
@@ -19,21 +19,17 @@ windows:
           - yarn start
         - d:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
-          - node_modules/.bin/webpack-dev-server --mode development --hot
+          - yarn dev
 
   - masterdata:
       layout: main-vertical
       panes:
-        - b:
-          - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
-        - c:
+        - a:
           - cd /c/Users/mark.wu/Projects/phoenix/master-data-api
   - phxui:
       layout: main-vertical
       panes:
-        - b:
-          - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
-        - c:
+        - a:
           - cd /c/Users/mark.wu/Projects/phoenix/phoenix-ui
   - dotfiles:
       layout: main-vertical
