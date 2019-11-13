@@ -56,17 +56,6 @@ set iminsert=0
 set imsearch=0
 set nu
 set clipboard=unnamed
-"noremap h i
-"noremap i k
-"noremap k j
-"noremap j h
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-noremap zz <Esc>
-noremap! zz <Esc>
-tnoremap zz <C-c>
 
 "set ai           " 自動縮排
 set mouse=a
@@ -76,10 +65,6 @@ set suffixesadd=.js,.jsx
 set hidden
 set directory=/tmp
 set path+=**
-
-"macro
-nnoremap Q @q
-vnoremap Q :norm @q<cr>
 
 " for move block(linux, window)
 nnoremap <A-j> :m .+1<CR>==
@@ -97,12 +82,22 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
-nnoremap x "_x
-xnoremap x "_x
-nnoremap <Enter> i<Enter><ESC>
-"nnoremap <Space> a<Space><ESC>
+"macro
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
+
 "global
 noremap <Leader>n <Esc>:set invnu<cr>
+
+nnoremap x "_x
+xnoremap x "_x
+
+nnoremap <Enter> i<Enter><ESC>
+nnoremap <Tab> viw
+vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
+noremap zz <Esc>
+noremap! zz <Esc>
+tnoremap zz <C-c>
 
 " Go to tab by number
 noremap <leader>t1 1gt
@@ -125,3 +120,11 @@ noremap <leader>6 :6wincmd w<cr>
 noremap <leader>7 :7wincmd w<cr>
 noremap <leader>8 :8wincmd w<cr>
 noremap <leader>9 :9wincmd w<cr>
+"noremap h i
+"noremap i k
+"noremap k j
+"noremap j h
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
