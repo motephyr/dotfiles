@@ -62,14 +62,22 @@ let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set noswapfile
+set undofile
 
 "vim-wintabs
 set sessionoptions+=globals
 
 "vim-colorschemes syntax
-syntax on
+set t_Co=256
+set termguicolors
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set background=dark    " Setting dark mode
 colorscheme deus
-highlight Normal ctermbg=black
+let g:deus_termcolors=256
+hi! Normal ctermbg=NONE guibg=NONE
 
 "coc
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml', 'coc-solargraph']
