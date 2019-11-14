@@ -87,10 +87,11 @@ nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
 "global
-noremap <Leader>n <Esc>:set invnu<cr>
+nnoremap <Leader>n :set invnu<cr>
+inoremap <Leader>n <Esc>:set invnu<cr>i
 
 nnoremap x "_x
-xnoremap x "_x
+vnoremap x "_x
 
 nnoremap <Enter> i<Enter><ESC>
 nnoremap <Tab> viw

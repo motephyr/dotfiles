@@ -7,39 +7,65 @@
 "delete diw
 "replace ciw cw 
 "visual viw
+let mapleader = " "
 
 call plug#begin()
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  noremap <Leader>a <Esc>:Ag<Space>
+  map  <Leader>f <Plug>(easymotion-bd-f)
+  nmap <Leader>f <Plug>(easymotion-overwin-f)
 
   " browse
   Plug 'scrooloose/nerdtree'
+  noremap <Leader>e <Esc>:NERDTreeToggle<cr>
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
+  noremap <leader>s :ToggleWorkspace<CR>
   Plug 'zefei/vim-wintabs'
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  noremap <C-t> <Esc>:Files<CR>
+  inoremap <C-t> <Esc>:Files<CR>
+  tnoremap <C-t> <C-c>
   Plug 'iberianpig/tig-explorer.vim'
+  " open tig with current file
+  nnoremap <Leader>T :TigOpenCurrentFile<CR>
+  " open tig with Project root path
+  nnoremap <Leader>t :TigOpenProjectRootDir<CR>
+  " open tig grep
+  nnoremap <Leader>g :TigGrep<CR>
+  " resume from last grep
+  nnoremap <Leader>r :TigGrepResume<CR>
+  " open tig grep with the selected word
+  vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
+  " open tig grep with the word under the cursor
+  nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
+  " open tig blame with current file
+  nnoremap <Leader>b :TigBlame<CR>
   Plug 'rbgrouleff/bclose.vim'
-
+  Plug 'scrooloose/nerdcommenter'
+  autocmd! VimEnter * call s:fcy_nerdcommenter_map()
+  function! s:fcy_nerdcommenter_map()
+      nmap <leader>cc <plug>NERDCommenterToggle
+      vmap <leader>cc <plug>NERDCommenterToggle gv
+  endfunction
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
 call plug#end()
 
-let mapleader = " "
 
 "ag
 if executable('ag')
   cnoreabbrev ag Ag
-  noremap <Leader>a <Esc>:Ag<Space>
 endif
 
 "easymotion <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 
 " nerdtree
@@ -48,7 +74,6 @@ let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
-noremap <Leader>e <Esc>:NERDTreeToggle<cr>
 "nnoremap <silent> <Leader>w :NERDTreeFind<cr>
 autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree") && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * NERDTreeClose
@@ -57,7 +82,6 @@ autocmd VimLeave * NERDTreeClose
 set updatetime=500
 
 "workspace save session
-nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
@@ -87,8 +111,6 @@ autocmd TermOpen,BufEnter term://* startinsert
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " with fzf.vim
-noremap <C-t> <Esc>:Files<CR>
-inoremap <C-t> <Esc>:Files<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -144,23 +166,3 @@ command! -bang -nargs=* Ag
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" open tig with current file
-nnoremap <Leader>T :TigOpenCurrentFile<CR>
-
-" open tig with Project root path
-nnoremap <Leader>t :TigOpenProjectRootDir<CR>
-
-" open tig grep
-nnoremap <Leader>g :TigGrep<CR>
-
-" resume from last grep
-nnoremap <Leader>r :TigGrepResume<CR>
-
-" open tig grep with the selected word
-vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
-
-" open tig grep with the word under the cursor
-nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
-
-" open tig blame with current file
-nnoremap <Leader>b :TigBlame<CR>
