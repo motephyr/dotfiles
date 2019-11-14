@@ -1,40 +1,18 @@
 
 name: phoenix
-root: ~/Projects/phoenix
+root: ~/Projects
 
 windows:
-  - phxserver:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/phoenix/master-data-api/
-          - bin/server
-          - sleep 30
-        - b:
-          - cd ~/Projects/phoenix/users-api/
-          - bin/server
-          - sleep 30
-        - c:
-          - cd ~/Projects/phoenix/phoenix-api-gateway
-          - sleep 60
-          - yarn start
-        - d:
-          - cd ~/Projects/phoenix/phoenix-ui
-          - yarn dev
-
-  - masterdata:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/phoenix/master-data-api
-  - phxui:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/phoenix/phoenix-ui
-  - dotfiles:
+  - main:
       layout: main-vertical
       panes:
         - a:
           - cd ~/dotfiles
           - git pull
+          - cd ~/Projects
+
+  - joplin:
+      layout: main-vertical
+      panes:
+        - a:
+          - joplin
