@@ -89,9 +89,6 @@ inoremap <C-n> <Esc>:set invnu<cr>i
 nnoremap x "_x
 vnoremap x "_x
 
-
-nnoremap <Enter> i<Enter><ESC>
-
 vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
 
 tnoremap <Esc> <C-\><C-n>

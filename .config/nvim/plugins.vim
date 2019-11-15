@@ -15,9 +15,11 @@ call plug#begin()
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
   noremap <Leader>a <Esc>:Ag<Space>
-  map  <Leader>f <Plug>(easymotion-bd-f)
-  nmap <Leader>f <Plug>(easymotion-overwin-f)
-
+  "map  <Leader>f <Plug>(easymotion-bd-f)
+  "nmap <Leader>f <Plug>(easymotion-overwin-f)
+  map <Enter> <Plug>(easymotion-bd-f)
+  nmap <Enter> <Plug>(easymotion-overwin-f)
+  
   " browse
   Plug 'scrooloose/nerdtree'
   noremap <expr> <Leader>e (exists("g:NERDTree") && g:NERDTree.IsOpen()) ? '<Esc>:NERDTreeToggle<cr>':'<Esc>:NERDTreeFind<cr>'
@@ -60,8 +62,8 @@ call plug#begin()
   Plug 'scrooloose/nerdcommenter'
   "autocmd! VimEnter * call s:fcy_nerdcommenter_map()
   "function! s:fcy_nerdcommenter_map()
-      nmap <C-m> <plug>NERDCommenterToggle
-      vmap <C-m> <plug>NERDCommenterToggle<Esc>gv=gv
+      nmap <C-f> <plug>NERDCommenterToggle
+      vmap <C-f> <plug>NERDCommenterToggle<Esc>gv=gv
   "endfunction
   
   Plug 'tpope/vim-surround'
