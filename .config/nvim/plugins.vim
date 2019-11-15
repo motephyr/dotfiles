@@ -38,9 +38,10 @@ call plug#begin()
   tnoremap <C-t> <C-c>
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
-  nnoremap <Leader>T :vsp<CR>:TigOpenCurrentFile<CR>
+  nnoremap <Leader>T :tabnew<CR>:TigOpenCurrentFile<CR>
   " open tig with Project root path
-  nnoremap <Leader>t :vsp<CR>:TigOpenProjectRootDir<CR>
+  nnoremap <Leader>t :tabnew<CR>:TigOpenProjectRootDir<CR>
+  tmap <Leader>t <Esc>:q<CR>
   " open tig grep
   nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
@@ -55,8 +56,8 @@ call plug#begin()
   Plug 'scrooloose/nerdcommenter'
   autocmd! VimEnter * call s:fcy_nerdcommenter_map()
   function! s:fcy_nerdcommenter_map()
-      nmap <leader>cc <plug>NERDCommenterToggle
-      vmap <leader>cc <plug>NERDCommenterToggle<Esc>gv=gv
+      nmap <leader>/ <plug>NERDCommenterToggle
+      vmap <leader>/ <plug>NERDCommenterToggle<Esc>gv=gv
   endfunction
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'

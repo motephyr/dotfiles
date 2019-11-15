@@ -91,9 +91,11 @@ vnoremap x "_x
 
 nnoremap <Enter> i<Enter><ESC>
 vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
+
+tnoremap <Esc> <C-\><C-n>
 noremap zz <Esc>
 noremap! zz <Esc>
-tnoremap zz <C-c>
+tmap zz <Esc>
 
 " Go to tab by number
 "noremap <leader>t1 1gt
