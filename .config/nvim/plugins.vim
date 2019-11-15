@@ -15,14 +15,16 @@ call plug#begin()
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
   noremap <Leader>a <Esc>:Ag<Space>
-  "map  <Leader>f <Plug>(easymotion-bd-f)
-  "nmap <Leader>f <Plug>(easymotion-overwin-f)
-  map <Enter> <Plug>(easymotion-bd-f)
-  nmap <Enter> <Plug>(easymotion-overwin-f)
+  map  ' <Plug>(easymotion-bd-f)
+  nmap ' <Plug>(easymotion-overwin-f)
+  
+  Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'haya14busa/incsearch.vim'
+  noremap <silent> / :call IncSearch()<CR>
   
   " browse
   Plug 'scrooloose/nerdtree'
-  noremap <expr> <Leader>e (exists("g:NERDTree") && g:NERDTree.IsOpen()) ? '<Esc>:NERDTreeToggle<cr>':'<Esc>:NERDTreeFind<cr>'
+  noremap <Leader>e :call ToggleNerdTree()<CR>
 
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
@@ -60,11 +62,8 @@ call plug#begin()
 
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
-  "autocmd! VimEnter * call s:fcy_nerdcommenter_map()
-  "function! s:fcy_nerdcommenter_map()
-      nmap <C-f> <plug>NERDCommenterToggle
-      vmap <C-f> <plug>NERDCommenterToggle<Esc>gv=gv
-  "endfunction
+  nmap <Enter> <plug>NERDCommenterToggle
+  vmap <Enter> <plug>NERDCommenterToggle<Esc>gv=gv
   
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -79,6 +78,21 @@ endif
 "easymotion <Leader>f{char} to move to {char}
 let g:EasyMotion_smartcase = 1
 
+"incsearch
+function IncSearch()
+  :let @/ = ""
+  call incsearch#go(<SID>config_easyfuzzymotion())
+endfunction
+
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 1,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
 " nerdtree
 set splitright
 let g:NERDTreeMouseMode=2
@@ -86,7 +100,20 @@ let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 "nnoremap <silent> <Leader>w :NERDTreeFind<cr>
-autocmd BufEnter * if (bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree") && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
+function NotNerdTreePane()
+  return bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree")
+endfunction
+
+function ToggleNerdTree()
+  if g:NERDTree.IsOpen() 
+    :NERDTreeClose
+  else 
+    :NERDTreeFind
+  endif
+endfunction
+
+autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
+autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif 
 autocmd VimLeave * NERDTreeClose
 
 "git
