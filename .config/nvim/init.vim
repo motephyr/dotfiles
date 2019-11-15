@@ -19,10 +19,6 @@ set cursorline   " 顯示目前的游標位置
 
 highlight Cursor guifg=white guibg=black
 highlight iCursor guifg=white guibg=steelblue
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait10
 
 "set laststatus=2
 "set statusline=%4*%<\%m%<[%f\%r%h%w]\ [%{&ff},%{&fileencoding},%Y]%=\[Position=%l,%v,%p%%]
@@ -87,30 +83,29 @@ nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
 "global
-nnoremap <Leader>n :set invnu<cr>
-inoremap <Leader>n <Esc>:set invnu<cr>i
+nnoremap <C-n> :set invnu<cr>
+inoremap <C-n> <Esc>:set invnu<cr>i
 
 nnoremap x "_x
 vnoremap x "_x
 
 nnoremap <Enter> i<Enter><ESC>
-nnoremap <Tab> viw
 vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
 noremap zz <Esc>
 noremap! zz <Esc>
 tnoremap zz <C-c>
 
 " Go to tab by number
-noremap <leader>t1 1gt
-noremap <leader>t2 2gt
-noremap <leader>t3 3gt
-noremap <leader>t4 4gt
-noremap <leader>t5 5gt
-noremap <leader>t6 6gt
-noremap <leader>t7 7gt
-noremap <leader>t8 8gt
-noremap <leader>t9 9gt
-noremap <leader>t0 :tablast<cr>
+"noremap <leader>t1 1gt
+"noremap <leader>t2 2gt
+"noremap <leader>t3 3gt
+"noremap <leader>t4 4gt
+"noremap <leader>t5 5gt
+"noremap <leader>t6 6gt
+"noremap <leader>t7 7gt
+"noremap <leader>t8 8gt
+"noremap <leader>t9 9gt
+"noremap <leader>t0 :tablast<cr>
 
 noremap <leader>1 :1wincmd w<cr>
 noremap <leader>2 :2wincmd w<cr>

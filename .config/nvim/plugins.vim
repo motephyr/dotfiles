@@ -20,12 +20,15 @@ call plug#begin()
 
   " browse
   Plug 'scrooloose/nerdtree'
-  noremap <Leader>e <Esc>:NERDTreeToggle<cr>
+  noremap <expr> <Leader>e (exists("g:NERDTree") && g:NERDTree.IsOpen()) ? '<Esc>:NERDTreeToggle<cr>':'<Esc>:NERDTreeFind<cr>'
+
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
   Plug 'zefei/vim-wintabs'
+  "map <Tab> <Plug>(wintabs_previous)
+  map <S-Tab> <Plug>(wintabs_next)
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -35,9 +38,9 @@ call plug#begin()
   tnoremap <C-t> <C-c>
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
-  nnoremap <Leader>T :TigOpenCurrentFile<CR>
+  nnoremap <Leader>T :vsp<CR>:TigOpenCurrentFile<CR>
   " open tig with Project root path
-  nnoremap <Leader>t :TigOpenProjectRootDir<CR>
+  nnoremap <Leader>t :vsp<CR>:TigOpenProjectRootDir<CR>
   " open tig grep
   nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
@@ -53,7 +56,7 @@ call plug#begin()
   autocmd! VimEnter * call s:fcy_nerdcommenter_map()
   function! s:fcy_nerdcommenter_map()
       nmap <leader>cc <plug>NERDCommenterToggle
-      vmap <leader>cc <plug>NERDCommenterToggle gv
+      vmap <leader>cc <plug>NERDCommenterToggle<Esc>gv=gv
   endfunction
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
