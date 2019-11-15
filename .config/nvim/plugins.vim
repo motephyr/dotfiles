@@ -26,9 +26,11 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
+
   Plug 'zefei/vim-wintabs'
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
+
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -36,6 +38,7 @@ call plug#begin()
   noremap <C-t> <Esc>:Files<CR>
   inoremap <C-t> <Esc>:Files<CR>
   tnoremap <C-t> <C-c>
+
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
   nnoremap <Leader>T :tabnew<CR>:TigOpenCurrentFile<CR>
@@ -52,13 +55,15 @@ call plug#begin()
   nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
   " open tig blame with current file
   nnoremap <Leader>b :TigBlame<CR>
+
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
-  autocmd! VimEnter * call s:fcy_nerdcommenter_map()
-  function! s:fcy_nerdcommenter_map()
+  "autocmd! VimEnter * call s:fcy_nerdcommenter_map()
+  "function! s:fcy_nerdcommenter_map()
       nmap <leader>/ <plug>NERDCommenterToggle
       vmap <leader>/ <plug>NERDCommenterToggle<Esc>gv=gv
-  endfunction
+  "endfunction
+  
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
 call plug#end()
