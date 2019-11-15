@@ -60,8 +60,8 @@ call plug#begin()
   Plug 'scrooloose/nerdcommenter'
   "autocmd! VimEnter * call s:fcy_nerdcommenter_map()
   "function! s:fcy_nerdcommenter_map()
-      nmap <leader>/ <plug>NERDCommenterToggle
-      vmap <leader>/ <plug>NERDCommenterToggle<Esc>gv=gv
+      nmap <C-m> <plug>NERDCommenterToggle
+      vmap <C-m> <plug>NERDCommenterToggle<Esc>gv=gv
   "endfunction
   
   Plug 'tpope/vim-surround'
