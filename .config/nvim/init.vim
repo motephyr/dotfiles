@@ -96,6 +96,21 @@ noremap zz <Esc>
 noremap! zz <Esc>
 tmap zz <Esc>
 
+
+noremap <leader>1 :1wincmd w<cr>
+noremap <leader>2 :2wincmd w<cr>
+noremap <leader>3 :3wincmd w<cr>
+noremap <leader>4 :4wincmd w<cr>
+noremap <leader>5 :5wincmd w<cr>
+noremap <leader>6 :6wincmd w<cr>
+noremap <leader>7 :7wincmd w<cr>
+noremap <leader>8 :8wincmd w<cr>
+noremap <leader>9 :9wincmd w<cr>
+
+nnoremap <Bs> i<C-w><Esc>
+nnoremap \ i<Space>\<Enter><Esc>h 
+nnoremap <CR> i<Enter><Esc>
+
 " Go to tab by number
 "noremap <leader>t1 1gt
 "noremap <leader>t2 2gt
@@ -108,15 +123,6 @@ tmap zz <Esc>
 "noremap <leader>t9 9gt
 "noremap <leader>t0 :tablast<cr>
 
-noremap <leader>1 :1wincmd w<cr>
-noremap <leader>2 :2wincmd w<cr>
-noremap <leader>3 :3wincmd w<cr>
-noremap <leader>4 :4wincmd w<cr>
-noremap <leader>5 :5wincmd w<cr>
-noremap <leader>6 :6wincmd w<cr>
-noremap <leader>7 :7wincmd w<cr>
-noremap <leader>8 :8wincmd w<cr>
-noremap <leader>9 :9wincmd w<cr>
 "noremap h i
 "noremap i k
 "noremap k j
