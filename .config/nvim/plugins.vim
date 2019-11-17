@@ -36,7 +36,14 @@ call plug#begin()
   map <S-Tab> <Plug>(wintabs_next)
 
   Plug 'flazz/vim-colorschemes'
+  Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   noremap <C-t> <Esc>:Files<CR>
@@ -62,8 +69,8 @@ call plug#begin()
 
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
-  nmap <Enter> <plug>NERDCommenterToggle
-  vmap <Enter> <plug>NERDCommenterToggle<Esc>gv=gv
+  nmap m <plug>NERDCommenterToggle
+  vmap m <plug>NERDCommenterToggle<Esc>gv=gv
   
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -142,7 +149,13 @@ let g:deus_termcolors=256
 hi! Normal ctermbg=NONE guibg=NONE
 
 "coc
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml', 'coc-solargraph']
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>' 
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-snippets']
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
