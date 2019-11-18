@@ -53,7 +53,7 @@ call plug#begin()
 
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
-  nnoremap <Leader>T :tabnew<CR>:TigOpenCurrentFile<CR>
+  nnoremap <Leader>T :TigOpenCurrentFile<CR>
   " open tig with Project root path
   nnoremap <Leader>t :tabnew<CR>:TigOpenProjectRootDir<CR>
   tmap <Leader>t <Esc>:q<CR>
