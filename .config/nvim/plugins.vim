@@ -17,7 +17,8 @@ call plug#begin()
   noremap <Leader>a <Esc>:Ag<Space>
   map  ' <Plug>(easymotion-bd-f)
   nmap ' <Plug>(easymotion-overwin-f)
-  
+  imap <Leader>' <c-g>u<C-o>m
+
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'haya14busa/incsearch.vim'
   noremap <silent> / :call IncSearch()<CR>
