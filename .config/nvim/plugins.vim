@@ -14,7 +14,6 @@ call plug#begin()
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  noremap <C-f> <Esc>:Ag<Space>
   map  ' <Plug>(easymotion-bd-f)
   nmap ' <Plug>(easymotion-overwin-f)
   "imap <Leader>' <c-g>u<C-o>'
@@ -36,7 +35,7 @@ call plug#begin()
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
-
+  map <C-q> <Esc>:q<CR>
   "Plug 'flazz/vim-colorschemes'
   Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
@@ -49,10 +48,12 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  noremap <C-f> <Esc>:Ag<Space>
   noremap <C-t> <Esc>:Files<CR>
   inoremap <C-t> <Esc>:Files<CR>
   tnoremap <C-t> <C-c>
-
+  tnoremap <C-f> <C-c>
+  
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
   nnoremap <Leader>T :TigOpenCurrentFile<CR>
