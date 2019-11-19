@@ -59,7 +59,7 @@ call plug#begin()
   nnoremap <Leader>T :TigOpenCurrentFile<CR>
   " open tig with Project root path
   nnoremap <Leader>t :tabnew<CR>:TigOpenProjectRootDir<CR>
-  tmap <Leader>t <Esc>:q<CR>
+  "tmap <Leader>t <Esc>:q<CR>
   " open tig grep
   nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
