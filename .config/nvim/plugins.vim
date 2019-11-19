@@ -35,6 +35,7 @@ call plug#begin()
   Plug 'zefei/vim-wintabs'
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
+  map <C-w> <Plug>(wintabs_close)
 
   "Plug 'flazz/vim-colorschemes'
   Plug 'morhetz/gruvbox'
