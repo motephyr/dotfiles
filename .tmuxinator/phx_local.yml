@@ -1,37 +1,42 @@
 
 name: phoenix
-root: ~/Projects/phoenix
+root: ~/Projects/Ruby/phoenix
 
 windows:
   - phxserver:
       layout: main-vertical
       panes:
         - a:
-          - cd ~/Projects/phoenix/master-data-api/
+          - cd ~/Projects/Ruby/phoenix/master-data-api/
           - bin/server
           - sleep 30
         - b:
-          - cd ~/Projects/phoenix/users-api/
+          - cd ~/Projects/Ruby/phoenix/users-api/
           - bin/server
           - sleep 30
         - c:
-          - cd ~/Projects/phoenix/phoenix-api-gateway
+          - cd ~/Projects/Ruby/phoenix/phoenix-api-gateway
           - sleep 60
           - yarn start
         - d:
-          - cd ~/Projects/phoenix/phoenix-ui
+          - cd ~/Projects/Ruby/phoenix/phoenix-ui
           - yarn dev
 
   - masterdata:
       layout: main-vertical
       panes:
         - a:
-          - cd ~/Projects/phoenix/master-data-api
+          - cd ~/Projects/Ruby/phoenix/master-data-api
   - phxui:
       layout: main-vertical
       panes:
         - a:
-          - cd ~/Projects/phoenix/phoenix-ui
+          - cd ~/Projects/Ruby/phoenix/phoenix-ui
+  - joplin:
+      layout: main-vertical
+      panes:
+        - a:
+          - joplin
   - dotfiles:
       layout: main-vertical
       panes:
