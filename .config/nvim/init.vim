@@ -17,12 +17,6 @@ set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 set cursorline   " 顯示目前的游標位置
 
-highlight Cursor guifg=white guibg=black
-highlight iCursor guifg=white guibg=steelblue
-
-"set laststatus=2
-"set statusline=%4*%<\%m%<[%f\%r%h%w]\ [%{&ff},%{&fileencoding},%Y]%=\[Position=%l,%v,%p%%]
-
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
@@ -110,6 +104,9 @@ noremap <leader>9 :9wincmd w<cr>
 nnoremap <Bs> i<C-w><Esc>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
+
+nnoremap ` viw"hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+vnoremap ` "hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 
 " Go to tab by number
 "noremap <leader>t1 1gt

@@ -14,7 +14,7 @@ call plug#begin()
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  noremap <Leader>a <Esc>:Ag<Space>
+  noremap <C-f> <Esc>:Ag<Space>
   map  ' <Plug>(easymotion-bd-f)
   nmap ' <Plug>(easymotion-overwin-f)
   "imap <Leader>' <c-g>u<C-o>'
@@ -36,7 +36,8 @@ call plug#begin()
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
 
-  Plug 'flazz/vim-colorschemes'
+  "Plug 'flazz/vim-colorschemes'
+  Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
@@ -97,7 +98,7 @@ function! s:config_easyfuzzymotion(...) abort
   \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
   \   'keymap': {"\<CR>": '<Over>(easymotion)'},
   \   'is_expr': 1,
-  \   'is_stay': 1
+  \   'is_stay': 0
   \ }), get(a:, 1, {}))
 endfunction
 
@@ -145,8 +146,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
+colorscheme gruvbox
 hi! Normal ctermbg=NONE guibg=NONE
 
 "coc
