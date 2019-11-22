@@ -21,17 +21,6 @@ windows:
         - d:
           - cd ~/Projects/Ruby/phoenix/phoenix-ui
           - yarn dev
-
-  - masterdata:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/Ruby/phoenix/master-data-api
-  - phxui:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/Ruby/phoenix/phoenix-ui
   - joplin:
       layout: main-vertical
       panes:

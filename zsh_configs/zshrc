@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -60,7 +61,7 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+   export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -83,6 +84,7 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:
 alias vim="nvim"
 alias vi="nvim"
 alias tig="tig --date-order --all"
+alias tmuxinator="ASDF_RUBY_VERSION=2.6.4 tmuxinator"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
@@ -97,8 +99,11 @@ export PATH="$GOPATH/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+#just demo find a file with ag and open in nvim
 fag() {
   local file
 
@@ -110,11 +115,19 @@ fag() {
   fi
 }
 
-fif() {
+#choose mulit file 
+mag() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l "$1" | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'
+  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' 
 }
 
+#choose mulit file for change
+magr() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' | tr '\n' '\0' | xargs -0 sed -i '' -e "s/$1/$2/g"
+}
+
+#use ag check and change all
 agr() {
   ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
 }

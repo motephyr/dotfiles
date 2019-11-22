@@ -27,10 +27,11 @@ set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
 set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
 set statusline+=%#Cursor#               " colour
 set statusline+=%#CursorLine#     " colour
 set statusline+=\ %t\                   " short file name
-set statusline+=%M                        " modified [+] flag
+set statusline+=%{getcwd()}
 set statusline+=%=                          " right align
 set statusline+=%#CursorLine#   " colour
 set statusline+=\ %Y\                   " file type
@@ -44,7 +45,7 @@ filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
-set nu
+set number relativenumber
 set clipboard=unnamed
 
 "set ai           " 自動縮排
@@ -88,8 +89,11 @@ vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
 tnoremap <Esc> <C-\><C-n>
 noremap zz <Esc>
 noremap! zz <Esc>
-tmap zz <Esc>
+tnoremap zz <C-c>
+cnoremap zz  <C-c>
 
+map <C-q> <Esc>:q<CR>
+imap <C-q> <Esc>:q<CR>
 
 noremap <leader>1 :1wincmd w<cr>
 noremap <leader>2 :2wincmd w<cr>

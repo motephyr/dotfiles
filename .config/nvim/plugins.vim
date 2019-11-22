@@ -14,13 +14,23 @@ call plug#begin()
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  map  ' <Plug>(easymotion-bd-f)
-  nmap ' <Plug>(easymotion-overwin-f)
-  "imap <Leader>' <c-g>u<C-o>'
-
-  Plug 'haya14busa/incsearch-easymotion.vim'
-  Plug 'haya14busa/incsearch.vim'
-  noremap <silent> / :call IncSearch()<CR>
+  map m <Plug>(easymotion-bd-f)
+  nmap m <Plug>(easymotion-overwin-f)
+  map <Left> <Plug>(easymotion-bd-f)
+  nmap <Left> <Plug>(easymotion-overwin-f)
+  map <Up> <Plug>(easymotion-bd-f)
+  nmap <Up> <Plug>(easymotion-overwin-f)
+  map <Down> <Plug>(easymotion-bd-f)
+  nmap <Down> <Plug>(easymotion-overwin-f)
+  map <Right> <Plug>(easymotion-bd-f)
+  nmap <Right> <Plug>(easymotion-overwin-f)
+  imap <Left> <Esc><Plug>(easymotion-bd-f)
+  imap <Up> <Esc><Plug>(easymotion-bd-f)
+  imap <Down> <Esc><Plug>(easymotion-bd-f)
+  imap <Right> <Esc><Plug>(easymotion-bd-f)
+  "Plug 'haya14busa/incsearch-easymotion.vim'
+  "Plug 'haya14busa/incsearch.vim'
+  "noremap <silent> / :call IncSearch()<CR>
   
   " browse
   Plug 'scrooloose/nerdtree'
@@ -35,8 +45,7 @@ call plug#begin()
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
-  map <C-q> <Esc>:q<CR>
-  "Plug 'flazz/vim-colorschemes'
+  
   Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -49,10 +58,12 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   noremap <C-f> <Esc>:Ag<Space>
+  inoremap <C-f> <Esc>:Ag<Space>
+  tnoremap <C-f> <C-c>
+  cnoremap <C-f> <C-c>
   noremap <C-t> <Esc>:Files<CR>
   inoremap <C-t> <Esc>:Files<CR>
   tnoremap <C-t> <C-c>
-  tnoremap <C-f> <C-c>
   
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
@@ -73,8 +84,8 @@ call plug#begin()
 
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
-  nmap m <plug>NERDCommenterToggle
-  vmap m <plug>NERDCommenterToggle<Esc>gv=gv
+  nmap ' <plug>NERDCommenterToggle
+  vmap ' <plug>NERDCommenterToggle<Esc>gv=gv
   
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -90,19 +101,19 @@ endif
 let g:EasyMotion_smartcase = 1
 
 "incsearch
-function IncSearch()
-  :let @/ = ""
-  call incsearch#go(<SID>config_easyfuzzymotion())
-endfunction
+"function IncSearch()
+":let @/ = ""
+"call incsearch#go(<SID>config_easyfuzzymotion())
+"endfunction
 
-function! s:config_easyfuzzymotion(...) abort
-  return extend(copy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 1,
-  \   'is_stay': 0
-  \ }), get(a:, 1, {}))
-endfunction
+"function! s:config_easyfuzzymotion(...) abort
+"return extend(copy({
+      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+      "\   'is_expr': 1,
+      "\   'is_stay': 0
+      "\ }), get(a:, 1, {}))
+"endfunction
 
 " nerdtree
 set splitright
@@ -110,7 +121,21 @@ let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
-"nnoremap <silent> <Leader>w :NERDTreeFind<cr>
+
+autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
+autocmd BufWinEnter * call PreventBuffersInNERDTree()
+
+function! PreventBuffersInNERDTree()
+  if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree'
+    \ && exists('t:nerdtree_winnr') && bufwinnr('%') == t:nerdtree_winnr
+    \ && &buftype == '' && !exists('g:launching_fzf')
+    let bufnum = bufnr('%')
+    close
+    exe 'b ' . bufnum
+    call ToggleNerdTree()
+  endif
+endfunction
+
 function NotNerdTreePane()
   return bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree")
 endfunction
@@ -118,7 +143,7 @@ endfunction
 function ToggleNerdTree()
   if g:NERDTree.IsOpen() 
     :NERDTreeClose
-  else 
+  else
     :NERDTreeFind
   endif
 endfunction
