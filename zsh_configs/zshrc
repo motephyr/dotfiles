@@ -124,12 +124,12 @@ mag() {
 #choose mulit file for change
 magr() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' | tr '\n' '\0' | xargs -0 sed -i '' -e "s/$1/$2/g"
+  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' | tr '\n' '\0' | xargs -0 sed -ri -e "s/$1/$2/g"
 }
 
 #use ag check and change all
 agr() {
-  ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
+  ag -0 -l $1 | xargs -0 sed -ri -e "s/$1/$2/g"
 }
 
 export LC_ALL=en_US.UTF-8

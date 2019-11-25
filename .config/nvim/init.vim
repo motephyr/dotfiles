@@ -16,6 +16,12 @@ set smartindent  " 設定 smartindent
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 set cursorline   " 顯示目前的游標位置
+set ve+=onemore  " 在最後加一個字元
+set nobackup
+set nowritebackup
+set noswapfile
+set updatetime=300
+set cmdheight=2
 
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
@@ -106,8 +112,10 @@ noremap <leader>8 :8wincmd w<cr>
 noremap <leader>9 :9wincmd w<cr>
 
 nnoremap <Bs> i<C-w><Esc>
+vmap <Bs> x<Esc>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
+vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>

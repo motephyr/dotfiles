@@ -14,23 +14,27 @@ call plug#begin()
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  let g:EasyMotion_do_mapping = 0
+  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+  let g:EasyMotion_smartcase = 1
   map m <Plug>(easymotion-bd-f)
   nmap m <Plug>(easymotion-overwin-f)
-  map <Left> <Plug>(easymotion-bd-f)
-  nmap <Left> <Plug>(easymotion-overwin-f)
-  map <Up> <Plug>(easymotion-bd-f)
-  nmap <Up> <Plug>(easymotion-overwin-f)
-  map <Down> <Plug>(easymotion-bd-f)
-  nmap <Down> <Plug>(easymotion-overwin-f)
-  map <Right> <Plug>(easymotion-bd-f)
-  nmap <Right> <Plug>(easymotion-overwin-f)
-  imap <Left> <Esc><Plug>(easymotion-bd-f)
-  imap <Up> <Esc><Plug>(easymotion-bd-f)
-  imap <Down> <Esc><Plug>(easymotion-bd-f)
-  imap <Right> <Esc><Plug>(easymotion-bd-f)
-  "Plug 'haya14busa/incsearch-easymotion.vim'
-  "Plug 'haya14busa/incsearch.vim'
-  "noremap <silent> / :call IncSearch()<CR>
+  map <Left> <Plug>(easymotion-linebackward)
+  map <Down> <Plug>(easymotion-j)
+  map <Up> <Plug>(easymotion-k)
+  map <Right> <Plug>(easymotion-lineforward)
+  imap <Left> <Esc><Plug>(easymotion-linebackward)
+  imap <Down> <Esc><Plug>(easymotion-j)
+  imap <Up> <Esc><Plug>(easymotion-k)
+  imap <Right> <Esc><Plug>(easymotion-lineforward)
+  map <Leader>h <Plug>(easymotion-linebackward)
+  map <Leader>j <Plug>(easymotion-j)
+  map <Leader>k <Plug>(easymotion-k)
+  map <Leader>l <Plug>(easymotion-lineforward)
+  map  / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
+  map  n <Plug>(easymotion-next)
+  map  N <Plug>(easymotion-prev)
   
   " browse
   Plug 'scrooloose/nerdtree'
@@ -91,29 +95,10 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
 call plug#end()
 
-
 "ag
 if executable('ag')
   cnoreabbrev ag Ag
 endif
-
-"easymotion <Leader>f{char} to move to {char}
-let g:EasyMotion_smartcase = 1
-
-"incsearch
-"function IncSearch()
-":let @/ = ""
-"call incsearch#go(<SID>config_easyfuzzymotion())
-"endfunction
-
-"function! s:config_easyfuzzymotion(...) abort
-"return extend(copy({
-      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
-      "\   'is_expr': 1,
-      "\   'is_stay': 0
-      "\ }), get(a:, 1, {}))
-"endfunction
 
 " nerdtree
 set splitright
@@ -142,24 +127,19 @@ endfunction
 
 function ToggleNerdTree()
   if g:NERDTree.IsOpen() 
-    :NERDTreeClose
+    :tabdo NERDTreeClose
   else
     :NERDTreeFind
   endif
 endfunction
-
 autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
-autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif 
-autocmd VimLeave * NERDTreeClose
-
-"git
-set updatetime=500
+autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
+autocmd VimLeave * :tabdo NERDTreeClose
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
-set noswapfile
 set undofile
 
 "vim-wintabs
