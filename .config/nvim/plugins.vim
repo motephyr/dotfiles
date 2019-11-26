@@ -13,28 +13,28 @@ call plug#begin()
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
-  Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  let g:EasyMotion_do_mapping = 0
-  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-  let g:EasyMotion_smartcase = 1
-  map m <Plug>(easymotion-bd-f)
-  nmap m <Plug>(easymotion-overwin-f)
-  map <Left> <Plug>(easymotion-linebackward)
-  map <Down> <Plug>(easymotion-j)
-  map <Up> <Plug>(easymotion-k)
-  map <Right> <Plug>(easymotion-lineforward)
-  imap <Left> <Esc><Plug>(easymotion-linebackward)
-  imap <Down> <Esc><Plug>(easymotion-j)
-  imap <Up> <Esc><Plug>(easymotion-k)
-  imap <Right> <Esc><Plug>(easymotion-lineforward)
-  map <Leader>h <Plug>(easymotion-linebackward)
-  map <Leader>j <Plug>(easymotion-j)
-  map <Leader>k <Plug>(easymotion-k)
-  map <Leader>l <Plug>(easymotion-lineforward)
-  map  / <Plug>(easymotion-sn)
-  omap / <Plug>(easymotion-tn)
-  map  n <Plug>(easymotion-next)
-  map  N <Plug>(easymotion-prev)
+  "Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  "let g:EasyMotion_do_mapping = 0
+  "let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+  "let g:EasyMotion_smartcase = 1
+  "map m <Plug>(easymotion-bd-f)
+  "nmap m <Plug>(easymotion-overwin-f)
+  "map <Left> <Plug>(easymotion-linebackward)
+  "map <Down> <Plug>(easymotion-j)
+  "map <Up> <Plug>(easymotion-k)
+  "map <Right> <Plug>(easymotion-lineforward)
+  "imap <Left> <Esc><Plug>(easymotion-linebackward)
+  "imap <Down> <Esc><Plug>(easymotion-j)
+  "imap <Up> <Esc><Plug>(easymotion-k)
+  "imap <Right> <Esc><Plug>(easymotion-lineforward)
+  "map <Leader>h <Plug>(easymotion-linebackward)
+  "map <Leader>j <Plug>(easymotion-j)
+  "map <Leader>k <Plug>(easymotion-k)
+  "map <Leader>l <Plug>(easymotion-lineforward)
+  "map  / <Plug>(easymotion-sn)
+  "omap / <Plug>(easymotion-tn)
+  "map  n <Plug>(easymotion-next)
+  "map  N <Plug>(easymotion-prev)
   
   " browse
   Plug 'scrooloose/nerdtree'
@@ -61,12 +61,12 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  noremap <C-f> <Esc>:Ag<Space>
-  inoremap <C-f> <Esc>:Ag<Space>
+  noremap <C-f> <C-c>:Ag<Space>
+  inoremap <C-f> <C-c>:Ag<Space>
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
-  noremap <C-t> <Esc>:Files<CR>
-  inoremap <C-t> <Esc>:Files<CR>
+  noremap <C-t> <C-c>:Files<CR>
+  inoremap <C-t> <C-c>:Files<CR>
   tnoremap <C-t> <C-c>
   
   Plug 'iberianpig/tig-explorer.vim'
@@ -74,7 +74,7 @@ call plug#begin()
   nnoremap <Leader>T :TigOpenCurrentFile<CR>
   " open tig with Project root path
   nnoremap <Leader>t :tabnew<CR>:TigOpenProjectRootDir<CR>
-  "tmap <Leader>t <Esc>:q<CR>
+  tmap <Leader>t <C-c>:q<CR>
   " open tig grep
   nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
@@ -85,14 +85,19 @@ call plug#begin()
   nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
   " open tig blame with current file
   nnoremap <Leader>b :TigBlame<CR>
+  tnoremap <Leader>b :q<CR>
 
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
   nmap ' <plug>NERDCommenterToggle
-  vmap ' <plug>NERDCommenterToggle<Esc>gv=gv
+  vmap ' <plug>NERDCommenterToggle<C-c>gv=gv
   
   Plug 'tpope/vim-surround'
+  nmap m ysiw
+  nmap M ds
+
   Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-abolish'
 call plug#end()
 
 "ag
@@ -134,7 +139,7 @@ function ToggleNerdTree()
 endfunction
 autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
-autocmd VimLeave * :tabdo NERDTreeClose
+autocmd VimLeave * :tabonly | :NERDTreeClose
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'

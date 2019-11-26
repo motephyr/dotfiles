@@ -21,11 +21,11 @@ windows:
         - d:
           - cd ~/Projects/Ruby/phoenix/phoenix-ui
           - yarn dev
-  - joplin:
+  - pgctl:
       layout: main-vertical
       panes:
         - a:
-          - joplin
+          - pgcli -U postgres -h localhost master_data_api
   - dotfiles:
       layout: main-vertical
       panes:

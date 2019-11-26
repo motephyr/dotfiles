@@ -39,23 +39,26 @@ set statusline+=%#CursorLine#     " colour
 set statusline+=\ %t\                   " short file name
 set statusline+=%{getcwd()}
 set statusline+=%=                          " right align
-set statusline+=%#CursorLine#   " colour
-set statusline+=\ %Y\                   " file type
+"set statusline+=%#CursorLine#   " colour
+"set statusline+=\ %Y\                   " file type
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %3l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
 set statusline+=\ %3p%%\                " percentage
-set statusline+=\ %{winnr()}\           " window number
+"set statusline+=\ %{winnr()}\           " window number
 
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
-set number relativenumber
+set number "relativenumber
 set clipboard=unnamed
 
 "set ai           " 自動縮排
 set mouse=a
+noremap p "0p
+vnoremap p "0p<Esc>gv
+inoremap <LeftMouse> <Esc><LeftMouse>
 
 " for gf
 set suffixesadd=.js,.jsx
@@ -66,16 +69,16 @@ set path+=**
 " for move block(linux, window)
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
+inoremap <A-j> <C-c>:m .+1<CR>==gi
+inoremap <A-k> <C-c>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " for move block(mac)
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
+inoremap ∆ <C-c>:m .+1<CR>==gi
+inoremap ˚ <C-c>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
@@ -85,21 +88,27 @@ vnoremap Q :norm @q<cr>
 
 "global
 nnoremap <C-n> :set invnu<cr>
-inoremap <C-n> <Esc>:set invnu<cr>i
+inoremap <C-n> <C-c>:set invnu<cr>i
 
 nnoremap x "_x
 vnoremap x "_x
+nnoremap d "_d
+vnoremap d "_d
 
+vnoremap <Leader><C-r> "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
 
-tnoremap <Esc> <C-\><C-n>
-noremap zz <Esc>
-noremap! zz <Esc>
+"tnoremap <Esc> <C-\><C-n>
+noremap zz <C-c>
+noremap! zz <C-c>
 tnoremap zz <C-c>
-cnoremap zz  <C-c>
+cnoremap zz <C-c>
 
-map <C-q> <Esc>:q<CR>
-imap <C-q> <Esc>:q<CR>
+map <C-q> :q<CR>
+imap <C-q> <C-c>:q<CR>
+map Y ^vg_y
+cnoreabbrev Q q
+cnoreabbrev Qa qa
 
 noremap <leader>1 :1wincmd w<cr>
 noremap <leader>2 :2wincmd w<cr>
@@ -111,7 +120,7 @@ noremap <leader>7 :7wincmd w<cr>
 noremap <leader>8 :8wincmd w<cr>
 noremap <leader>9 :9wincmd w<cr>
 
-nnoremap <Bs> i<C-w><Esc>
+nnoremap <Bs> a<C-w><Esc>l
 vmap <Bs> x<Esc>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
