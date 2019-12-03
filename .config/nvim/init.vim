@@ -37,7 +37,7 @@ set statusline+=%M                        " modified [+] flag
 set statusline+=%#Cursor#               " colour
 set statusline+=%#CursorLine#     " colour
 set statusline+=\ %t\                   " short file name
-set statusline+=%{getcwd()}
+"set statusline+=%{getcwd()}
 set statusline+=%=                          " right align
 "set statusline+=%#CursorLine#   " colour
 "set statusline+=\ %Y\                   " file type
@@ -59,6 +59,7 @@ set mouse=a
 noremap p "0p
 vnoremap p "0p<Esc>gv
 inoremap <LeftMouse> <Esc><LeftMouse>
+vnoremap <3-LeftMouse> <Esc>0v$
 
 " for gf
 set suffixesadd=.js,.jsx
@@ -120,7 +121,8 @@ noremap <leader>7 :7wincmd w<cr>
 noremap <leader>8 :8wincmd w<cr>
 noremap <leader>9 :9wincmd w<cr>
 
-nnoremap <Bs> a<C-w><Esc>l
+nmap <Bs> db
+
 vmap <Bs> x<Esc>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
