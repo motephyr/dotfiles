@@ -61,7 +61,8 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  noremap <C-f> <C-c>:Ag<Space>
+  nnoremap <C-f> <C-c>:Ag<Space>
+  vnoremap <C-f> "hy<C-c>:Ag<Space><C-r>h<CR>
   inoremap <C-f> <C-c>:Ag<Space>
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
@@ -71,12 +72,12 @@ call plug#begin()
   
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
-  nnoremap <Leader>T :TigOpenCurrentFile<CR>
+  nnoremap <Leader>G :TigOpenCurrentFile<CR>
   " open tig with Project root path
-  nnoremap <Leader>t :tabnew<CR>:TigOpenProjectRootDir<CR>
-  tmap <Leader>t <C-c>:q<CR>
+  nnoremap <Leader>g :tabnew<CR>:TigOpenProjectRootDir<CR>
+  tmap <Leader>g <C-c>
   " open tig grep
-  nnoremap <Leader>g :TigGrep<CR>
+  "nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
   nnoremap <Leader>r :TigGrepResume<CR>
   " open tig grep with the selected word
@@ -160,6 +161,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme gruvbox
 hi! Normal ctermbg=NONE guibg=NONE
+hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
+hi Cursor ctermbg=15 ctermfg=8
 
 "coc
 function! s:check_back_space() abort

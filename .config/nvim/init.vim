@@ -52,15 +52,16 @@ set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
 set number "relativenumber
-set clipboard=unnamed
+"set clipboard=unnamed
 
 "set ai           " 自動縮排
 set mouse=a
-noremap p "0p
-vnoremap p "0p<Esc>gv
+noremap p "*p
+vnoremap p "*p<Esc>gv
+vnoremap y "*y<Esc>gv
 inoremap <LeftMouse> <Esc><LeftMouse>
-vnoremap <3-LeftMouse> <Esc>0v$
-
+vnoremap <3-LeftMouse> <Esc>0v$h
+vnoremap / "hy/<C-r>h
 " for gf
 set suffixesadd=.js,.jsx
 set hidden
