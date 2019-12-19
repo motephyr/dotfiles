@@ -13,12 +13,12 @@ call plug#begin()
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
-  "Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  "let g:EasyMotion_do_mapping = 0
-  "let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-  "let g:EasyMotion_smartcase = 1
-  "map m <Plug>(easymotion-bd-f)
-  "nmap m <Plug>(easymotion-overwin-f)
+  Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  let g:EasyMotion_do_mapping = 0
+  let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+  let g:EasyMotion_smartcase = 1
+  map ' <Plug>(easymotion-bd-f)
+  nmap ' <Plug>(easymotion-overwin-f)
   "map <Left> <Plug>(easymotion-linebackward)
   "map <Down> <Plug>(easymotion-j)
   "map <Up> <Plug>(easymotion-k)
@@ -67,6 +67,7 @@ call plug#begin()
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
   noremap <C-t> <C-c>:Files<CR>
+  vnoremap <C-t> "hy<C-c>:Files<CR><C-\><C-n>"hpi
   inoremap <C-t> <C-c>:Files<CR>
   tnoremap <C-t> <C-c>
   
@@ -90,8 +91,8 @@ call plug#begin()
 
   Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
-  nmap ' <plug>NERDCommenterToggle
-  vmap ' <plug>NERDCommenterToggle<C-c>gv=gv
+  nmap <Leader>/ <plug>NERDCommenterToggle
+  vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
   
   Plug 'tpope/vim-surround'
   nmap m ysiw
@@ -112,6 +113,8 @@ let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore = ['^\.git$','^\.svn$','.*.js.map$','^tags$','^node_modules$','^vendor$','^dist$']
+
 
 autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
 autocmd BufWinEnter * call PreventBuffersInNERDTree()
@@ -175,9 +178,6 @@ let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-t
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" with fzf.vim
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -216,11 +216,13 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
 
+"command! -bang -nargs=* Ag
+      "\ call fzf#vim#ag(<q-args>,
+      "\                 <bang>0)
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%'),
-  \                 <bang>0)
+      \ call fzf#vim#ag(<q-args>,
+      \                         fzf#vim#with_preview('right:35%'),
+      \                 <bang>0)
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 "command! -bang -nargs=* Rg
 "  \ call fzf#vim#grep(
@@ -231,5 +233,38 @@ command! -bang -nargs=* Ag
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+  \ call fzf#vim#files(<q-args>, <bang>0)
 
+
+" Reverse the layout to make the FZF list top-down
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+
+" Using the custom window creation function
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" Function to create the custom floating window
+function! FloatingFZF()
+  " creates a scratch, unlisted, new, empty, unnamed buffer
+  " to be used in the floating window
+  let buf = nvim_create_buf(v:false, v:true)
+
+  " 90% of the height
+  let height = float2nr(&lines * 0.9)
+  " 60% of the height
+  let width = float2nr(&columns * 0.9)
+  " horizontal position (centralized)
+  let horizontal = float2nr((&columns - width) / 2)
+  " vertical position (one line down of the top)
+  let vertical = 1
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  " open the new window, floating, and enter to it
+  call nvim_open_win(buf, v:true, opts)
+endfunction

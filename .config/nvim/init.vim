@@ -129,8 +129,8 @@ nnoremap \ i<Space>\<Enter><Esc>h
 nnoremap <CR> i<Enter><Esc>
 vnoremap <CR> x<Esc>
 
-nnoremap ` viw"hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
-vnoremap ` "hyoconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 
 " Go to tab by number
 "noremap <leader>t1 1gt
