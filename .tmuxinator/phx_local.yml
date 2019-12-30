@@ -8,23 +8,27 @@ windows:
       panes:
         - a:
           - cd ~/Projects/Ruby/phoenix/master-data-api/
+          - sleep 20
           - bin/server
-          - sleep 30
         - b:
           - cd ~/Projects/Ruby/phoenix/users-api/
           - bin/server
-          - sleep 30
         - c:
+          - cd ~/Projects/Ruby/phoenix/jobs-api/
+          - sleep 40
+          - bin/server
+        - d:
           - cd ~/Projects/Ruby/phoenix/phoenix-api-gateway
           - sleep 60
           - yarn start
-        - d:
+        - e:
           - cd ~/Projects/Ruby/phoenix/phoenix-ui
           - yarn dev
   - pgctl:
       layout: main-vertical
       panes:
         - a:
+          - sudo su - postgres -c '/Library/PostgreSQL/9.4/bin/pg_ctl -D /Library/PostgreSQL/9.4/data start'
           - pgcli -U postgres -h localhost master_data_api
   - dotfiles:
       layout: main-vertical

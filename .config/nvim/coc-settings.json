@@ -3,7 +3,7 @@
   "suggest.noselect": false,
   "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 2,
-  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.acceptSuggestionOnCommitCharacter": false,
   
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,

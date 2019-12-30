@@ -164,8 +164,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme gruvbox
 hi! Normal ctermbg=NONE guibg=NONE
-hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
-hi Cursor ctermbg=15 ctermfg=8
+"hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
+"hi Cursor ctermbg=15 ctermfg=8
 
 "coc
 function! s:check_back_space() abort
