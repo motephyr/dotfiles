@@ -73,10 +73,10 @@ call plug#begin()
   
   Plug 'iberianpig/tig-explorer.vim'
   " open tig with current file
-  nnoremap <Leader>G :TigOpenCurrentFile<CR>
+  nnoremap <Leader>G :tabnew<CR>:TigOpenCurrentFile<CR>
   " open tig with Project root path
   nnoremap <Leader>g :tabnew<CR>:TigOpenProjectRootDir<CR>
-  tmap <Leader>g <C-c>
+  tmap <Leader>g <C-\><C-n>:tabclose<CR>
   " open tig grep
   "nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
@@ -110,9 +110,10 @@ endif
 " nerdtree
 set splitright
 let g:NERDTreeMouseMode=2
-let NERDTreeMinimalUI = 1
+let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeHighlightCursorline=0
 let NERDTreeIgnore = ['^\.git$','^\.svn$','.*.js.map$','^tags$','^node_modules$','^vendor$','^dist$']
 
 
@@ -144,6 +145,7 @@ endfunction
 autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * :tabonly | :NERDTreeClose
+autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -221,7 +223,7 @@ let g:fzf_tags_command = 'ctags -R'
       "\                 <bang>0)
 command! -bang -nargs=* Ag
       \ call fzf#vim#ag(<q-args>,
-      \                         fzf#vim#with_preview('right:35%'),
+      \                         fzf#vim#with_preview('right:45%'),
       \                 <bang>0)
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 "command! -bang -nargs=* Rg
