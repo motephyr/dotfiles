@@ -3,6 +3,18 @@ name: phoenix
 root: ~/Projects/Ruby/phoenix
 
 windows:
+  - pgctl:
+      layout: main-vertical
+      panes:
+        - a:
+          - sudo su - postgres -c '/Library/PostgreSQL/9.4/bin/pg_ctl -D /Library/PostgreSQL/9.4/data start'
+          - pgcli -U postgres -h localhost master_data_api
+  - dotfiles:
+      layout: main-vertical
+      panes:
+        - a:
+          - cd ~/dotfiles
+          - git pull
   - phxserver:
       layout: main-vertical
       panes:
@@ -24,15 +36,4 @@ windows:
         - e:
           - cd ~/Projects/Ruby/phoenix/phoenix-ui
           - yarn dev
-  - pgctl:
-      layout: main-vertical
-      panes:
-        - a:
-          - sudo su - postgres -c '/Library/PostgreSQL/9.4/bin/pg_ctl -D /Library/PostgreSQL/9.4/data start'
-          - pgcli -U postgres -h localhost master_data_api
-  - dotfiles:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/dotfiles
-          - git pull
+

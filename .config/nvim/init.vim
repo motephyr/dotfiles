@@ -95,7 +95,8 @@ inoremap <C-n> <C-c>:set invnu<cr>i
 
 nnoremap x "_x
 vnoremap x "_x
-nnoremap D "_dd
+nnoremap D "*dd
+vnoremap D "*d
 
 vnoremap <Leader><C-r> "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
@@ -108,6 +109,8 @@ cnoremap zz <C-c>
 
 map <C-q> :q<CR>
 imap <C-q> <C-c>:q<CR>
+map <C-s> :update<CR>
+imap <C-s> <C-c>:update<CR>gi
 map Y ^vg_y
 cnoreabbrev Q q
 cnoreabbrev Qa qa

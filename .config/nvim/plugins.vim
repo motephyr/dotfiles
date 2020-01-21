@@ -113,7 +113,7 @@ let g:NERDTreeMouseMode=2
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer=1
-let NERDTreeHighlightCursorline=0
+"let NERDTreeHighlightCursorline=0
 let NERDTreeIgnore = ['^\.git$','^\.svn$','.*.js.map$','^tags$','^node_modules$','^vendor$','^dist$']
 
 
@@ -139,13 +139,17 @@ function ToggleNerdTree()
   if g:NERDTree.IsOpen() 
     :tabdo NERDTreeClose
   else
-    :NERDTreeFind
+    if expand('%') > 0
+      :NERDTreeFind
+    else
+      :NERDTree
+    end
   endif
 endfunction
 autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd VimLeave * :tabonly | :NERDTreeClose
-autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -176,7 +180,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-snippets']
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets']
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
