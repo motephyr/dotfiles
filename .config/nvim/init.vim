@@ -16,13 +16,14 @@ set smartindent  " 設定 smartindent
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 "set cursorline!   " 顯示目前的游標位置
-set ve+=onemore  " 在最後加一個字元
+set ve+=all  " 在最後加一個字元
 set nobackup
 set nowritebackup
 set noswapfile
 set updatetime=300
 set cmdheight=2
 set lazyredraw
+set re=1
 
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
@@ -60,6 +61,20 @@ set mouse=a
 noremap p "*p
 vnoremap p "*p<Esc>gv
 vnoremap y "*y<Esc>gv
+
+noremap <C-v> "*p
+vnoremap <C-v> "*p<Esc>gv
+vnoremap <C-c> "*y<Esc>gv
+
+noremap <C-z> u
+inoremap <C-z> <C-c>u
+
+noremap <C-k> :q<CR>
+inoremap <C-k> <C-c>:q<CR>
+noremap <C-s> :update<CR>
+vnoremap <C-s> <C-C>:update<CR>gv
+inoremap <C-s> <C-c>:update<CR>gi
+
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
 vnoremap / "hy/<C-r>h
@@ -107,11 +122,6 @@ noremap! zz <C-c>
 tnoremap zz <C-c>
 cnoremap zz <C-c>
 
-map <C-q> :q<CR>
-imap <C-q> <C-c>:q<CR>
-map <C-s> :update<CR>
-imap <C-s> <C-c>:update<CR>gi
-map Y ^vg_y
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 
@@ -149,8 +159,9 @@ vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 
 "noremap h i
 "noremap i k
-"noremap k j
-"noremap j h
+noremap k l
+noremap u k
+noremap l u
 "nnoremap <C-K> <C-W><C-K>
 "nnoremap <C-J> <C-W><C-J>
 "nnoremap <C-L> <C-W><C-L>

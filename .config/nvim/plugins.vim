@@ -121,9 +121,10 @@ autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
 autocmd BufWinEnter * call PreventBuffersInNERDTree()
 
 function! PreventBuffersInNERDTree()
+  "&& !exists('g:launching_fzf')
   if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree'
     \ && exists('t:nerdtree_winnr') && bufwinnr('%') == t:nerdtree_winnr
-    \ && &buftype == '' && !exists('g:launching_fzf')
+    \ && &buftype == '' 
     let bufnum = bufnr('%')
     close
     exe 'b ' . bufnum

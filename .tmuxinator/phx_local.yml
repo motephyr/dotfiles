@@ -7,7 +7,6 @@ windows:
       layout: main-vertical
       panes:
         - a:
-          - sudo su - postgres -c '/Library/PostgreSQL/9.4/bin/pg_ctl -D /Library/PostgreSQL/9.4/data start'
           - pgcli -U postgres -h localhost master_data_api
   - dotfiles:
       layout: main-vertical
