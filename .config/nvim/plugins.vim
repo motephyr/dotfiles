@@ -58,6 +58,7 @@ call plug#begin()
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+  Plug 'jparise/vim-graphql'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -133,7 +134,7 @@ function! PreventBuffersInNERDTree()
 endfunction
 
 function NotNerdTreePane()
-  return bufname('%') !~# 'NERD_tree_' && winnr("$") > 1 && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree")
+  return bufname('%') !~# 'NERD_tree_' && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree")
 endfunction
 
 function ToggleNerdTree()
@@ -181,10 +182,11 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets']
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur']
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',

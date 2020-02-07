@@ -59,11 +59,11 @@ set number "relativenumber
 "set ai           " 自動縮排
 set mouse=a
 noremap p "*p
-vnoremap p "*p<Esc>gv
+vnoremap p xh"*p<Esc>gv
 vnoremap y "*y<Esc>gv
 
 noremap <C-v> "*p
-vnoremap <C-v> "*p<Esc>gv
+vnoremap <C-v> xh"*p<Esc>gv
 vnoremap <C-c> "*y<Esc>gv
 
 noremap <C-z> u
@@ -72,8 +72,8 @@ inoremap <C-z> <C-c>u
 noremap <C-k> :q<CR>
 inoremap <C-k> <C-c>:q<CR>
 noremap <C-s> :update<CR>
-vnoremap <C-s> <C-C>:update<CR>gv
-inoremap <C-s> <C-c>:update<CR>gi
+vnoremap <C-s> <C-C>:update<CR>
+inoremap <C-s> <C-c>:update<CR>
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
@@ -157,11 +157,11 @@ vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 "noremap <leader>t9 9gt
 "noremap <leader>t0 :tablast<cr>
 
-"noremap h i
-"noremap i k
-noremap k l
-noremap u k
-noremap l u
+""noremap h i
+""noremap i k
+"noremap k l
+"noremap u k
+"noremap l u
 "nnoremap <C-K> <C-W><C-K>
 "nnoremap <C-J> <C-W><C-J>
 "nnoremap <C-L> <C-W><C-L>
