@@ -58,12 +58,12 @@ set number "relativenumber
 
 "set ai           " 自動縮排
 set mouse=a
-noremap p "*p
-vnoremap p xh"*p<Esc>gv
+noremap p v"*p
+noremap p "*p<Esc>gv
 vnoremap y "*y<Esc>gv
 
-noremap <C-v> "*p
-vnoremap <C-v> xh"*p<Esc>gv
+noremap <C-v> v"*p
+vnoremap <C-v> "*p<Esc>gv
 vnoremap <C-c> "*y<Esc>gv
 
 noremap <C-z> u
