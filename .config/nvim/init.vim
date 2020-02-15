@@ -7,6 +7,7 @@ set tabstop=2    " tab 的字元數
 set softtabstop=2
 set expandtab    " 用 space 代替 tab
 set ruler        " 顯示右下角設定值
+
 set backspace=2  " 在 insert 也可用 backspace
 set ic           " 設定搜尋忽略大小寫 igonrecase
 set ru           " 第幾行第幾個字
@@ -74,6 +75,15 @@ inoremap <C-k> <C-c>:q<CR>
 noremap <C-s> :update<CR>
 vnoremap <C-s> <C-C>:update<CR>
 inoremap <C-s> <C-c>:update<CR>
+
+" for mac item2 ------------
+"map <Leader>v <C-v>
+"vmap <Leader>v <C-v>
+"vmap <Leader>c <C-c>
+"map <Leader>z <C-z> 
+"imap <Leader>z <C-z> 
+"map <Leader>r <C-r> 
+" -------------------------
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h

@@ -81,7 +81,7 @@ call plug#begin()
   " open tig grep
   "nnoremap <Leader>g :TigGrep<CR>
   " resume from last grep
-  nnoremap <Leader>r :TigGrepResume<CR>
+  "nnoremap <Leader>r :TigGrepResume<CR>
   " open tig grep with the selected word
   vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
   " open tig grep with the word under the cursor
@@ -141,7 +141,7 @@ function ToggleNerdTree()
   if g:NERDTree.IsOpen() 
     :tabdo NERDTreeClose
   else
-    if expand('%') > 0
+    if expand('%') >= 0
       :NERDTreeFind
     else
       :NERDTree
@@ -182,7 +182,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur']
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
