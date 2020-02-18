@@ -83,9 +83,9 @@ call plug#begin()
   " resume from last grep
   "nnoremap <Leader>r :TigGrepResume<CR>
   " open tig grep with the selected word
-  vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
+  "vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
   " open tig grep with the word under the cursor
-  nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
+  "nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
   " open tig blame with current file
   nnoremap <Leader>b :TigBlame<CR>
   tnoremap <Leader>b :q<CR>
@@ -141,7 +141,7 @@ function ToggleNerdTree()
   if g:NERDTree.IsOpen() 
     :tabdo NERDTreeClose
   else
-    if expand('%') >= 0
+    if expand('%') >= 0 && NotNerdTreePane()
       :NERDTreeFind
     else
       :NERDTree
@@ -150,7 +150,7 @@ function ToggleNerdTree()
 endfunction
 autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
 autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
-autocmd VimLeave * :tabonly | :NERDTreeClose
+autocmd VimLeave * :tabonly | :NERDTreeClose | :CloseHiddenBuffers
 "autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 
 "workspace save session

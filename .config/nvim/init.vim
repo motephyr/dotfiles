@@ -72,6 +72,7 @@ inoremap <C-z> <C-c>u
 
 noremap <C-k> :q<CR>
 inoremap <C-k> <C-c>:q<CR>
+tmap <C-k> <C-\><C-n>:tabclose<CR>
 noremap <C-s> :update<CR>
 vnoremap <C-s> <C-C>:update<CR>
 inoremap <C-s> <C-c>:update<CR>
