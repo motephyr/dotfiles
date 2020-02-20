@@ -59,23 +59,29 @@ set number "relativenumber
 
 "set ai           " 自動縮排
 set mouse=a
-noremap p v"*p
-noremap p "*p<Esc>gv
-vnoremap y "*y<Esc>gv
+"noremap p v"*p
+"vnoremap p "*p<Esc>gv
+"vnoremap y "*y<Esc>gv
+
+vnoremap <C-c> "*y<Esc>gv
 
 noremap <C-v> v"*p
+inoremap <C-v> <C-c>"*p<Esc>gi
 vnoremap <C-v> "*p<Esc>gv
-vnoremap <C-c> "*y<Esc>gv
 
 noremap <C-z> u
 inoremap <C-z> <C-c>u
+vnoremap <C-z> <C-c>u
 
-noremap <C-k> :q<CR>
-inoremap <C-k> <C-c>:q<CR>
-tmap <C-k> <C-\><C-n>:tabclose<CR>
 noremap <C-s> :update<CR>
-vnoremap <C-s> <C-C>:update<CR>
 inoremap <C-s> <C-c>:update<CR>
+vnoremap <C-s> <C-c>:update<CR>
+
+noremap <C-q> :q<CR>
+inoremap <C-q> <C-c>:q<CR>
+vnoremap <C-q> <C-c>:q<CR>
+
+tmap <C-q> <C-\><C-n>:tabclose<CR>
 
 " for mac item2 ------------
 "map <Leader>v <C-v>
@@ -87,6 +93,7 @@ inoremap <C-s> <C-c>:update<CR>
 " -------------------------
 
 inoremap <LeftMouse> <Esc><LeftMouse>
+cnoremap <LeftMouse> <C-c><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
 vnoremap / "hy/<C-r>h
 " for gf
@@ -124,8 +131,8 @@ vnoremap x "_x
 nnoremap D "*dd
 vnoremap D "*d
 
-vnoremap <Leader><C-r> "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
-vnoremap <C-r> "hy:%s/<C-r>h//gIc<left><left><left><left>
+vnoremap <Leader><C-h> "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
+vnoremap <C-h> "hy:%s/<C-r>h//gIc<left><left><left><left>
 
 "tnoremap <Esc> <C-\><C-n>
 noremap zz <C-c>
@@ -155,6 +162,13 @@ vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+
+noremap <M-LeftMouse> <4-LeftMouse>
+inoremap <M-LeftMouse> <4-LeftMouse>
+onoremap <M-LeftMouse> <C-C><4-LeftMouse>
+noremap <M-LeftDrag> <LeftDrag>
+inoremap <M-LeftDrag> <LeftDrag>
+onoremap <M-LeftDrag> <C-C><LeftDrag>
 
 " Go to tab by number
 "noremap <leader>t1 1gt
