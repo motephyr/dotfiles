@@ -10,6 +10,9 @@
 let mapleader = " "
 
 call plug#begin()
+"Plug 'ianding1/leetcode.vim'
+"let g:leetcode_solution_filetype = 'javascript'
+"let g:leetcode_browser = 'chrome'
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
@@ -104,9 +107,9 @@ call plug#begin()
 call plug#end()
 
 "ag
-if executable('ag')
-  cnoreabbrev ag Ag
-endif
+"if executable('ag')
+"cnoreabbrev ag Ag
+"endif
 
 " nerdtree
 set splitright

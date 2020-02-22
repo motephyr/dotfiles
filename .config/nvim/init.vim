@@ -17,7 +17,7 @@ set smartindent  " 設定 smartindent
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 "set cursorline!   " 顯示目前的游標位置
-set ve+=all  " 在最後加一個字元
+set ve+=onemore  " 在最後加一個字元
 set nobackup
 set nowritebackup
 set noswapfile
@@ -65,9 +65,9 @@ set mouse=a
 
 vnoremap <C-c> "*y<Esc>gv
 
-noremap <C-v> v"*p
-inoremap <C-v> <C-c>"*p<Esc>gi
-vnoremap <C-v> "*p<Esc>gv
+noremap <C-v> "*P
+inoremap <C-v> <C-c>"*P<Esc>gi
+vnoremap <C-v> "*P<Esc>gv
 
 noremap <C-z> u
 inoremap <C-z> <C-c>u
@@ -162,6 +162,8 @@ vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+nnoremap <C-e> :! 
+nnoremap <Leader><C-e> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>

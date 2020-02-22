@@ -8,7 +8,7 @@ windows:
       panes:
         - a:
           - pg_ctl start
-          - pgcli -U postgres -h localhost master_data_api
+          - export PGGSSENCMODE=disable && pgcli -U postgres -h localhost master_data_api
   - dotfiles:
       layout: main-vertical
       panes:
