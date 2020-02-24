@@ -63,9 +63,10 @@ set mouse=a
 "vnoremap p "*p<Esc>gv
 "vnoremap y "*y<Esc>gv
 
+nnoremap <C-c> v"*y<Esc>
 vnoremap <C-c> "*y<Esc>gv
 
-noremap <C-v> "*P
+noremap <C-v> "*p
 inoremap <C-v> <C-c>"*P<Esc>gi
 vnoremap <C-v> "*P<Esc>gv
 
@@ -109,6 +110,7 @@ inoremap <A-j> <C-c>:m .+1<CR>==gi
 inoremap <A-k> <C-c>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <A-f> :Format<CR>
 
 " for move block(mac)
 nnoremap ∆ :m .+1<CR>==
@@ -117,6 +119,7 @@ inoremap ∆ <C-c>:m .+1<CR>==gi
 inoremap ˚ <C-c>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
+nnoremap ƒ :Format<CR>
 
 "macro
 nnoremap Q @q

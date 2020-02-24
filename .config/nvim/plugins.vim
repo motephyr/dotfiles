@@ -1,12 +1,3 @@
-"if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
-"vi(text obj) va
-"di"
-"da"
-"dw
-"
-"delete diw
-"replace ciw cw 
-"visual viw
 let mapleader = " "
 
 call plug#begin()
@@ -40,10 +31,8 @@ call plug#begin()
   "map  N <Plug>(easymotion-prev)
   
   " browse
-  Plug 'scrooloose/nerdtree'
-  noremap <Leader>e :call ToggleNerdTree()<CR>
+  noremap <Leader>e :CocCommand explorer<CR>
 
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -61,7 +50,7 @@ call plug#begin()
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-  Plug 'jparise/vim-graphql'
+  "Plug 'jparise/vim-graphql'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -113,48 +102,28 @@ call plug#end()
 
 " nerdtree
 set splitright
-let g:NERDTreeMouseMode=2
-let NERDTreeMinimalUI=1
-let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer=1
-"let NERDTreeHighlightCursorline=0
-let NERDTreeIgnore = ['^\.git$','^\.svn$','.*.js.map$','^tags$','^node_modules$','^vendor$','^dist$']
+autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
+autocmd SessionLoadPost * call OpenExplorer()
+function! OpenExplorer()
+  if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
+    :CocCommand explorer
+  endif
+endfunction
 
+autocmd BufWinEnter * call PreventBuffersInExplorer()
 
-autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
-autocmd BufWinEnter * call PreventBuffersInNERDTree()
-
-function! PreventBuffersInNERDTree()
-  "&& !exists('g:launching_fzf')
-  if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree'
-    \ && exists('t:nerdtree_winnr') && bufwinnr('%') == t:nerdtree_winnr
-    \ && &buftype == '' 
+function! PreventBuffersInExplorer()
+  if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
+   \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+   \ && &buftype == '' 
     let bufnum = bufnr('%')
     close
     exe 'b ' . bufnum
-    call ToggleNerdTree()
+    :CocCommand explorer
   endif
 endfunction
 
-function NotNerdTreePane()
-  return bufname('%') !~# 'NERD_tree_' && strlen(expand('%')) > 0 && &modifiable && exists("g:NERDTree")
-endfunction
-
-function ToggleNerdTree()
-  if g:NERDTree.IsOpen() 
-    :tabdo NERDTreeClose
-  else
-    if expand('%') >= 0 && NotNerdTreePane()
-      :NERDTreeFind
-    else
-      :NERDTree
-    end
-  endif
-endfunction
-autocmd BufEnter *  if (NotNerdTreePane() && g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
-autocmd SessionLoadPost * if (NotNerdTreePane() && !g:NERDTree.IsOpen()) | NERDTreeFind | wincmd p | endif
-autocmd VimLeave * :tabonly | :NERDTreeClose | :CloseHiddenBuffers
-"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -185,7 +154,9 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
+command! -nargs=0 Format :call CocAction('format')
+
 
 " fzf
 autocmd TermOpen,BufEnter term://* startinsert
@@ -280,3 +251,14 @@ function! FloatingFZF()
   " open the new window, floating, and enter to it
   call nvim_open_win(buf, v:true, opts)
 endfunction
+
+
+"if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
+"vi(text obj) va
+"di"
+"da"
+"dw
+"
+"delete diw
+"replace ciw cw 
+"visual viw

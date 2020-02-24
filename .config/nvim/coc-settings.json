@@ -4,15 +4,59 @@
   "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 2,
   "suggest.acceptSuggestionOnCommitCharacter": false,
-  
+
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "ruby"],
-  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "ruby"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
   "diagnostic.infoSign": "ღ",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✖",
 
   "solargraph.autoformat": true,
-  "solargraph.formatting": true
+  "solargraph.formatting": true,
+
+  "explorer.file.showHiddenFiles": true,
+  "explorer.sources": [
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.keyMappings": {
+    "<2-LeftMouse>": ["expandable?", "expandOrCollapse", "open"],
+    "<cr>": ["expandable?", "expandOrCollapse", "open"],
+    "<space>": ["expandable?", "expandOrCollapse", "open"],
+    "i": "open:split",
+    "s": "open:vsplit"
+  },
+  "explorer.openAction.strategy": "previousWindow",
+  "explorer.previewAction.onHover": false,
+  "explorer.file.root.template": "[icon] [fullpath]",
+  "explorer.file.child.template": " [selection | clip | 1][indent][icon & 1][git][diagnosticError & 1][filename omitCenter 1][readonly]",
+  "explorer.width": 35,
+  "explorer.file.column.git.icon.modified": "[✹]",
+  "explorer.file.column.git.icon.unmodified": "",
+  "explorer.file.column.git.icon.added": "[✚]",
+  "explorer.file.column.git.icon.deleted": "[✖]",
+  "explorer.file.column.git.icon.renamed": "[➜]",
+  "explorer.file.column.git.icon.unmerged": "[=]",
+  "explorer.file.column.git.icon.untracked": "[✭]",
+  "explorer.file.column.git.icon.mixed": "[*]",
+  "explorer.icon.expanded": "▾",
+  "explorer.icon.collapsed": "▸"
 }
