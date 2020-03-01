@@ -96,7 +96,7 @@ tmap <C-q> <C-\><C-n>:tabclose<CR>
 inoremap <LeftMouse> <Esc><LeftMouse>
 cnoremap <LeftMouse> <C-c><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
-vnoremap / "hy/<C-r>h
+vnoremap / "hy/<C-r>h<CR>
 " for gf
 set suffixesadd=.js,.jsx
 set hidden
