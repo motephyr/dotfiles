@@ -63,12 +63,12 @@ set mouse=a
 "vnoremap p "*p<Esc>gv
 "vnoremap y "*y<Esc>gv
 
-nnoremap <C-c> v"*y<Esc>
-vnoremap <C-c> "*y<Esc>gv
+nnoremap <C-c> v"+y<Esc>
+vnoremap <C-c> "+y<Esc>gv
 
-noremap <C-v> "*p
-inoremap <C-v> <C-c>"*P<Esc>gi
-vnoremap <C-v> "*P<Esc>gv
+noremap <C-v> "+p
+inoremap <C-v> <C-c>"+P<Esc>gi
+vnoremap <C-v> "+P<Esc>gv
 
 noremap <C-z> u
 inoremap <C-z> <C-c>u
