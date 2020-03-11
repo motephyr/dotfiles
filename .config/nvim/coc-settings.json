@@ -2,19 +2,21 @@
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
   "suggest.enablePreview": true,
+  "list.maxPreviewHeight": 60,
+  "list.maxHeight": 20,
   "suggest.minTriggerInputLength": 2,
   "suggest.acceptSuggestionOnCommitCharacter": false,
 
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
+
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
     "typescriptreact",
     "json",
     "javascriptreact",
-    "typescript.tsx",
-    "ruby"
+    "typescript.tsx"
   ],
   "eslint.filetypes": [
     "javascript",
@@ -46,17 +48,17 @@
   },
   "explorer.openAction.strategy": "previousWindow",
   "explorer.previewAction.onHover": false,
-  "explorer.file.root.template": "[icon] [fullpath]",
+  "explorer.file.root.template": "[icon] [root]",
   "explorer.file.child.template": " [selection | clip | 1][indent][icon & 1][git][diagnosticError & 1][filename omitCenter 1][readonly]",
   "explorer.width": 35,
-  "explorer.file.column.git.icon.modified": "[✹]",
+  "explorer.file.column.git.icon.modified": "[~]",
   "explorer.file.column.git.icon.unmodified": "",
-  "explorer.file.column.git.icon.added": "[✚]",
-  "explorer.file.column.git.icon.deleted": "[✖]",
+  "explorer.file.column.git.icon.added": "[+]",
+  "explorer.file.column.git.icon.deleted": "[_]",
   "explorer.file.column.git.icon.renamed": "[➜]",
   "explorer.file.column.git.icon.unmerged": "[=]",
   "explorer.file.column.git.icon.untracked": "[✭]",
-  "explorer.file.column.git.icon.mixed": "[*]",
+  "explorer.file.column.git.icon.mixed": "[~]",
   "explorer.icon.expanded": "▾",
   "explorer.icon.collapsed": "▸"
 }

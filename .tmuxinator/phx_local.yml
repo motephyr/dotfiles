@@ -15,6 +15,11 @@ windows:
         - a:
           - cd ~/dotfiles
           - git pull
+  - leetcode:
+      layout: main-vertical
+      panes:
+        - a:
+          - cd ~/Projects/coding/leetcode
   - phxserver:
       layout: main-vertical
       panes:

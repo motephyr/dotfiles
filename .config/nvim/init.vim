@@ -165,8 +165,10 @@ vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
-nnoremap <C-e> :! 
-nnoremap <Leader><C-e> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
+nnoremap <C-x> :! 
+nnoremap <Leader><C-x> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
+noremap <silent> <C-a> ggVG
+noremap <Leader><C-d> :vertical diffsplit <C-r>%
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>

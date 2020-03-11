@@ -22,7 +22,8 @@ let g:leetcode_browser = 'chrome'
   noremap <silent> ' :call IncSearch()<CR>
   
   " browse
-  noremap <Leader>e :CocCommand explorer<CR>
+  noremap <silent> <C-e> :CocCommand explorer<CR>
+  noremap <silent> <C-g> :call Gstatus()<cr>
 
   Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
@@ -41,7 +42,6 @@ let g:leetcode_browser = 'chrome'
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-  "Plug 'jparise/vim-graphql'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -55,25 +55,25 @@ let g:leetcode_browser = 'chrome'
   inoremap <C-t> <C-c>:Files<CR>
   tnoremap <C-t> <C-c>
   
-  Plug 'iberianpig/tig-explorer.vim'
-  " open tig with current file
-  nnoremap <Leader>G :tabnew<CR>:TigOpenCurrentFile<CR>
-  " open tig with Project root path
-  nnoremap <Leader>g :tabnew<CR>:TigOpenProjectRootDir<CR>
-  tmap <Leader>g <C-\><C-n>:tabclose<CR>
-  " open tig grep
-  "nnoremap <Leader>g :TigGrep<CR>
-  " resume from last grep
-  "nnoremap <Leader>r :TigGrepResume<CR>
-  " open tig grep with the selected word
-  "vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
-  " open tig grep with the word under the cursor
-  "nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
-  " open tig blame with current file
-  nnoremap <Leader>b :TigBlame<CR>
-  tnoremap <Leader>b :q<CR>
+  "Plug 'iberianpig/tig-explorer.vim'
+  "" open tig with current file
+  "nnoremap <Leader>G :tabnew<CR>:TigOpenCurrentFile<CR>
+  "" open tig with Project root path
+  "nnoremap <Leader>g :tabnew<CR>:TigOpenProjectRootDir<CR>
+  "tmap <Leader>g <C-\><C-n>:tabclose<CR>
+  "" open tig grep
+  ""nnoremap <Leader>g :TigGrep<CR>
+  "" resume from last grep
+  ""nnoremap <Leader>r :TigGrepResume<CR>
+  "" open tig grep with the selected word
+  ""vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
+  "" open tig grep with the word under the cursor
+  ""nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
+  "" open tig blame with current file
+  "nnoremap <Leader>b :TigBlame<CR>
+  "tnoremap <Leader>b :q<CR>
 
-  Plug 'rbgrouleff/bclose.vim'
+  "Plug 'rbgrouleff/bclose.vim'
   Plug 'scrooloose/nerdcommenter'
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
@@ -90,6 +90,13 @@ call plug#end()
 "if executable('ag')
 "cnoreabbrev ag Ag
 "endif
+function! Gstatus()
+  if bufname('#') =~ 'gstatus' || bufname('%') =~ 'gstatus'
+    close
+  else
+    :CocList --normal --auto-preview gstatus
+  endif
+endfunction
 
 " nerdtree
 set splitright
@@ -145,7 +152,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-git', 'coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
 command! -nargs=0 Format :call CocAction('format')
 
 
