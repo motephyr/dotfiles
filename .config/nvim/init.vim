@@ -168,7 +168,10 @@ vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 nnoremap <C-x> :! 
 nnoremap <Leader><C-x> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 noremap <silent> <C-a> ggVG
-noremap <Leader><C-d> :vertical diffsplit <C-r>%
+noremap <Leader>ds :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+noremap <Leader>dg :vsplit % \| term git diff --cached --color %<cr>
+noremap <Leader>b :tabnew % \| term tig blame %<cr>
+tmap <Leader>b <C-\><C-n>:tabclose<cr>
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
@@ -176,6 +179,7 @@ onoremap <M-LeftMouse> <C-C><4-LeftMouse>
 noremap <M-LeftDrag> <LeftDrag>
 inoremap <M-LeftDrag> <LeftDrag>
 onoremap <M-LeftDrag> <C-C><LeftDrag>
+cabbr <expr> %% expand('%:p:h')
 
 " Go to tab by number
 "noremap <leader>t1 1gt

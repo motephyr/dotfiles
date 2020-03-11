@@ -22,10 +22,12 @@ let g:leetcode_browser = 'chrome'
   noremap <silent> ' :call IncSearch()<CR>
   
   " browse
-  noremap <silent> <C-e> :CocCommand explorer<CR>
-  noremap <silent> <C-g> :call Gstatus()<cr>
+  noremap <silent> <Leader>e :CocCommand explorer<CR>
+  noremap <Leader>a :call GitAdd()<CR>
 
-  Plug 'airblade/vim-gitgutter'
+  noremap <silent> <Leader>g :GFiles?<cr>
+  tnoremap <Leader>g <C-c>
+  "Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -90,21 +92,23 @@ call plug#end()
 "if executable('ag')
 "cnoreabbrev ag Ag
 "endif
-function! Gstatus()
-  if bufname('#') =~ 'gstatus' || bufname('%') =~ 'gstatus'
-    close
-  else
-    :CocList --normal --auto-preview gstatus
-  endif
-endfunction
 
 " nerdtree
 set splitright
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-autocmd SessionLoadPost * call OpenExplorer()
-function! OpenExplorer()
-  if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
-    :CocCommand explorer
+"autocmd SessionLoadPost * call OpenExplorer()
+"function! OpenExplorer()
+  "if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
+    ":CocCommand explorer
+  "endif
+"endfunction
+
+"
+function! GitAdd()
+  :! git add %
+  if exists('t:explorer_winnr')
+    :1wincmd w
+    :normal R
   endif
 endfunction
 
@@ -152,7 +156,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-git', 'coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
 command! -nargs=0 Format :call CocAction('format')
 
 
