@@ -81,8 +81,7 @@ vnoremap <C-s> <C-c>:update<CR>
 noremap <C-q> :q<CR>
 inoremap <C-q> <C-c>:q<CR>
 vnoremap <C-q> <C-c>:q<CR>
-
-tmap <C-q> <C-\><C-n>:tabclose<CR>
+tmap <C-q> <C-\><C-n>:bdelete!<cr>
 
 " for mac item2 ------------
 "map <Leader>v <C-v>
@@ -168,10 +167,11 @@ vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 nnoremap <C-x> :! 
 nnoremap <Leader><C-x> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 noremap <silent> <C-a> ggVG
-noremap <Leader>ds :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <Leader>dg :vsplit % \| term git diff --cached --color %<cr>
-noremap <Leader>b :tabnew % \| term tig blame %<cr>
-tmap <Leader>b <C-\><C-n>:tabclose<cr>
+noremap <Leader>d :diffoff<cr> :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+noremap <C-g> :vsplit % \| term git diff HEAD --color %<cr>
+tmap <C-g> <C-\><C-n>:bdelete!<cr>
+noremap <C-t> :tabnew % \| term tig blame %<cr>
+tmap <C-t> <C-\><C-n>:bdelete!<cr>
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
@@ -180,6 +180,8 @@ noremap <M-LeftDrag> <LeftDrag>
 inoremap <M-LeftDrag> <LeftDrag>
 onoremap <M-LeftDrag> <C-C><LeftDrag>
 cabbr <expr> %% expand('%:p:h')
+
+
 
 " Go to tab by number
 "noremap <leader>t1 1gt

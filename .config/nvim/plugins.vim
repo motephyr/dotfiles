@@ -46,36 +46,37 @@ let g:leetcode_browser = 'chrome'
       \ coc#refresh()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  nnoremap <C-f> <C-c>:Ag<Space>
-  vnoremap <C-f> "hy<C-c>:Ag<Space><C-r>h<CR>
-  inoremap <C-f> <C-c>:Ag<Space>
-  tnoremap <C-f> <C-c>
-  cnoremap <C-f> <C-c>
-  noremap <C-t> <C-c>:Files<CR>
-  vnoremap <C-t> "hy<C-c>:Files<CR><C-\><C-n>"hpi
-  inoremap <C-t> <C-c>:Files<CR>
-  tnoremap <C-t> <C-c>
-  
-  "Plug 'iberianpig/tig-explorer.vim'
-  "" open tig with current file
-  "nnoremap <Leader>G :tabnew<CR>:TigOpenCurrentFile<CR>
-  "" open tig with Project root path
-  "nnoremap <Leader>g :tabnew<CR>:TigOpenProjectRootDir<CR>
-  "tmap <Leader>g <C-\><C-n>:tabclose<CR>
-  "" open tig grep
-  ""nnoremap <Leader>g :TigGrep<CR>
-  "" resume from last grep
-  ""nnoremap <Leader>r :TigGrepResume<CR>
-  "" open tig grep with the selected word
-  ""vnoremap <Leader>g y:TigGrep<Space><C-R>"<CR>
-  "" open tig grep with the word under the cursor
-  ""nnoremap <Leader>cg :<C-u>:TigGrep<Space><C-R><C-W><CR>
-  "" open tig blame with current file
-  "nnoremap <Leader>b :TigBlame<CR>
-  "tnoremap <Leader>b :q<CR>
+  Plug 'yuki-ycino/fzf-preview.vim'
 
-  "Plug 'rbgrouleff/bclose.vim'
+  nnoremap <Leader>f <C-c>:FzfPreviewProjectGrep<Space>
+  vnoremap <Leader>f "hy<C-c>:FzfPreviewProjectGrep<Space><C-r>h<CR>
+  inoremap <Leader>f <C-c>:FzfPreviewProjectGrep<Space>
+  tnoremap <Leader>f <C-c>
+  cnoremap <Leader>f <C-c>
+  noremap <Leader>t <C-c>:FzfPreviewProjectFiles<CR>
+  vnoremap <Leader>t "hy<C-c>:FzfPreviewProjectFiles<CR><C-\><C-n>"hpi
+  inoremap <Leader>t <C-c>:FzfPreviewProjectFiles<CR>
+  tnoremap <Leader>t <C-c>
+
+  noremap <Leader>g <C-c>:FzfPreviewGitStatus<CR>
+  tnoremap <Leader>t <C-c>
+  
+
+augroup fzf_preview
+  autocmd!
+  autocmd User fzf_preview#initialized call s:fzf_preview_settings()
+augroup END
+
+function! s:fzf_preview_settings() abort
+  let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
+  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
+
+  let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
+  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
+  let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
+
+endfunction
+
   Plug 'scrooloose/nerdcommenter'
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
@@ -126,6 +127,15 @@ function! PreventBuffersInExplorer()
 endfunction
 
 autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
+if has('nvim')
+    augroup terminal_setup | au!
+      autocmd TermOpen,BufEnter term://* startinsert
+      autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
+      autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> <ScrollWheelUp>i
+      autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> <ScrollWheelDown>i
+    augroup end
+endif
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -158,101 +168,6 @@ endfunction
 let g:coc_snippet_next = '<tab>' 
 let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
 command! -nargs=0 Format :call CocAction('format')
-
-
-" fzf
-autocmd TermOpen,BufEnter term://* startinsert
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-i': 'split',
-  \ 'ctrl-s': 'vsplit' }
-
-" fzf.vim
-" Files! // ! for full screen
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
-
-"command! -bang -nargs=* Ag
-      "\ call fzf#vim#ag(<q-args>,
-      "\                 <bang>0)
-command! -bang -nargs=* Ag
-      \ call fzf#vim#ag(<q-args>,
-      \                         fzf#vim#with_preview('right:45%'),
-      \                 <bang>0)
-" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
-
-" Likewise, Files command with preview window
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, <bang>0)
-
-
-" Reverse the layout to make the FZF list top-down
-let $FZF_DEFAULT_OPTS='--layout=reverse'
-
-" Using the custom window creation function
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-" Function to create the custom floating window
-function! FloatingFZF()
-  " creates a scratch, unlisted, new, empty, unnamed buffer
-  " to be used in the floating window
-  let buf = nvim_create_buf(v:false, v:true)
-
-  " 90% of the height
-  let height = float2nr(&lines * 0.9)
-  " 60% of the height
-  let width = float2nr(&columns * 0.9)
-  " horizontal position (centralized)
-  let horizontal = float2nr((&columns - width) / 2)
-  " vertical position (one line down of the top)
-  let vertical = 1
-
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height
-        \ }
-
-  " open the new window, floating, and enter to it
-  call nvim_open_win(buf, v:true, opts)
-endfunction
 
 "incsearch
 function IncSearch()
