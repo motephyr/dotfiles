@@ -1,9 +1,9 @@
 let mapleader = " "
 
 call plug#begin()
-Plug 'ianding1/leetcode.vim'
-let g:leetcode_solution_filetype = 'javascript'
-let g:leetcode_browser = 'chrome'
+  Plug 'ianding1/leetcode.vim'
+  let g:leetcode_solution_filetype = 'javascript'
+  let g:leetcode_browser = 'chrome'
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
@@ -20,13 +20,11 @@ let g:leetcode_browser = 'chrome'
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'  
   noremap <silent> ' :call IncSearch()<CR>
-  
+
   " browse
   noremap <silent> <Leader>e :CocCommand explorer<CR>
   noremap <Leader>a :call GitAdd()<CR>
 
-  noremap <silent> <Leader>g :GFiles?<cr>
-  tnoremap <Leader>g <C-c>
   "Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -35,15 +33,15 @@ let g:leetcode_browser = 'chrome'
   "map <Tab> <Plug>(wintabs_previous)
   map <S-Tab> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
-  
+
   Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+        \ pumvisible() ? coc#_select_confirm() :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'yuki-ycino/fzf-preview.vim'
@@ -59,28 +57,12 @@ let g:leetcode_browser = 'chrome'
   tnoremap <Leader>t <C-c>
 
   noremap <Leader>g <C-c>:FzfPreviewGitStatus<CR>
-  tnoremap <Leader>t <C-c>
-  
-
-augroup fzf_preview
-  autocmd!
-  autocmd User fzf_preview#initialized call s:fzf_preview_settings()
-augroup END
-
-function! s:fzf_preview_settings() abort
-  let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
-  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
-
-  let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
-  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
-  let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
-
-endfunction
+  tnoremap <Leader>g <C-c>
 
   Plug 'scrooloose/nerdcommenter'
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
-  
+
   Plug 'tpope/vim-surround'
   nmap m ysiw
   nmap M ds
@@ -94,14 +76,13 @@ call plug#end()
 "cnoreabbrev ag Ag
 "endif
 
-" nerdtree
 set splitright
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 "autocmd SessionLoadPost * call OpenExplorer()
 "function! OpenExplorer()
-  "if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
-    ":CocCommand explorer
-  "endif
+"if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
+":CocCommand explorer
+"endif
 "endfunction
 
 "
@@ -117,8 +98,8 @@ autocmd BufWinEnter * call PreventBuffersInExplorer()
 
 function! PreventBuffersInExplorer()
   if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-   \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-   \ && &buftype == '' 
+        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+        \ && &buftype == '' 
     let bufnum = bufnr('%')
     close
     exe 'b ' . bufnum
@@ -128,12 +109,12 @@ endfunction
 
 autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
 if has('nvim')
-    augroup terminal_setup | au!
-      autocmd TermOpen,BufEnter term://* startinsert
-      autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-      autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> <ScrollWheelUp>i
-      autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> <ScrollWheelDown>i
-    augroup end
+  augroup terminal_setup | au!
+    autocmd TermOpen,BufEnter term://* startinsert
+    autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ki
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ji
+  augroup end
 endif
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
@@ -159,6 +140,22 @@ hi! Normal ctermbg=NONE guibg=NONE
 "hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
 "hi Cursor ctermbg=15 ctermfg=8
 
+"fzf
+augroup fzf_preview
+  autocmd!
+  autocmd User fzf_preview#initialized call s:fzf_preview_settings()
+augroup END
+
+function! s:fzf_preview_settings() abort
+  let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
+  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
+
+  let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
+  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
+  let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
+
+endfunction
+
 "coc
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -171,17 +168,17 @@ command! -nargs=0 Format :call CocAction('format')
 
 "incsearch
 function IncSearch()
-call incsearch#go(<SID>config_easyfuzzymotion())
-:let @/ = ""
+  call incsearch#go(<SID>config_easyfuzzymotion())
+  :let @/ = ""
 endfunction
 
 function! s:config_easyfuzzymotion(...) abort
-return extend(copy({
-     \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-     \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-     \   'is_expr': 1,
-     \   'is_stay': 0
-     \ }), get(a:, 1, {}))
+  return extend(copy({
+        \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \   'is_expr': 1,
+        \   'is_stay': 0
+        \ }), get(a:, 1, {}))
 endfunction
 
 "if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>

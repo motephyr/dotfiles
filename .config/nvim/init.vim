@@ -94,6 +94,8 @@ tmap <C-q> <C-\><C-n>:bdelete!<cr>
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 cnoremap <LeftMouse> <C-c><LeftMouse>
+cnoremap <ScrollWheelUp> <C-c><ScrollWheelUp>
+cnoremap <ScrollWheelDown> <C-c><ScrollWheelDown>
 vnoremap <3-LeftMouse> <Esc>0v$h
 vnoremap / "hy/<C-r>h<CR>
 " for gf
@@ -168,9 +170,9 @@ nnoremap <C-x> :!
 nnoremap <Leader><C-x> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 noremap <silent> <C-a> ggVG
 noremap <Leader>d :diffoff<cr> :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <C-g> :vsplit % \| term git diff HEAD --color %<cr>
+noremap <expr> <C-g> bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD --color %<cr>' : ''
 tmap <C-g> <C-\><C-n>:bdelete!<cr>
-noremap <C-t> :tabnew % \| term tig blame %<cr>
+noremap <expr> <C-t> bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig blame %<cr>' : ''
 tmap <C-t> <C-\><C-n>:bdelete!<cr>
 
 noremap <M-LeftMouse> <4-LeftMouse>
