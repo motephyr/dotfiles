@@ -46,20 +46,20 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'yuki-ycino/fzf-preview.vim'
 
-  nnoremap <Leader>f <C-c>:FzfPreviewProjectGrep<Space>
-  vnoremap <Leader>f "hy<C-c>:FzfPreviewProjectGrep<Space><C-r>h<CR>
-  inoremap <Leader>f <C-c>:FzfPreviewProjectGrep<Space>
-  tnoremap <Leader>f <C-c>
-  cnoremap <Leader>f <C-c>
-  noremap <Leader>t <C-c>:FzfPreviewProjectFiles<CR>
-  vnoremap <Leader>t "hy<C-c>:FzfPreviewProjectFiles<CR><C-\><C-n>"hpi
-  inoremap <Leader>t <C-c>:FzfPreviewProjectFiles<CR>
-  tnoremap <Leader>t <C-c>
+  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>
+  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space><C-r>h<CR>
+  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>
+  tnoremap <C-f> <C-c>
+  cnoremap <C-f> <C-c>
+  noremap <C-t> <C-c>:FzfPreviewProjectFiles<CR>
+  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectFiles<CR><C-\><C-n>"hpi
+  inoremap <C-t> <C-c>:FzfPreviewProjectFiles<CR>
+  tnoremap <C-t> <C-c>
 
-  noremap <Leader>g <C-c>:FzfPreviewGitStatus<CR>
-  tnoremap <Leader>g <C-c>
+  noremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
+  tnoremap <C-g> <C-c>
 
-  Plug 'scrooloose/nerdcommenter'
+  Plug 'sCRooloose/nerdcommenter'
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
 
@@ -69,6 +69,12 @@ call plug#begin()
 
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-abolish'
+  Plug 'whiteinge/diffconflicts'
+  noremap <Leader>c :DiffConflicts<CR>
+  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD --color %<CR>' : ''
+  tmap <Leader>g <C-\><C-n>:bdelete!<CR>
+  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig blame %<CR>' : ''
+  tmap <Leader>b <C-\><C-n>:bdelete!<CR>
 call plug#end()
 
 "ag

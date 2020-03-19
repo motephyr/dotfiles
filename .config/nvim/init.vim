@@ -66,22 +66,22 @@ set mouse=a
 nnoremap <C-c> v"+y<Esc>
 vnoremap <C-c> "+y<Esc>gv
 
-noremap <C-v> "+p
+nnoremap <C-v> "+p
 inoremap <C-v> <C-c>"+P<Esc>gi
 vnoremap <C-v> "+P<Esc>gv
 
-noremap <C-z> u
+nnoremap <C-z> u
 inoremap <C-z> <C-c>u
 vnoremap <C-z> <C-c>u
 
-noremap <C-s> :update<CR>
+nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-c>:update<CR>
 vnoremap <C-s> <C-c>:update<CR>
 
-noremap <C-q> :q<CR>
+nnoremap <C-q> :q<CR>
 inoremap <C-q> <C-c>:q<CR>
 vnoremap <C-q> <C-c>:q<CR>
-tmap <C-q> <C-\><C-n>:bdelete!<cr>
+tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 
 " for mac item2 ------------
 "map <Leader>v <C-v>
@@ -97,6 +97,8 @@ cnoremap <LeftMouse> <C-c><LeftMouse>
 cnoremap <ScrollWheelUp> <C-c><ScrollWheelUp>
 cnoremap <ScrollWheelDown> <C-c><ScrollWheelDown>
 vnoremap <3-LeftMouse> <Esc>0v$h
+
+nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 vnoremap / "hy/<C-r>h<CR>
 " for gf
 set suffixesadd=.js,.jsx
@@ -124,19 +126,19 @@ nnoremap ƒ :Format<CR>
 
 "macro
 nnoremap Q @q
-vnoremap Q :norm @q<cr>
+vnoremap Q :norm @q<CR>
 
 "global
-nnoremap <C-n> :set invnu<cr>
-inoremap <C-n> <C-c>:set invnu<cr>i
+nnoremap <C-n> :set invnu<CR>
+inoremap <C-n> <C-c>:set invnu<CR>i
 
 nnoremap x "_x
 vnoremap x "_x
 nnoremap D "*dd
 vnoremap D "*d
 
-vnoremap <Leader><C-h> "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 vnoremap <C-h> "hy:%s/<C-r>h//gIc<left><left><left><left>
+vnoremap <Leader>h "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 
 "tnoremap <Esc> <C-\><C-n>
 noremap zz <C-c>
@@ -147,19 +149,19 @@ cnoremap zz <C-c>
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 
-noremap <leader>1 :1wincmd w<cr>
-noremap <leader>2 :2wincmd w<cr>
-noremap <leader>3 :3wincmd w<cr>
-noremap <leader>4 :4wincmd w<cr>
-noremap <leader>5 :5wincmd w<cr>
-noremap <leader>6 :6wincmd w<cr>
-noremap <leader>7 :7wincmd w<cr>
-noremap <leader>8 :8wincmd w<cr>
-noremap <leader>9 :9wincmd w<cr>
+noremap <leader>1 :1wincmd w<CR>
+noremap <leader>2 :2wincmd w<CR>
+noremap <leader>3 :3wincmd w<CR>
+noremap <leader>4 :4wincmd w<CR>
+noremap <leader>5 :5wincmd w<CR>
+noremap <leader>6 :6wincmd w<CR>
+noremap <leader>7 :7wincmd w<CR>
+noremap <leader>8 :8wincmd w<CR>
+noremap <leader>9 :9wincmd w<CR>
 
-nmap <Bs> db
+nnoremap <Bs> db
 
-vmap <Bs> x<Esc>
+vnoremap <Bs> x<Esc>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
 vnoremap <CR> x<Esc>
@@ -167,13 +169,10 @@ vnoremap <CR> x<Esc>
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 nnoremap <C-x> :! 
-nnoremap <Leader><C-x> :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
+nnoremap <Leader>x :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 noremap <silent> <C-a> ggVG
-noremap <Leader>d :diffoff<cr> :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <expr> <C-g> bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD --color %<cr>' : ''
-tmap <C-g> <C-\><C-n>:bdelete!<cr>
-noremap <expr> <C-t> bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig blame %<cr>' : ''
-tmap <C-t> <C-\><C-n>:bdelete!<cr>
+noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+cnoremap <Leader>d <C-c>
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
@@ -195,7 +194,7 @@ cabbr <expr> %% expand('%:p:h')
 "noremap <leader>t7 7gt
 "noremap <leader>t8 8gt
 "noremap <leader>t9 9gt
-"noremap <leader>t0 :tablast<cr>
+"noremap <leader>t0 :tablast<CR>
 
 ""noremap h i
 ""noremap i k
