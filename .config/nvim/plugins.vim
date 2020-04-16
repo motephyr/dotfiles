@@ -23,7 +23,7 @@ call plug#begin()
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer<CR>
-  noremap <Leader>a :call GitAdd()<CR>
+  noremap <silent> <Leader>a :call GitAdd()<CR>
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
@@ -38,10 +38,21 @@ call plug#begin()
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? coc#_select_confirm() :
+        \ pumvisible() ? '<Down>' :
         \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
+
+  inoremap <silent><expr> <S-TAB>
+        \ pumvisible() ? '<Up>' :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+
+
+
+	"inoremap <silent><expr> <cr> pumvisible() ? "<Esc>a<CR>"
+				"\: "<CR>"
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'yuki-ycino/fzf-preview.vim'
@@ -71,9 +82,9 @@ call plug#begin()
   Plug 'tpope/vim-abolish'
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
-  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD --color %<CR>' : ''
+  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
   tmap <Leader>g <C-\><C-n>:bdelete!<CR>
-  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig blame %<CR>' : ''
+  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
   tmap <Leader>b <C-\><C-n>:bdelete!<CR>
 call plug#end()
 
@@ -93,7 +104,10 @@ autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 
 "
 function! GitAdd()
-  :! git add %
+  if bufname('%') !~ 'coc-explorer'
+    :! git add %
+  endif
+
   if exists('t:explorer_winnr')
     :1wincmd w
     :normal R

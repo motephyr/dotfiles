@@ -20,25 +20,4 @@ windows:
       panes:
         - a:
           - cd ~/Projects/coding/leetcode
-  - phxserver:
-      layout: main-vertical
-      panes:
-        - a:
-          - cd ~/Projects/Ruby/phoenix/master-data-api/
-          - sleep 20
-          - bin/server
-        - b:
-          - cd ~/Projects/Ruby/phoenix/users-api/
-          - bin/server
-        - c:
-          - cd ~/Projects/Ruby/phoenix/jobs-api/
-          - sleep 40
-          - bin/server
-        - d:
-          - cd ~/Projects/Ruby/phoenix/phoenix-api-gateway
-          - sleep 60
-          - yarn start
-        - e:
-          - cd ~/Projects/Ruby/phoenix/phoenix-ui
-          - yarn dev
 

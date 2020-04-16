@@ -1,6 +1,7 @@
 scriptencoding utf-8
 source ~/dotfiles/.config/nvim/plugins.vim
-
+let projectPath = substitute(getcwd(), expand('~'), '~', '')
+set title titlestring=%{projectPath}
 "set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
 set tabstop=2    " tab 的字元數
@@ -66,13 +67,14 @@ set mouse=a
 nnoremap <C-c> v"+y<Esc>
 vnoremap <C-c> "+y<Esc>gv
 
-nnoremap <C-v> "+p
-inoremap <C-v> <C-c>"+P<Esc>gi
+nnoremap <C-v> "+P
+inoremap <C-v> <C-c>"+pa
 vnoremap <C-v> "+P<Esc>gv
 
 nnoremap <C-z> u
-inoremap <C-z> <C-c>u
+inoremap <C-z> <C-c>ua
 vnoremap <C-z> <C-c>u
+inoremap <C-r> <C-c><C-r>a
 
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-c>:update<CR>
@@ -93,9 +95,19 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 " -------------------------
 
 inoremap <LeftMouse> <Esc><LeftMouse>
-cnoremap <LeftMouse> <C-c><LeftMouse>
-cnoremap <ScrollWheelUp> <C-c><ScrollWheelUp>
-cnoremap <ScrollWheelDown> <C-c><ScrollWheelDown>
+cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
+cnoremap <expr> <ScrollWheelUp> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
+cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
+
+nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
+nnoremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
+nnoremap <S-3-ScrollWheelUp> <3-ScrollWheelLeft>
+nnoremap <S-4-ScrollWheelUp> <4-ScrollWheelLeft>
+nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
+nnoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
+nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
+nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
+
 vnoremap <3-LeftMouse> <Esc>0v$h
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
@@ -130,7 +142,7 @@ vnoremap Q :norm @q<CR>
 
 "global
 nnoremap <C-n> :set invnu<CR>
-inoremap <C-n> <C-c>:set invnu<CR>i
+inoremap <C-n> <C-c>:set invnu<CR>a
 
 nnoremap x "_x
 vnoremap x "_x
