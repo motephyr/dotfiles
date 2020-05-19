@@ -10,7 +10,7 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
 
-  "coc.preferences.formatOnSaveFiletypes": [
+  "_coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
     "typescriptreact",
@@ -29,7 +29,7 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✖",
 
-  "solargraph.autoformat": true,
+  "solargraph.autoformat": false,
   "solargraph.formatting": true,
 
   "explorer.file.showHiddenFiles": true,

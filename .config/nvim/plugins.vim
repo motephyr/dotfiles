@@ -19,11 +19,11 @@ call plug#begin()
   "map  N <Plug>(easymotion-prev)
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'  
-  noremap <silent> ' :call IncSearch()<CR>
+    noremap <silent> ' :call IncSearch()<CR>
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer<CR>
-  noremap <silent> <Leader>a :call GitAdd()<CR>
+  noremap <silent> << :call GitAdd()<CR>
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'thaerkh/vim-workspace'
@@ -70,7 +70,7 @@ call plug#begin()
   noremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
   tnoremap <C-g> <C-c>
 
-  Plug 'sCRooloose/nerdcommenter'
+  Plug 'preservim/nerdcommenter'
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
 
@@ -106,11 +106,10 @@ autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 function! GitAdd()
   if bufname('%') !~ 'coc-explorer'
     :! git add %
-  endif
-
-  if exists('t:explorer_winnr')
-    :1wincmd w
-    :normal R
+    if exists('t:explorer_winnr')
+      :1wincmd w
+      :normal R
+    endif
   endif
 endfunction
 

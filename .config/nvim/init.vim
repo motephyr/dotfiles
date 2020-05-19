@@ -76,10 +76,6 @@ inoremap <C-z> <C-c>ua
 vnoremap <C-z> <C-c>u
 inoremap <C-r> <C-c><C-r>a
 
-nnoremap <C-s> :update<CR>
-inoremap <C-s> <C-c>:update<CR>
-vnoremap <C-s> <C-c>:update<CR>
-
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <C-c>:q<CR>
 vnoremap <C-q> <C-c>:q<CR>
@@ -126,6 +122,11 @@ inoremap <A-k> <C-c>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 nnoremap <A-f> :Format<CR>
+autocmd FileType vue noremap <buffer> <A-f> :%!vue-formatter<CR>
+
+nmap <C-s> <A-f>:update<CR>
+imap <C-s> <C-c><A-f>:update<CR>
+vmap <C-s> <C-c><A-f>:update<CR>
 
 " for move block(mac)
 nnoremap ∆ :m .+1<CR>==
@@ -135,6 +136,11 @@ inoremap ˚ <C-c>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 nnoremap ƒ :Format<CR>
+autocmd FileType vue noremap <buffer> ƒ :%!vue-formatter<CR>
+
+nmap <C-s> ƒ:update<CR>
+imap <C-s> <C-c>ƒ:update<CR>
+vmap <C-s> <C-c>ƒ:update<CR>
 
 "macro
 nnoremap Q @q
