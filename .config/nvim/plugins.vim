@@ -19,7 +19,7 @@ call plug#begin()
   "map  N <Plug>(easymotion-prev)
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'  
-    noremap <silent> ' :call IncSearch()<CR>
+  noremap <silent> ' :call IncSearch()<CR>
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer<CR>
@@ -62,9 +62,9 @@ call plug#begin()
   inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
-  noremap <C-t> <C-c>:FzfPreviewProjectFiles<CR>
-  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectFiles<CR><C-\><C-n>"hpi
-  inoremap <C-t> <C-c>:FzfPreviewProjectFiles<CR>
+  noremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
+  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectMruFiles<CR><C-\><C-n>"hpi
+  inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
   tnoremap <C-t> <C-c>
 
   noremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
@@ -86,6 +86,7 @@ call plug#begin()
   tmap <Leader>g <C-\><C-n>:bdelete!<CR>
   noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
   tmap <Leader>b <C-\><C-n>:bdelete!<CR>
+  Plug 'jparise/vim-graphql'
 call plug#end()
 
 "ag
@@ -136,6 +137,7 @@ if has('nvim')
   augroup end
 endif
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+au BufNewFile,BufRead *.ejs set filetype=html
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'

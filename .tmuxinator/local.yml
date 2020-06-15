@@ -1,18 +1,38 @@
-
 name: phoenix
-root: ~/Projects
+root: ~/Projects/nodejs/kamo_all/
 
 windows:
-  - main:
+  - pgctl:
       layout: main-vertical
       panes:
         - a:
-          - cd ~/dotfiles
-          - git pull
-          - cd ~/Projects
-
-  - joplin:
+            - pg_ctl start
+            - export PGGSSENCMODE=disable && pgcli -U postgres -h localhost kamo
+  - dotfiles:
       layout: main-vertical
       panes:
         - a:
-          - joplin
+            - cd ~/dotfiles
+            - git pull
+  - leetcode:
+      layout: main-vertical
+      panes:
+        - a:
+            - cd ~/Projects/coding/leetcode
+  - kamo:
+      layout: main-vertical
+      panes:
+        - a:
+            - cd kamo
+            - yarn dev
+        - b:
+            - cd kamo-front
+            - yarn dev
+        - e:
+            - cd kamo_manager
+            - yarn dev
+        - c:
+            - cd kamo_candidate
+            - yarn dev
+        - d:
+            - cd kamo-admin

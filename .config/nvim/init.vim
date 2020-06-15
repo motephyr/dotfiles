@@ -91,6 +91,9 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 " -------------------------
 
 inoremap <LeftMouse> <Esc><LeftMouse>
+nnoremap <2-LeftMouse> v
+vnoremap <3-LeftMouse> <2-LeftMouse>
+vnoremap <4-LeftMouse> <Esc>0v$h
 cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelUp> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
@@ -103,8 +106,6 @@ nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
 nnoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
 nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
-
-vnoremap <3-LeftMouse> <Esc>0v$h
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 vnoremap / "hy/<C-r>h<CR>
@@ -122,11 +123,11 @@ inoremap <A-k> <C-c>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 nnoremap <A-f> :Format<CR>
-autocmd FileType vue noremap <buffer> <A-f> :%!vue-formatter<CR>
-
-nmap <C-s> <A-f>:update<CR>
-imap <C-s> <C-c><A-f>:update<CR>
-vmap <C-s> <C-c><A-f>:update<CR>
+inoremap <A-f> <C-c>:Format<CR>
+vnoremap <A-f> <C-c>:Format<CR>
+autocmd FileType vue nnoremap <buffer> <A-f> mm:%!vue-formatter<CR>`m
+autocmd FileType vue inoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`
+autocmd FileType vue vnoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`mm
 
 " for move block(mac)
 nnoremap ∆ :m .+1<CR>==
@@ -136,11 +137,16 @@ inoremap ˚ <C-c>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 nnoremap ƒ :Format<CR>
-autocmd FileType vue noremap <buffer> ƒ :%!vue-formatter<CR>
+inoremap ƒ <C-c>:Format<CR>
+vnoremap ƒ <C-c>:Format<CR>
+autocmd FileType vue nnoremap <buffer> ƒ mm:%!vue-formatter<CR>`m
+autocmd FileType vue inoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`
+autocmd FileType vue vnoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`mm
 
-nmap <C-s> ƒ:update<CR>
-imap <C-s> <C-c>ƒ:update<CR>
-vmap <C-s> <C-c>ƒ:update<CR>
+
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <C-c>:update<CR>
+vnoremap <C-s> <C-c>:update<CR>
 
 "macro
 nnoremap Q @q
@@ -186,6 +192,15 @@ vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
+nnoremap <leader>` viw"hd<Esc>:call SetVariable('')<left><left>
+vnoremap <leader>` "hd<Esc>:call SetVariable('')<left><left>
+
+function SetVariable(name)
+  exe "normal! i".a:name    
+  exe "normal! {iconst ".a:name." = "
+  :normal "hp0
+endfunction
+
 nnoremap <C-x> :! 
 nnoremap <Leader>x :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
 noremap <silent> <C-a> ggVG
