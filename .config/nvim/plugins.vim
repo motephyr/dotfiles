@@ -24,8 +24,10 @@ call plug#begin()
   " browse
   noremap <silent> <Leader>e :CocCommand explorer<CR>
   noremap <silent> << :call GitAdd()<CR>
+  noremap <silent> >> :call GitRm()<CR>
 
   "Plug 'airblade/vim-gitgutter'
+  Plug 'mhinz/vim-signify'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -55,11 +57,11 @@ call plug#begin()
 				"\: "<CR>"
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'yuki-ycino/fzf-preview.vim'
+  Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
 
-  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>
-  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space><C-r>h<CR>
-  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>
+  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
+  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
+  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
   noremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
@@ -84,8 +86,10 @@ call plug#begin()
   noremap <Leader>c :DiffConflicts<CR>
   noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
   tmap <Leader>g <C-\><C-n>:bdelete!<CR>
-  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
-  tmap <Leader>b <C-\><C-n>:bdelete!<CR>
+  noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
+  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
+
+  tmap <Leader>t <C-\><C-n>:bdelete!<CR>
   Plug 'jparise/vim-graphql'
 call plug#end()
 
@@ -113,6 +117,17 @@ function! GitAdd()
     endif
   endif
 endfunction
+
+function! GitRm()
+  if bufname('%') !~ 'coc-explorer'
+    :! git reset -- %
+    if exists('t:explorer_winnr')
+      :1wincmd w
+      :normal R
+    endif
+  endif
+endfunction
+
 
 autocmd BufWinEnter * call PreventBuffersInExplorer()
 

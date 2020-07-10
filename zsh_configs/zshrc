@@ -102,13 +102,13 @@ export PATH="$GOPATH/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always {}'"
 
 #just demo find a file with ag and open in nvim
 fag() {
   local file
 
-  file="$(ag -l $@ | fzf -0 -1 --preview 'bat --color=always --style=header,grid --line-range :300 {}'| awk -F: '{print $1}')"
+  file="$(ag -l $@ | fzf -0 -1 --preview 'bat --color=always {}'| awk -F: '{print $1}')"
 
   if [[ -n $file ]]
   then
@@ -119,18 +119,18 @@ fag() {
 #choose mulit file 
 mag() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' 
+  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | xargs 
 }
 
 #choose mulit file for change
 magr() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}' | tr '\n' '\0' | xargs -0 perl -pi -e "s/$1/$2/g"
+  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | tr '\n' '\0' | xargs -0 perl -pi -e "s|\Q$1|$2|g"
 }
 
 #use ag check and change all
 agr() {
-  ag -0 -l $1 | xargs -0 perl -pi -e "s/$1/$2/g"
+  ag -0 -l $1 | xargs -0 perl -pi -e "s|\Q$1|$2|g"
 }
 
 

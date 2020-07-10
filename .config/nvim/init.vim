@@ -183,9 +183,9 @@ noremap <leader>7 :7wincmd w<CR>
 noremap <leader>8 :8wincmd w<CR>
 noremap <leader>9 :9wincmd w<CR>
 
-nnoremap <Bs> db
+nnoremap <Bs> i<Bs><Esc><right>
 
-vnoremap <Bs> x<Esc>
+vnoremap <Bs> x<Esc><left>
 nnoremap \ i<Space>\<Enter><Esc>h 
 nnoremap <CR> i<Enter><Esc>
 vnoremap <CR> x<Esc>
