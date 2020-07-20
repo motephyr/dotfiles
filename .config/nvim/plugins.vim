@@ -36,7 +36,7 @@ call plug#begin()
   map <S-Tab> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
 
-  Plug 'morhetz/gruvbox'
+  Plug 'tomasiser/vim-code-dark'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
@@ -76,11 +76,11 @@ call plug#begin()
   nmap <Leader>/ <plug>NERDCommenterToggle
   vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
 
-  Plug 'tpope/vim-surround'
-  nmap m ysiw
-  nmap M ds
+  "Plug 'tpope/vim-surround'
+  "nmap m ysiw
+  "nmap M ds
 
-  Plug 'tpope/vim-repeat'
+  "Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-abolish'
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
@@ -171,7 +171,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
-colorscheme gruvbox
+colorscheme codedark
 hi! Normal ctermbg=NONE guibg=NONE
 "hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
 "hi Cursor ctermbg=15 ctermfg=8

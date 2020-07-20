@@ -18,7 +18,7 @@ set smartindent  " 設定 smartindent
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 "set cursorline!   " 顯示目前的游標位置
-set ve+=onemore  " 在最後加一個字元
+"set ve+=onemore  " 在最後加一個字元
 set nobackup
 set nowritebackup
 set noswapfile
@@ -126,7 +126,7 @@ nnoremap <A-f> :Format<CR>
 inoremap <A-f> <C-c>:Format<CR>
 vnoremap <A-f> <C-c>:Format<CR>
 autocmd FileType vue nnoremap <buffer> <A-f> mm:%!vue-formatter<CR>`m
-autocmd FileType vue inoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`
+autocmd FileType vue inoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`mm
 autocmd FileType vue vnoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`mm
 
 " for move block(mac)
@@ -140,7 +140,7 @@ nnoremap ƒ :Format<CR>
 inoremap ƒ <C-c>:Format<CR>
 vnoremap ƒ <C-c>:Format<CR>
 autocmd FileType vue nnoremap <buffer> ƒ mm:%!vue-formatter<CR>`m
-autocmd FileType vue inoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`
+autocmd FileType vue inoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`mm
 autocmd FileType vue vnoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`mm
 
 
@@ -183,11 +183,11 @@ noremap <leader>7 :7wincmd w<CR>
 noremap <leader>8 :8wincmd w<CR>
 noremap <leader>9 :9wincmd w<CR>
 
-nnoremap <Bs> i<Bs><Esc><right>
+nnoremap <Bs> i<Bs><right><Esc>
 
-vnoremap <Bs> x<Esc><left>
-nnoremap \ i<Space>\<Enter><Esc>h 
-nnoremap <CR> i<Enter><Esc>
+vnoremap <Bs> x<Esc>
+nnoremap \ a<Space>\<Enter><Esc>h
+nnoremap <CR> a<Enter><Esc>
 vnoremap <CR> x<Esc>
 
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -202,7 +202,7 @@ function SetVariable(name)
 endfunction
 
 nnoremap <C-x> :! 
-nnoremap <Leader>x :!echo %:p \| xargs -I {} bundle exec {}<left><left><left> 
+nnoremap <Leader>x :!echo %:p \| xargs -I {} open {}<left><left><left> 
 noremap <silent> <C-a> ggVG
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 cnoremap <Leader>d <C-c>
