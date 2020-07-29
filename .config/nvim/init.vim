@@ -89,7 +89,9 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 "imap <Leader>z <C-z> 
 "map <Leader>r <C-r> 
 " -------------------------
-
+nnoremap <Tab> i<Tab><right><Esc>
+nnoremap <S-Tab> <<
+nnoremap . i<Space><right><Esc>
 inoremap <LeftMouse> <Esc><LeftMouse>
 nnoremap <2-LeftMouse> v
 vnoremap <3-LeftMouse> <2-LeftMouse>
@@ -115,33 +117,19 @@ set hidden
 set directory=/tmp
 set path+=**
 
-" for move block(linux, window)
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <C-c>:m .+1<CR>==gi
-inoremap <A-k> <C-c>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-nnoremap <A-f> :Format<CR>
-inoremap <A-f> <C-c>:Format<CR>
-vnoremap <A-f> <C-c>:Format<CR>
-autocmd FileType vue nnoremap <buffer> <A-f> mm:%!vue-formatter<CR>`m
-autocmd FileType vue inoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`mm
-autocmd FileType vue vnoremap <buffer> <A-f> <C-c>mm:%!vue-formatter<CR>`mm
-
-" for move block(mac)
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <C-c>:m .+1<CR>==gi
-inoremap ˚ <C-c>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
-nnoremap ƒ :Format<CR>
-inoremap ƒ <C-c>:Format<CR>
-vnoremap ƒ <C-c>:Format<CR>
-autocmd FileType vue nnoremap <buffer> ƒ mm:%!vue-formatter<CR>`m
-autocmd FileType vue inoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`mm
-autocmd FileType vue vnoremap <buffer> ƒ <C-c>mm:%!vue-formatter<CR>`mm
+" for move block
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <C-c>:m .+1<CR>==gi
+inoremap <M-k> <C-c>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+nnoremap <M-f> :Format<CR>
+inoremap <M-f> <C-c>:Format<CR>
+vnoremap <M-f> <C-c>:Format<CR>
+autocmd FileType vue nnoremap <buffer> <M-f> mm:%!vue-formatter<CR>`m
+autocmd FileType vue inoremap <buffer> <M-f> <C-c>mm:%!vue-formatter<CR>`mm
+autocmd FileType vue vnoremap <buffer> <M-f> <C-c>mm:%!vue-formatter<CR>`mm
 
 
 nnoremap <C-s> :update<CR>

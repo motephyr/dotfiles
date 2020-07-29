@@ -32,24 +32,24 @@ call plug#begin()
   noremap <leader>s :ToggleWorkspace<CR>
 
   Plug 'zefei/vim-wintabs'
-  "map <Tab> <Plug>(wintabs_previous)
-  map <S-Tab> <Plug>(wintabs_next)
+  map <M-[> <Plug>(wintabs_previous)
+  map <M-]> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
 
   Plug 'tomasiser/vim-code-dark'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? '<Down>' :
+        \ pumvisible() ? '<Enter>' :
         \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
 
-  inoremap <silent><expr> <S-TAB>
-        \ pumvisible() ? '<Up>' :
-        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
+  "inoremap <silent><expr> <S-TAB>
+        "\ pumvisible() ? '<Up>' :
+        "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        "\ <SID>check_back_space() ? "\<TAB>" :
+        "\ coc#refresh()
 
 
 
@@ -73,8 +73,8 @@ call plug#begin()
   tnoremap <C-g> <C-c>
 
   Plug 'preservim/nerdcommenter'
-  nmap <Leader>/ <plug>NERDCommenterToggle
-  vmap <Leader>/ <plug>NERDCommenterToggle<C-c>gv=gv
+  nmap <M-/> <plug>NERDCommenterToggle
+  vmap <M-/> <plug>NERDCommenterTogglegv=gv
 
   "Plug 'tpope/vim-surround'
   "nmap m ysiw
@@ -167,14 +167,15 @@ set sessionoptions+=globals
 set t_Co=256
 set termguicolors
 
+"For tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
 colorscheme codedark
-hi! Normal ctermbg=NONE guibg=NONE
-"hi CursorLine ctermbg=8 ctermfg=15 "8 = dark gray, 15 = white
-"hi Cursor ctermbg=15 ctermfg=8
+hi! Normal ctermbg=NONE guibg=NONE ctermfg=white  guifg=white
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 "fzf
 augroup fzf_preview
