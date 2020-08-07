@@ -89,8 +89,8 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 "imap <Leader>z <C-z> 
 "map <Leader>r <C-r> 
 " -------------------------
-nnoremap <Tab> i<Tab><right><Esc>
-nnoremap <S-Tab> <<
+"nnoremap <Tab> i<Tab><right><Esc>
+"nnoremap <S-Tab> <<
 nnoremap . i<Space><right><Esc>
 inoremap <LeftMouse> <Esc><LeftMouse>
 nnoremap <2-LeftMouse> v

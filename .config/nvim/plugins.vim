@@ -85,11 +85,12 @@ call plug#begin()
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
   noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
-  tmap <Leader>g <C-\><C-n>:bdelete!<CR>
   noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
   noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
 
+  tmap <Leader>g <C-\><C-n>:bdelete!<CR>
   tmap <Leader>t <C-\><C-n>:bdelete!<CR>
+  tmap <Leader>b <C-\><C-n>:bdelete!<CR>
   Plug 'jparise/vim-graphql'
 call plug#end()
 
