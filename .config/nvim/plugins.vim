@@ -5,6 +5,7 @@ call plug#begin()
   let g:leetcode_solution_filetype = 'javascript'
   let g:leetcode_browser = 'chrome'
 
+  Plug 'ybian/smartim'
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
@@ -22,7 +23,7 @@ call plug#begin()
   noremap <silent> ' :call IncSearch()<CR>
 
   " browse
-  noremap <silent> <Leader>e :CocCommand explorer<CR>
+  noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   noremap <silent> << :call GitAdd()<CR>
   noremap <silent> >> :call GitRm()<CR>
 
@@ -70,6 +71,7 @@ call plug#begin()
   tnoremap <C-t> <C-c>
 
   noremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
+  inoremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
   tnoremap <C-g> <C-c>
 
   Plug 'preservim/nerdcommenter'
@@ -84,13 +86,6 @@ call plug#begin()
   Plug 'tpope/vim-abolish'
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
-  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
-  noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
-  noremap <expr> <Leader>b bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
-
-  tmap <Leader>g <C-\><C-n>:bdelete!<CR>
-  tmap <Leader>t <C-\><C-n>:bdelete!<CR>
-  tmap <Leader>b <C-\><C-n>:bdelete!<CR>
   Plug 'jparise/vim-graphql'
 call plug#end()
 
@@ -148,8 +143,8 @@ if has('nvim')
   augroup terminal_setup | au!
     autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ki
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ji
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ik
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
   augroup end
 endif
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
@@ -175,6 +170,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme codedark
 hi! Normal ctermbg=NONE guibg=NONE ctermfg=white  guifg=white
+hi! Search ctermbg=white guibg=white ctermfg=black guifg=black
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
