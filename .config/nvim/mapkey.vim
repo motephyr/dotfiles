@@ -74,9 +74,6 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 nnoremap <M-f> :Format<CR>
 inoremap <M-f> <Esc>:Format<CR>
 vnoremap <M-f> <Esc>:Format<CR>
-autocmd FileType vue nnoremap <buffer> <M-f> mm:%!vue-formatter<CR>`m
-autocmd FileType vue inoremap <buffer> <M-f> <Esc>mm:%!vue-formatter<CR>`mm
-autocmd FileType vue vnoremap <buffer> <M-f> <Esc>mm:%!vue-formatter<CR>`mm
 
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''

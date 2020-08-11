@@ -147,7 +147,7 @@ if has('nvim')
     autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
   augroup end
 endif
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
 au BufNewFile,BufRead *.ejs set filetype=html
 
 "workspace save session
@@ -199,6 +199,18 @@ endfunction
 let g:coc_snippet_next = '<tab>' 
 let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
 command! -nargs=0 Format :call CocAction('format')
+
+nnoremap <silent> <LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) < 0)
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+nmap <M-.> <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+"nmap <leader>qf  <Plug>(coc-fix-current)
 
 "incsearch
 function IncSearch()

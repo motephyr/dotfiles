@@ -18,12 +18,14 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+  "eslint.autoFixOnSave": true,
   "eslint.filetypes": [
     "javascript",
     "typescript",
-    "typescriptreact",
-    "javascriptreact",
-    "typescript.tsx"
+    "_typescriptreact",
+    "_javascriptreact",
+    "_typescript.tsx",
+    "vue"
   ],
   "diagnostic.infoSign": "ღ",
   "diagnostic.warningSign": "⚠",
