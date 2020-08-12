@@ -63,3 +63,6 @@ set suffixesadd=.js,.jsx
 set hidden
 set directory=/tmp
 set path+=**
+set splitbelow
+set splitright
+

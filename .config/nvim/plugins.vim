@@ -38,6 +38,7 @@ call plug#begin()
   map <C-w> <Plug>(wintabs_close)
 
   Plug 'tomasiser/vim-code-dark'
+  "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   inoremap <silent><expr> <TAB>
@@ -94,7 +95,6 @@ call plug#end()
 "cnoreabbrev ag Ag
 "endif
 
-set splitright
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 "autocmd SessionLoadPost * call OpenExplorer()
 "function! OpenExplorer()
@@ -169,7 +169,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
 colorscheme codedark
-hi! Normal ctermbg=NONE guibg=NONE ctermfg=white  guifg=white
+hi! Normal ctermbg=NONE guibg=NONE 
+"ctermfg=white  guifg=white
 hi! Search ctermbg=white guibg=white ctermfg=black guifg=black
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white

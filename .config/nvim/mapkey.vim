@@ -80,7 +80,7 @@ noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig
 noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
 noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
 
-cnoremap <Leader>d <C-c>
+"cnoremap <Leader>d <C-c>
 tmap <Leader>t <C-\><C-n>:bdelete!<CR>
 tmap <Leader>f <C-\><C-n>:bdelete!<CR>
 tmap <Leader>g <C-\><C-n>:bdelete!<CR>
@@ -148,6 +148,7 @@ noremap <leader>6 :6wincmd w<CR>
 noremap <leader>7 :7wincmd w<CR>
 noremap <leader>8 :8wincmd w<CR>
 noremap <leader>9 :9wincmd w<CR>
+noremap <leader>0 :exe winnr('$') 'wincmd w'<CR>
 
 cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q
