@@ -29,6 +29,7 @@ call plug#begin()
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
+  Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -59,20 +60,18 @@ call plug#begin()
 				"\: "<CR>"
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
-
-  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
-  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
-  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
+  nnoremap <C-f> <C-c>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
+  vnoremap <C-f> "hy<C-c>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
+  inoremap <C-f> <C-c>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
-  noremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
-  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectMruFiles<CR><C-\><C-n>"hpi
-  inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
+  noremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
+  vnoremap <C-t> "hy<C-c>:CocCommand fzf-preview.ProjectMruFiles<CR><C-\><C-n>"hpi
+  inoremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
   tnoremap <C-t> <C-c>
 
-  noremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
-  inoremap <C-g> <C-c>:FzfPreviewGitStatus<CR>
+  noremap <C-g> <C-c>:CocCommand fzf-preview.GitStatus<CR>
+  inoremap <C-g> <C-c>:CocCommand fzf-preview.GitStatus<CR>
   tnoremap <C-g> <C-c>
 
   Plug 'preservim/nerdcommenter'
@@ -183,12 +182,16 @@ augroup END
 
 function! s:fzf_preview_settings() abort
   let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
-  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
+  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
+  let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 
-  let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
-  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
-  let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
+  let g:fzf_preview_custom_processes['open-file'] = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
 
+  let g:fzf_preview_custom_processes['open-file']['ctrl-i'] = g:fzf_preview_custom_processes['open-file']['ctrl-x']
+  call remove(g:fzf_preview_custom_processes['open-file'], 'ctrl-x')
+
+  let g:fzf_preview_custom_processes['open-file']['ctrl-s'] = g:fzf_preview_custom_processes['open-file']['ctrl-v']
+  call remove(g:fzf_preview_custom_processes['open-file'], 'ctrl-v')
 endfunction
 
 "coc
@@ -198,7 +201,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview']
 command! -nargs=0 Format :call CocAction('format')
 
 nnoremap <silent> <LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>

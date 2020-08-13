@@ -42,8 +42,8 @@ vnoremap <C-s> <Esc>:update<CR>gv=gv
 vnoremap / "hy/<C-r>h<CR>
 
 "replace
-vnoremap <C-h> "hy:%s/<C-r>h//gIc<left><left><left><left>
-vnoremap <Leader>h "hy:%Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
+vnoremap <C-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
+vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 
 "select all
 nnoremap <silent> <C-a> ggVG
