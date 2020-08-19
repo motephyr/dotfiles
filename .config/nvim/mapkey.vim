@@ -16,7 +16,7 @@ vnoremap <C-c> "+y<Esc>gv
 
 "paste
 nnoremap <C-v> "+gP
-inoremap <C-v> <Esc>"+gpa
+inoremap <C-v> <Esc>"+gPa
 vnoremap <C-v> "+gP<Esc>gv
 
 "undo & redo
@@ -76,19 +76,19 @@ inoremap <M-f> <Esc>:Format<CR>
 vnoremap <M-f> <Esc>:Format<CR>
 
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig %<CR>' : ''
+noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig<CR>' : ''
 noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
 noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
 
-"cnoremap <Leader>d <C-c>
+"cnoremap <Leader>d <C-c> "type Leader key<Space> wiil slow
 tmap <Leader>t <C-\><C-n>:bdelete!<CR>
 tmap <Leader>f <C-\><C-n>:bdelete!<CR>
 tmap <Leader>g <C-\><C-n>:bdelete!<CR>
 
 "tnoremap <Esc> <C-\><C-n>
-noremap zz <C-c>
-noremap! zz <C-c>
-tnoremap zz <C-c>
+noremap zz <Esc>
+inoremap zz <Esc>
+tnoremap zz <C-\><C-n>:bdelete!<CR>
 cnoremap zz <C-c>
 
 "execute
@@ -128,6 +128,8 @@ vnoremap Q :norm @q<CR>
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <2-LeftMouse> <2-LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
+
+"Command mode need use C-c, not esc. otherwise there is error message
 cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelUp> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
@@ -143,10 +145,10 @@ nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 noremap <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
-onoremap <M-LeftMouse> <C-C><4-LeftMouse>
+onoremap <M-LeftMouse> <Esc><4-LeftMouse>
 noremap <M-LeftDrag> <LeftDrag>
 inoremap <M-LeftDrag> <LeftDrag>
-onoremap <M-LeftDrag> <C-C><LeftDrag>
+onoremap <M-LeftDrag> <Esc><LeftDrag>
 
 
 "other

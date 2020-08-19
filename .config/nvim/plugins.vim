@@ -58,21 +58,24 @@ call plug#begin()
 
 	"inoremap <silent><expr> <cr> pumvisible() ? "<Esc>a<CR>"
 				"\: "<CR>"
+  nnoremap <silent> <LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
+  nmap <M-.> <Plug>(coc-codeaction)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  nnoremap <C-f> <C-c>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
-  vnoremap <C-f> "hy<C-c>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
-  inoremap <C-f> <C-c>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
-  tnoremap <C-f> <C-c>
-  cnoremap <C-f> <C-c>
-  noremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
-  vnoremap <C-t> "hy<C-c>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 200m<CR><C-\><C-n>"hp
-  inoremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
-  tnoremap <C-t> <C-c>
+  nnoremap <C-t> :CocCommand fzf-preview.ProjectMruFiles<CR>
+  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 200m<CR><C-\><C-n>"hp
+  inoremap <C-t> <Esc>:CocCommand fzf-preview.ProjectMruFiles<CR>
+  tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 
-  noremap <C-g> <C-c>:CocCommand fzf-preview.GitStatus<CR>
-  inoremap <C-g> <C-c>:CocCommand fzf-preview.GitStatus<CR>
-  tnoremap <C-g> <C-c>
+  nnoremap <C-f> :CocCommand fzf-preview.ProjectGrep<Space>''<left>
+  vnoremap <C-f> "hy<Esc>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
+  inoremap <C-f> <Esc>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
+  tnoremap <C-f> <C-\><C-n>:bdelete!<CR>
+  cnoremap <C-f> <C-c>
+
+  noremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
+  inoremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
+  tnoremap <C-g> <C-\><C-n>:bdelete!<CR>
 
   Plug 'preservim/nerdcommenter'
   nmap <M-/> <plug>NERDCommenterToggle
@@ -160,7 +163,7 @@ set sessionoptions+=globals
 
 "vim-colorschemes syntax
 set t_Co=256
-set termguicolors
+"set termguicolors
 
 "For tmux
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -170,7 +173,7 @@ set background=dark    " Setting dark mode
 colorscheme codedark
 hi! Normal ctermbg=NONE guibg=NONE 
 "ctermfg=white  guifg=white
-"hi! Search ctermbg=white guibg=white ctermfg=black guifg=black
+hi! Search ctermbg=red guibg=red ctermfg=white guifg=white
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
@@ -204,15 +207,12 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview']
 command! -nargs=0 Format :call CocAction('format')
 
-nnoremap <silent> <LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) < 0)
     call CocActionAsync('doHover')
   endif
 endfunction
 
-nmap <M-.> <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 "nmap <leader>qf  <Plug>(coc-fix-current)
 
