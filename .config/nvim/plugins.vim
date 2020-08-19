@@ -66,7 +66,7 @@ call plug#begin()
   tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
   noremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
-  vnoremap <C-t> "hy<C-c>:CocCommand fzf-preview.ProjectMruFiles<CR><C-\><C-n>"hpi
+  vnoremap <C-t> "hy<C-c>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 200m<CR><C-\><C-n>"hp
   inoremap <C-t> <C-c>:CocCommand fzf-preview.ProjectMruFiles<CR>
   tnoremap <C-t> <C-c>
 
@@ -170,7 +170,7 @@ set background=dark    " Setting dark mode
 colorscheme codedark
 hi! Normal ctermbg=NONE guibg=NONE 
 "ctermfg=white  guifg=white
-hi! Search ctermbg=white guibg=white ctermfg=black guifg=black
+"hi! Search ctermbg=white guibg=white ctermfg=black guifg=black
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 

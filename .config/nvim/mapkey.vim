@@ -15,9 +15,9 @@ nnoremap <C-c> v"+y<Esc>
 vnoremap <C-c> "+y<Esc>gv
 
 "paste
-nnoremap <C-v> "+P
-inoremap <C-v> <Esc>"+pa
-vnoremap <C-v> "+P<Esc>gv
+nnoremap <C-v> "+gP
+inoremap <C-v> <Esc>"+gpa
+vnoremap <C-v> "+gP<Esc>gv
 
 "undo & redo
 nnoremap <C-z> u
@@ -100,13 +100,24 @@ vnoremap <Leader>x <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
-nnoremap <leader>` viw"hd<Esc>:call SetVariable('')<left><left>
-vnoremap <leader>` "hd<Esc>:call SetVariable('')<left><left>
+nnoremap <leader>v viw"hd<Esc>:call SetVariable('')<left><left>
+vnoremap <leader>v "hd<Esc>:call SetVariable('')<left><left>
 
 function SetVariable(name)
   exe "normal! i".a:name    
   exe "normal! {iconst ".a:name." = "
   :normal "hp0
+endfunction
+
+nnoremap <leader>` viw"hd<Esc>:call SetFunction('')<left><left>
+vnoremap <leader>` "hd<Esc>:call SetFunction('')<left><left>
+
+function SetFunction(name)
+  exe "normal! i".a:name."()"    
+  exe "normal! }i".a:name."() {"
+  :normal o
+  :normal "hgpo
+  exe "normal! i}"
 endfunction
 
 "macro
