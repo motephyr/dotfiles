@@ -5,11 +5,9 @@ set shiftwidth=2 " 設定縮排寬度 = 4
 set tabstop=2    " tab 的字元數
 set softtabstop=2
 set expandtab    " 用 space 代替 tab
-set ruler        " 顯示右下角設定值
 
 set backspace=2  " 在 insert 也可用 backspace
 set ic           " 設定搜尋忽略大小寫 igonrecase
-set ru           " 第幾行第幾個字
 set hlsearch     " 設定高亮度顯示搜尋結果
 set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
@@ -51,7 +49,8 @@ set statusline+=%=                          " right align
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %3l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
-set statusline+=\ %3p%%\                " percentage
+set statusline+=\ %{line('$')}
+set statusline+=\ Lines\                " percentage
 "set statusline+=\ %{winnr()}\           " window number
 
 filetype plugin indent on     " required!
@@ -70,4 +69,12 @@ set directory=/tmp
 set path+=**
 set splitbelow
 set splitright
+
+
+
+
+
+
+
+
 

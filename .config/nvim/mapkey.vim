@@ -137,8 +137,8 @@ nnoremap Q @q
 vnoremap Q :norm @q<CR>
 
 "mouse
-inoremap <LeftMouse> <Esc><LeftMouse>
-vnoremap <2-LeftMouse> <2-LeftMouse>
+"inoremap <LeftMouse> <Esc><LeftMouse>
+"vnoremap <2-LeftMouse> <2-LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
 
 "Command mode need use C-c, not esc. otherwise there is error message

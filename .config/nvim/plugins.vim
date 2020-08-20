@@ -24,6 +24,7 @@ call plug#begin()
   noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   noremap <silent> << :call GitAdd()<CR>
   noremap <silent> >> :call GitRm()<CR>
+  noremap <silent> <Leader>>> :call GitRevert()<CR>
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
@@ -124,6 +125,15 @@ function! GitRm()
   endif
 endfunction
 
+function! GitRevert()
+  if bufname('%') !~ 'coc-explorer'
+    :! git checkout HEAD -- %
+    if exists('t:explorer_winnr')
+      :1wincmd w
+      :normal R
+    endif
+  endif
+endfunction
 
 autocmd BufWinEnter * call PreventBuffersInExplorer()
 
