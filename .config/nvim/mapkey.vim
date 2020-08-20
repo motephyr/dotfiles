@@ -1,3 +1,4 @@
+let mapleader = " "
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 
 "Generally speaking, normal insert visual needs to be mapped
@@ -16,7 +17,7 @@ vnoremap <C-c> "+y<Esc>gv
 
 "paste
 nnoremap <C-v> "+gP
-inoremap <C-v> <Esc>"+gPa
+inoremap <C-v> <Esc>"+gPi
 vnoremap <C-v> "+gP<Esc>gv
 
 "undo & redo
@@ -57,11 +58,11 @@ nnoremap D "*dd
 vnoremap D "*d
 
 "Fix
-nnoremap . i<Space><right><Esc>
-nnoremap <Bs> i<Bs><right><Esc>
+nnoremap . i<Space><Esc><right>
+nnoremap <Bs> i<Bs><Esc>
 vnoremap <Bs> x<Esc>
 nnoremap \ a<Space>\<Enter><Esc>h
-nnoremap <CR> a<CR><Esc>
+nnoremap <CR> i<CR><Esc>
 vnoremap <CR> xi<CR><Esc>
 
 " for move block
@@ -84,6 +85,17 @@ noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git
 tmap <Leader>t <C-\><C-n>:bdelete!<CR>
 tmap <Leader>f <C-\><C-n>:bdelete!<CR>
 tmap <Leader>g <C-\><C-n>:bdelete!<CR>
+
+if has('nvim')
+  augroup terminal_setup | au!
+    autocmd TermOpen,BufEnter term://* startinsert
+    autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ik
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
+  augroup end
+endif
+
+au BufNewFile,BufRead *.ejs set filetype=html
 
 "tnoremap <Esc> <C-\><C-n>
 noremap zz <Esc>

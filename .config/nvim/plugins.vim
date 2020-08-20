@@ -1,5 +1,3 @@
-let mapleader = " "
-
 call plug#begin()
   Plug 'ianding1/leetcode.vim'
   let g:leetcode_solution_filetype = 'javascript'
@@ -141,16 +139,6 @@ function! PreventBuffersInExplorer()
 endfunction
 
 autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
-if has('nvim')
-  augroup terminal_setup | au!
-    autocmd TermOpen,BufEnter term://* startinsert
-    autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ik
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
-  augroup end
-endif
-
-au BufNewFile,BufRead *.ejs set filetype=html
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
