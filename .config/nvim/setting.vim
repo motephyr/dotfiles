@@ -23,7 +23,7 @@ autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) 
 set nobackup
 set nowritebackup
 set noswapfile
-set updatetime=300
+set updatetime=750
 set cmdheight=2
 set lazyredraw
 set re=1

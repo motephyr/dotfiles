@@ -1,5 +1,10 @@
 let mapleader = " "
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
+"tnoremap <Esc> <C-\><C-n>
+map zz <Esc>
+imap zz <Esc>
+tnoremap zz <C-\><C-n>:bdelete!<CR>
+cnoremap zz <C-c>
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map
@@ -59,6 +64,10 @@ vnoremap D "*d
 
 "Fix
 nnoremap . i<Space><Esc><right>
+nnoremap ' 'm
+vnoremap ' 'm
+nnoremap m mm
+vnoremap m mm
 nnoremap <Bs> i<Bs><Esc>
 vnoremap <Bs> x<Esc>
 nnoremap \ a<Space>\<Enter><Esc>h
@@ -96,12 +105,6 @@ if has('nvim')
 endif
 
 au BufNewFile,BufRead *.ejs set filetype=html
-
-"tnoremap <Esc> <C-\><C-n>
-noremap zz <Esc>
-inoremap zz <Esc>
-tnoremap zz <C-\><C-n>:bdelete!<CR>
-cnoremap zz <C-c>
 
 "execute
 nnoremap <C-x> :! 

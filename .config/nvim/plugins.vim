@@ -4,21 +4,6 @@ call plug#begin()
   let g:leetcode_browser = 'chrome'
 
   Plug 'ybian/smartim'
-  " search
-  " Plug 'fntlnz/atags.vim' " file tags generating with ctags
-  Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  "let g:EasyMotion_do_mapping = 0
-  "let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-  "let g:EasyMotion_smartcase = 1
-  "map ' <Plug>(easymotion-bd-f)
-  "nmap ' <Plug>(easymotion-overwin-f)
-  "map  / <Plug>(easymotion-sn)
-  "omap / <Plug>(easymotion-tn)
-  "map  n <Plug>(easymotion-next)
-  "map  N <Plug>(easymotion-prev)
-  Plug 'haya14busa/incsearch.vim'
-  Plug 'haya14busa/incsearch-easymotion.vim'  
-  noremap <silent> ' :call IncSearch()<CR>
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
@@ -89,6 +74,14 @@ call plug#begin()
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
   Plug 'jparise/vim-graphql'
+
+  " search
+  " Plug 'fntlnz/atags.vim' " file tags generating with ctags
+  
+  "Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  "Plug 'haya14busa/incsearch.vim'
+  "Plug 'haya14busa/incsearch-easymotion.vim'  
+  "noremap <silent> ' :call IncSearch()<CR>
 call plug#end()
 
 "ag
@@ -171,7 +164,8 @@ set background=dark    " Setting dark mode
 colorscheme codedark
 hi! Normal ctermbg=NONE guibg=NONE 
 "ctermfg=white  guifg=white
-hi! Search ctermbg=red guibg=red ctermfg=white guifg=white
+hi! Search ctermbg=yellow guibg=yellow ctermfg=black guifg=black
+hi! IncSearch ctermbg=darkred guibg=darkred ctermfg=white guifg=white
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
@@ -215,19 +209,19 @@ endfunction
 "nmap <leader>qf  <Plug>(coc-fix-current)
 
 "incsearch
-function IncSearch()
-  call incsearch#go(<SID>config_easyfuzzymotion())
-  :let @/ = ""
-endfunction
+"function IncSearch()
+"call incsearch#go(<SID>config_easyfuzzymotion())
+":let @/ = ""
+"endfunction
 
-function! s:config_easyfuzzymotion(...) abort
-  return extend(copy({
-        \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-        \   'is_expr': 1,
-        \   'is_stay': 0
-        \ }), get(a:, 1, {}))
-endfunction
+"function! s:config_easyfuzzymotion(...) abort
+"return extend(copy({
+      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+      "\   'is_expr': 1,
+      "\   'is_stay': 0
+      "\ }), get(a:, 1, {}))
+"endfunction
 
 "if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
 "vi(text obj) va
