@@ -39,19 +39,14 @@ set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
-set statusline+=%#Cursor#               " colour
 set statusline+=%#CursorLine#     " colour
 set statusline+=\ %t\                   " short file name
-"set statusline+=%{getcwd()}
 set statusline+=%=                          " right align
-"set statusline+=%#CursorLine#   " colour
-"set statusline+=\ %Y\                   " file type
 set statusline+=%#CursorIM#     " colour
-set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=\ %2l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
 set statusline+=\ %{line('$')}
 set statusline+=\ Lines\                " percentage
-"set statusline+=\ %{winnr()}\           " window number
 
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
