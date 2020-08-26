@@ -40,9 +40,10 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 
 "save
 nnoremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>==gi
-vnoremap <C-s> <Esc>:update<CR>gv=gv
-
+inoremap <C-s> <Esc>:update<CR>
+vnoremap <C-s> <Esc>:update<CR>
+"inoremap <C-s> <Esc>:update<CR>==gi
+"vnoremap <C-s> <Esc>:update<CR>gv=gv
 
 "search
 vnoremap / "hy/<C-r>h<CR>
@@ -140,7 +141,7 @@ nnoremap Q @q
 vnoremap Q :norm @q<CR>
 
 "mouse
-"inoremap <LeftMouse> <Esc><LeftMouse>
+inoremap <LeftMouse> <Esc><LeftMouse>
 "vnoremap <2-LeftMouse> <2-LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
 

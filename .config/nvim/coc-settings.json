@@ -42,9 +42,9 @@
     }
   ],
   "explorer.keyMappings": {
-    "<2-LeftMouse>": ["expandable?", "expandOrCollapse", "open"],
-    "<cr>": ["expandable?", "expandOrCollapse", "open"],
-    "<space>": ["expandable?", "expandOrCollapse", "open"],
+    "<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "<space>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "i": "open:split",
     "s": "open:vsplit"
   },
