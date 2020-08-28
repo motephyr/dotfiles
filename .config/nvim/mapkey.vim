@@ -18,12 +18,12 @@ nnoremap <C-n> :set invnu<CR>
 
 "copy
 nnoremap <C-c> v"+y<Esc>
-vnoremap <C-c> "+y<Esc>gv
+vnoremap <C-c> "+ygv
 
 "paste
 nnoremap <C-v> "+gP
 inoremap <C-v> <Esc>"+gPi
-vnoremap <C-v> "+gP<Esc>gv
+vnoremap <C-v> "+gPgv
 
 "undo & redo
 nnoremap <C-z> u
@@ -51,7 +51,6 @@ vnoremap / "hy/<C-r>h<CR>
 "replace
 vnoremap <C-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
 nnoremap <C-h> :cfdo s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
-vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 
 "select all
 nnoremap <silent> <C-a> ggVG
@@ -142,6 +141,8 @@ nnoremap Q @q
 vnoremap Q :norm @q<CR>
 
 "mouse
+nnoremap <expr> <LeftDrag> col('$')==col('.')?'<left><LeftDrag>':'<LeftDrag>'
+
 inoremap <LeftMouse> <Esc><LeftMouse>
 "vnoremap <2-LeftMouse> <2-LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h

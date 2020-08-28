@@ -73,6 +73,7 @@ call plug#begin()
 
   "Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-abolish'
+  vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
   Plug 'jparise/vim-graphql'
