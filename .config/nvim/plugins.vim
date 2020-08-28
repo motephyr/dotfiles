@@ -21,6 +21,7 @@ call plug#begin()
   map <M-[> <Plug>(wintabs_previous)
   map <M-]> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
+  noremap <M-t> <C-w>v<C-w>h
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -74,6 +75,7 @@ call plug#begin()
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
   Plug 'jparise/vim-graphql'
+
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
@@ -176,7 +178,8 @@ augroup fzf_preview
 augroup END
 
 function! s:fzf_preview_settings() abort
-  let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
+  "let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
+  let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
   let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 

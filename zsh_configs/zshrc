@@ -99,16 +99,17 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+#export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --glob '!.git/*' --glob '!node_modules/*' --glob '!vendor/*' 2> /dev/null"
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always {}'"
 
-#just demo find a file with ag and open in nvim
-fag() {
+#just demo find a file with rg and open in nvim
+frg() {
   local file
 
-  file="$(ag -l $@ | fzf -0 -1 --preview 'bat --color=always {}'| awk -F: '{print $1}')"
+  file="$(rg -l $@ | fzf -0 -1 --preview 'bat --color=always {}'| awk -F: '{print $1}')"
 
   if [[ -n $file ]]
   then
@@ -117,20 +118,20 @@ fag() {
 }
 
 #choose mulit file 
-mag() {
+mrg() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | xargs 
+  rg -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | xargs 
 }
 
 #choose mulit file for change
-magr() {
+mrgr() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  ag -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | tr '\n' '\0' | xargs -0 perl -pi -e "s|\Q$1|$2|g"
+  rg -l $1 | fzf -m --preview-window 'right:60%' --preview 'bat --color=always {}' | tr '\n' '\0' | xargs -0 perl -pi -e "s|\Q$1|$2|g"
 }
 
-#use ag check and change all
-agr() {
-  ag -0 -l $1 | xargs -0 perl -pi -e "s|\Q$1|$2|g"
+#use rg check and change all
+rgr() {
+  rg -0 -l $1 | xargs -0 perl -pi -e "s|\Q$1|$2|g"
 }
 
 
