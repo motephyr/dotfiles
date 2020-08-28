@@ -47,6 +47,7 @@ call plug#begin()
   nmap <M-.> <Plug>(coc-codeaction)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
   nnoremap <C-t> :CocCommand fzf-preview.ProjectMruFiles<CR>
   vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 200m<CR><C-\><C-n>"hp
   inoremap <C-t> <Esc>:CocCommand fzf-preview.ProjectMruFiles<CR>
@@ -75,7 +76,6 @@ call plug#begin()
   Plug 'whiteinge/diffconflicts'
   noremap <Leader>c :DiffConflicts<CR>
   Plug 'jparise/vim-graphql'
-
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags

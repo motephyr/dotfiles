@@ -36,7 +36,7 @@ vnoremap <C-r> <Esc><C-r>
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <Esc>:q<CR>
 vnoremap <C-q> <Esc>:q<CR>
-tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
+"tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 
 "save
 nnoremap <C-s> :update<CR>
@@ -50,6 +50,7 @@ vnoremap / "hy/<C-r>h<CR>
 
 "replace
 vnoremap <C-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
+nnoremap <C-h> :cfdo s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
 vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
 
 "select all

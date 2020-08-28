@@ -101,7 +101,7 @@ export PATH="$GOPATH/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
-export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
+export FZF_DEFAULT_OPTS='--bind ctrl-a:select-all,ctrl-d:page-down,ctrl-u:page-up'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --glob '!.git/*' --glob '!node_modules/*' --glob '!vendor/*' 2> /dev/null"
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always {}'"
 
