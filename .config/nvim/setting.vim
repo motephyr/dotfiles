@@ -20,6 +20,9 @@ autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
+au BufNewFile,BufRead *.ejs set filetype=html
+autocmd BufEnter *.png,*.jpg,*.gif,*.svg exec "! open ".expand("%") | :bw
+
 set nobackup
 set nowritebackup
 set noswapfile

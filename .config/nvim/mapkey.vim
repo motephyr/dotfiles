@@ -17,7 +17,6 @@ cnoremap zz <C-c>
 nnoremap <C-n> :set invnu<CR>
 
 "copy
-nnoremap <C-c> v"+y<Esc>
 vnoremap <C-c> "+ygv
 
 "paste
@@ -64,15 +63,15 @@ nnoremap D "*dd
 vnoremap D "*d
 
 "Fix
-nnoremap . i<Space><Esc><right>
-nnoremap ' 'm
-vnoremap ' 'm
+nnoremap ' i<Space><Esc><right>
+nnoremap M 'm
+vnoremap M 'm
 nnoremap m mm
 vnoremap m mm
-nnoremap <Bs> i<Bs><Esc>
+nnoremap <Bs> i<Bs><Esc>`^
 vnoremap <Bs> x<Esc>
 nnoremap \ a<Space>\<Enter><Esc>h
-nnoremap <CR> i<CR><Esc>
+nnoremap <CR> i<CR><Esc>`^
 vnoremap <CR> xi<CR><Esc>
 
 " for move block
@@ -104,8 +103,6 @@ if has('nvim')
     autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
   augroup end
 endif
-
-au BufNewFile,BufRead *.ejs set filetype=html
 
 "execute
 nnoremap <C-x> :! 

@@ -63,9 +63,9 @@ call plug#begin()
   inoremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
   tnoremap <C-g> <C-\><C-n>:bdelete!<CR>
 
-  Plug 'preservim/nerdcommenter'
-  nmap <M-/> <plug>NERDCommenterToggle
-  vmap <M-/> <plug>NERDCommenterTogglegv=gv
+  Plug 'tomtom/tcomment_vim'
+  nmap <M-/> <Leader>__
+  vmap <M-/> <Leader>__gv=gv
 
   "Plug 'tpope/vim-surround'
   "nmap m ysiw
