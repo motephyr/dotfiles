@@ -31,6 +31,23 @@ set cmdheight=2
 set lazyredraw
 set re=1
 
+func! ScrollBarWidth()
+  let barWidth = winwidth('$') - 51 "<-- wild guess
+  let lineOfScreen = 41
+  if line('$') > lineOfScreen
+    let left = (line('$') - line('w0') > lineOfScreen) ? (line('w0') - 1) *barWidth/line('$') : (line('$') - lineOfScreen)*barWidth/line('$') 
+    let scroll = (lineOfScreen*barWidth/line('$') > 1) ? lineOfScreen*barWidth/line('$') : 1
+    let right = (line('$') - line('w$'))*barWidth/line('$')
+    let bar = '['
+          \.repeat('-',left)
+          \.repeat('#',scroll)
+          \.repeat('-',right).']'
+    return bar
+  else
+    return ''
+  endif
+endfun
+
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
@@ -43,8 +60,10 @@ set statusline+=%#CursorIM#     " colour
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
 set statusline+=%#CursorLine#     " colour
-set statusline+=\ %t(%Y)\                   " short file name
-set statusline+=%=                          " right align
+set statusline+=\ %Y\                   " short file name
+set statusline+=\ %{ScrollBarWidth()}
+set statusline+=%=
+set statusline+=\ %t\                   " short file name
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %2l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
@@ -67,6 +86,50 @@ set directory=/tmp
 set path+=**
 set splitbelow
 set splitright
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
