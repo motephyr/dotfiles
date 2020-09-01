@@ -21,7 +21,7 @@ call plug#begin()
   map <M-[> <Plug>(wintabs_previous)
   map <M-]> <Plug>(wintabs_next)
   map <C-w> <Plug>(wintabs_close)
-  noremap <M-t> <C-w>v<C-w>h
+  noremap <M-t> <C-w>v<C-w>h  "open pane
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -43,7 +43,7 @@ call plug#begin()
 
 	"inoremap <silent><expr> <cr> pumvisible() ? "<Esc>a<CR>"
 				"\: "<CR>"
-  nnoremap <silent> <LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
+  nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

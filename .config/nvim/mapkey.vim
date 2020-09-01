@@ -158,12 +158,12 @@ nnoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
 nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
-noremap <C-LeftMouse> <4-LeftMouse>
-inoremap <C-LeftMouse> <4-LeftMouse>
-onoremap <C-LeftMouse> <Esc><4-LeftMouse>
-noremap <C-LeftDrag> <LeftDrag>
-inoremap <C-LeftDrag> <LeftDrag>
-onoremap <C-LeftDrag> <Esc><LeftDrag>
+noremap <M-LeftMouse> <4-LeftMouse>
+inoremap <M-LeftMouse> <4-LeftMouse>
+onoremap <M-LeftMouse> <Esc><4-LeftMouse>
+noremap <M-LeftDrag> <LeftDrag>
+inoremap <M-LeftDrag> <LeftDrag>
+onoremap <M-LeftDrag> <Esc><LeftDrag>
 
 
 "other
