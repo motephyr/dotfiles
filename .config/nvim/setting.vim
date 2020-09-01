@@ -30,24 +30,6 @@ set updatetime=750
 set cmdheight=2
 set lazyredraw
 set re=1
-
-func! ScrollBarWidth()
-  let barWidth = winwidth('$') - 51 "<-- wild guess
-  let lineOfScreen = 41
-  if line('$') > lineOfScreen
-    let left = (line('$') - line('w0') > lineOfScreen) ? (line('w0') - 1) *barWidth/line('$') : (line('$') - lineOfScreen)*barWidth/line('$') 
-    let scroll = (lineOfScreen*barWidth/line('$') > 1) ? lineOfScreen*barWidth/line('$') : 1
-    let right = (line('$') - line('w$'))*barWidth/line('$')
-    let bar = '['
-          \.repeat('-',left)
-          \.repeat('#',scroll)
-          \.repeat('-',right).']'
-    return bar
-  else
-    return ''
-  endif
-endfun
-
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
@@ -60,10 +42,10 @@ set statusline+=%#CursorIM#     " colour
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
 set statusline+=%#CursorLine#     " colour
-set statusline+=\ %Y\                   " short file name
-set statusline+=\ %{ScrollBarWidth()}
+set statusline+=\%{ScrollBarWidth()}
 set statusline+=%=
 set statusline+=\ %t\                   " short file name
+set statusline+=\ %Y\                   " short file name
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %2l:%-2c\         " line + column
 set statusline+=%#Cursor#       " colour
@@ -87,55 +69,35 @@ set path+=**
 set splitbelow
 set splitright
 
+let g:start = 7
+let g:barWidth = winwidth('$') - (35+len(expand('%:t'))+g:start) 
+func! ScrollBarWidth()
+  let g:barWidth = winwidth('$') - (35+len(expand('%:t'))+g:start) 
+  let lineOfScreen = winheight('%')
+  if line('$') > lineOfScreen
+    let left = (line('$') - line('w0') >= lineOfScreen) ? (line('w0') - 1) *g:barWidth/line('$') : (line('$') - lineOfScreen)*g:barWidth/line('$') 
+    let scroll = (lineOfScreen*g:barWidth/line('$') > 1) ? lineOfScreen*g:barWidth/line('$') : 1
+    "let right = (line('$') - line('w$'))*g:barWidth/line('$')
+    let bar = ' ['
+          \.repeat('-',line('$') > line('w$') ? left : left + 1)
+          \.repeat('#', scroll )
+          \.repeat('-',line('$') > line('w$') ? g:barWidth - left - scroll : 0).']'
+    return bar
+  else
+    return ''
+  endif
+endfun
 
+fun! CaptureClickStatusLine()
+  let achar = getchar()
+  let ans =  line('w$') 
+  if v:mouse_lnum == ans + 1 || (line('w$') - line('w0') < winheight('%') && v:mouse_lnum == ans)
+    let line = (line('$')*(v:mouse_col-g:start)/g:barWidth) > 0 ? (line('$')*(v:mouse_col-g:start)/g:barWidth) : 1
+    return line.'G'
+  else
+    return "\<LeftMouse>".achar
+  endif
+endfun
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+nnoremap <expr> <LeftMouse> CaptureClickStatusLine()
 
