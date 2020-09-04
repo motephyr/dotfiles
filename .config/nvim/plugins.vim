@@ -27,22 +27,22 @@ call plug#begin()
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? '<Enter>' :
-        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
 
-  "inoremap <silent><expr> <S-TAB>
-        "\ pumvisible() ? '<Up>' :
-        "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? '<Down>' :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<TAB>"
         "\ <SID>check_back_space() ? "\<TAB>" :
         "\ coc#refresh()
 
+  inoremap <silent><expr> <S-TAB>
+        \ pumvisible() ? '<Up>' :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<C-D>"
+        "\ <SID>check_back_space() ? "\<TAB>" :
+        "\ coc#refresh()
 
-
-	"inoremap <silent><expr> <cr> pumvisible() ? "<Esc>a<CR>"
-				"\: "<CR>"
+  " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
   nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)
 

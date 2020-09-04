@@ -75,15 +75,23 @@ nnoremap <CR> i<CR><Esc>`^
 vnoremap <CR> xi<CR><Esc>
 
 " for move block
-nnoremap <M-j> :m .+1<CR>==
-nnoremap <M-k> :m .-2<CR>==
-inoremap <M-j> <Esc>:m .+1<CR>==gi
-inoremap <M-k> <Esc>:m .-2<CR>==gi
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 nnoremap <M-f> :Format<CR>
 inoremap <M-f> <Esc>:Format<CR>
 vnoremap <M-f> <Esc>:Format<CR>
+cnoremap <M-h> <Left>
+cnoremap <M-j> <Down>
+cnoremap <M-k> <Up>
+cnoremap <M-l> <Right>
+tnoremap <M-h> <Left>
+tnoremap <M-j> <Down>
+tnoremap <M-k> <Up>
+tnoremap <M-l> <Right>
 
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig<CR>' : ''
@@ -181,3 +189,8 @@ noremap <leader>0 :exe winnr('$') 'wincmd w'<CR>
 cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q
 cnoreabbrev Qa qa
+
+" nnoremap <Tab> >>_
+" nnoremap <S-Tab> <<_
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
