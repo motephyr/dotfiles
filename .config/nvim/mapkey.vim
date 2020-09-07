@@ -63,7 +63,12 @@ nnoremap D "*dd
 vnoremap D "*d
 
 "Fix
-nnoremap ' i<Space><Esc><right>
+"nnoremap ' i<Space><Esc><right>
+  nnoremap ' vi
+  nnoremap " va
+  vnoremap ' <Esc>vi
+  vnoremap " <Esc>va
+
 nnoremap M 'm
 vnoremap M 'm
 nnoremap m mm

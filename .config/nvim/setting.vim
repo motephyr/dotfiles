@@ -88,16 +88,17 @@ func! ScrollBarWidth()
   endif
 endfun
 
-fun! CaptureClickStatusLine()
-  let achar = getchar()
-  let ans =  line('w$') 
-  if v:mouse_lnum == ans + 1 
-    let line = (line('$')*(v:mouse_col-g:start)/g:barWidth) > 0 ? (line('$')*(v:mouse_col-g:start)/g:barWidth) : 1
-    return line.'G'
+fun! CaptureClickStatusLine(position)
+  let lineOfScreen = winheight('%')
+  let line = line('$')/lineOfScreen 
+  if a:position == 'down'
+    let aline = line('.') + line
   else
-    return "\<LeftMouse>".achar
+    let aline = line('.') - line
   endif
+  return aline.'G'
 endfun
 
-nnoremap <expr> <LeftMouse> CaptureClickStatusLine()
+nnoremap <expr> <M-ScrollWheelUp> CaptureClickStatusLine('up')
+nnoremap <expr> <M-ScrollWheelDown> CaptureClickStatusLine('down')
 
