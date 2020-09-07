@@ -48,8 +48,8 @@ vnoremap <C-s> <Esc>:update<CR>
 vnoremap / "hy/<C-r>h<CR>
 
 "replace
-vnoremap <C-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
-nnoremap <C-h> :cfdo s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
+vnoremap <M-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
+nnoremap <M-h> :cfdo s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 "select all
 nnoremap <silent> <C-a> ggVG
@@ -68,30 +68,39 @@ nnoremap M 'm
 vnoremap M 'm
 nnoremap m mm
 vnoremap m mm
-nnoremap <Bs> i<Bs><Esc>`^
-vnoremap <Bs> x<Esc>
+nnoremap <Bs> i<Bs>
+vnoremap <Bs> s
 nnoremap \ a<Space>\<Enter><Esc>h
-nnoremap <CR> i<CR><Esc>`^
-vnoremap <CR> xi<CR><Esc>
+nnoremap <CR> i<CR>
+vnoremap <CR> xi<CR>
 
 " for move block
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
 nnoremap <M-f> :Format<CR>
 inoremap <M-f> <Esc>:Format<CR>
 vnoremap <M-f> <Esc>:Format<CR>
-cnoremap <M-h> <Left>
-cnoremap <M-j> <Down>
-cnoremap <M-k> <Up>
-cnoremap <M-l> <Right>
-tnoremap <M-h> <Left>
-tnoremap <M-j> <Down>
-tnoremap <M-k> <Up>
-tnoremap <M-l> <Right>
+
+noremap <C-h> <Left>
+noremap <C-j> <Down>
+noremap <C-k> <Up>
+noremap <C-l> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+tnoremap <C-h> <Left>
+tnoremap <C-j> <Down>
+tnoremap <C-k> <Up>
+tnoremap <C-l> <Right>
 
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig<CR>' : ''

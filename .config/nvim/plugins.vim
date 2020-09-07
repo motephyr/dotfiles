@@ -49,7 +49,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   nnoremap <C-t> :CocCommand fzf-preview.ProjectMruFiles<CR>
-  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 200m<CR><C-\><C-n>"hp
+  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 300m<CR><C-\><C-n>"hp
   inoremap <C-t> <Esc>:CocCommand fzf-preview.ProjectMruFiles<CR>
   tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 

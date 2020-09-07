@@ -69,12 +69,12 @@ set path+=**
 set splitbelow
 set splitright
 
-let g:start = 7
-let g:barWidth = winwidth('$') - (35+len(expand('%:t'))+g:start) 
+let g:start = 8
+let g:barWidth = winwidth('$') - (23+len(expand('%:t'))+len(&filetype)+ len(line('$'))*2+g:start) 
 func! ScrollBarWidth()
-  let g:barWidth = winwidth('$') - (35+len(expand('%:t'))+g:start) 
+  let g:barWidth = winwidth('$') - (23+len(expand('%:t'))+len(&filetype)+ len(line('$'))*2+g:start) 
   let lineOfScreen = winheight('%')
-  if line('$') > lineOfScreen
+  if line('$') > lineOfScreen && g:barWidth > 2
     let left = (line('$') - line('w0') >= lineOfScreen) ? (line('w0') - 1) *g:barWidth/line('$') : (line('$') - lineOfScreen)*g:barWidth/line('$') 
     let scroll = (lineOfScreen*g:barWidth/line('$') > 1) ? lineOfScreen*g:barWidth/line('$') : 1
     "let right = (line('$') - line('w$'))*g:barWidth/line('$')
