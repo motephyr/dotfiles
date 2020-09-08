@@ -76,7 +76,7 @@ vnoremap m mm
 nnoremap <Bs> i<Bs>
 vnoremap <Bs> s
 nnoremap \ a<Space>\<Enter><Esc>h
-nnoremap <CR> i<CR>
+"nnoremap <CR> i<CR>
 vnoremap <CR> xi<CR>
 
 " for move block
@@ -160,7 +160,7 @@ nnoremap Q @q
 vnoremap Q :norm @q<CR>
 
 "mouse
-nnoremap <expr> <LeftDrag> col('$')==col('.')?'<left><LeftDrag>':'<LeftDrag>'
+"nnoremap <expr> <LeftDrag> col('$')==col('.')?'<left><LeftDrag>':'<LeftDrag>'
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 "vnoremap <2-LeftMouse> <2-LeftMouse>

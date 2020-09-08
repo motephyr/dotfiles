@@ -12,7 +12,7 @@ call plug#begin()
   noremap <silent> <Leader>>> :call GitRevert()<CR>
 
   "Plug 'airblade/vim-gitgutter'
-  Plug 'mhinz/vim-signify'
+  "Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -45,6 +45,9 @@ call plug#begin()
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
   nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)
+  nmap <silent> <M-g> :CocDiagnostic<CR>
+  nmap <silent> <M-9> <Plug>(coc-diagnostic-prev)
+  nmap <silent> <M-0> <Plug>(coc-diagnostic-next)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -200,7 +203,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git']
 command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()

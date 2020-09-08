@@ -78,11 +78,10 @@ func! ScrollBarWidth()
     let left = (line('$') - line('w0') >= lineOfScreen) ? (line('w0') - 1) *g:barWidth/line('$') : (line('$') - lineOfScreen)*g:barWidth/line('$') 
     let scroll = (lineOfScreen*g:barWidth/line('$') > 1) ? lineOfScreen*g:barWidth/line('$') : 1
     "let right = (line('$') - line('w$'))*g:barWidth/line('$')
-    let bar = ' ['
+    return ' ['
           \.repeat('-',line('$') > line('w$') ? left : left + 1)
           \.repeat('#', scroll )
           \.repeat('-',line('$') > line('w$') ? g:barWidth - left - scroll : 0).']'
-    return bar
   else
     return ''
   endif
