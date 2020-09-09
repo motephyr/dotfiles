@@ -29,7 +29,7 @@ set noswapfile
 set updatetime=750
 set cmdheight=2
 set lazyredraw
-set re=1
+"set re=1
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}

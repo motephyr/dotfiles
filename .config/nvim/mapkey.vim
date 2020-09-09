@@ -76,7 +76,7 @@ vnoremap m mm
 nnoremap <Bs> i<Bs>
 vnoremap <Bs> s
 nnoremap \ a<Space>\<Enter><Esc>h
-"nnoremap <CR> i<CR>
+nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
 vnoremap <CR> xi<CR>
 
 " for move block

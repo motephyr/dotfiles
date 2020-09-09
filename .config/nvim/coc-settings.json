@@ -22,9 +22,9 @@
   "eslint.filetypes": [
     "javascript",
     "typescript",
-    "_typescriptreact",
-    "_javascriptreact",
-    "_typescript.tsx",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx",
     "vue"
   ],
   "diagnostic.infoSign": "ღ",
