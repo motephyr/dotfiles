@@ -7,7 +7,8 @@ nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 map zz <Esc>
 imap zz <Esc>
 tnoremap zz <C-\><C-n>:bdelete!<CR>
-cnoremap zz <C-c>
+"Avoid execute command by C-c
+cnoremap zz <C-c> 
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map
@@ -24,7 +25,7 @@ vnoremap <C-c> "+ygv<Esc>
 
 "paste
 nnoremap <C-v> "+gP
-inoremap <C-v> <Esc>"+gPi
+inoremap <C-v> <C-r>+
 vnoremap <C-v> "+gPgv
 
 "undo & redo
@@ -111,9 +112,9 @@ tnoremap <C-k> <Up>
 tnoremap <C-l> <Right>
 
 noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig<CR>' : ''
-noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? ':tabnew % \| term tig <C-r>%<CR>' : ''
-noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? ':vsplit % \| term git diff HEAD~ --color %<CR>' : ''
+noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
+noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD~ --color %<CR>' : ''
 
 "cnoremap <Leader>d <C-c> "type Leader key<Space> wiil slow
 tmap <Leader>t <C-\><C-n>:bdelete!<CR>
@@ -130,10 +131,10 @@ if has('nvim')
 endif
 
 "execute
-nnoremap <C-x> :! 
-nnoremap <Leader>x :!echo %:p \| xargs -I {} open {}<left><left><left>
-vnoremap <C-x> <Esc>:! 
-vnoremap <Leader>x <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
+noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
+noremap <Leader>x <Esc>:split % \| resize 8 \| term<CR>
+tmap <Leader>x <C-\><C-n>:bdelete!<CR>
+
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -202,6 +203,17 @@ noremap <leader>7 :7wincmd w<CR>
 noremap <leader>8 :8wincmd w<CR>
 noremap <leader>9 :9wincmd w<CR>
 noremap <leader>0 :exe winnr('$') 'wincmd w'<CR>
+tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
+tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
+tnoremap <leader>3 <C-\><C-n>:3wincmd w<CR>
+tnoremap <leader>4 <C-\><C-n>:4wincmd w<CR>
+tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
+tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
+tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
+tnoremap <leader>8 <C-\><C-n>:8wincmd w<CR>
+tnoremap <leader>9 <C-\><C-n>:9wincmd w<CR>
+tnoremap <leader>0 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+
 
 cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q

@@ -48,7 +48,7 @@
     "i": "open:split",
     "s": "open:vsplit"
   },
-  "explorer.openAction.strategy": "previousWindow",
+  "_explorer.openAction.strategy": "previousWindow",
   "explorer.previewAction.onHover": false,
   "explorer.file.root.template": "[icon] [root]",
   "explorer.file.child.template": " [selection | clip | 1][indent][icon & 1][git][diagnosticError & 1][filename omitCenter 1][readonly]",
