@@ -1,4 +1,7 @@
 let mapleader = " "
+nnoremap <leader>vs :source $MYVIMRC<CR>
+nnoremap <Leader>ve :e $MYVIMRC<cr>
+
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 "tnoremap <Esc> <C-\><C-n>
 map zz <Esc>
@@ -17,7 +20,7 @@ cnoremap zz <C-c>
 nnoremap <C-n> :set invnu<CR>
 
 "copy
-vnoremap <C-c> "+ygv
+vnoremap <C-c> "+ygv<Esc>
 
 "paste
 nnoremap <C-v> "+gP
@@ -128,9 +131,9 @@ endif
 
 "execute
 nnoremap <C-x> :! 
-nnoremap <Leader>x :!echo %:p \| xargs -I {} open {}<left><left><left> 
+nnoremap <Leader>x :!echo %:p \| xargs -I {} open {}<left><left><left>
 vnoremap <C-x> <Esc>:! 
-vnoremap <Leader>x <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left> 
+vnoremap <Leader>x <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
