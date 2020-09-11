@@ -39,7 +39,7 @@ vnoremap <C-r> <Esc><C-r>
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <Esc>:q<CR>
 vnoremap <C-q> <Esc>:q<CR>
-"tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
+tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 
 "save
 nnoremap <C-s> :update<CR>
@@ -117,9 +117,9 @@ noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| ter
 noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD~ --color %<CR>' : ''
 
 "cnoremap <Leader>d <C-c> "type Leader key<Space> wiil slow
-tmap <Leader>t <C-\><C-n>:bdelete!<CR>
-tmap <Leader>f <C-\><C-n>:bdelete!<CR>
-tmap <Leader>g <C-\><C-n>:bdelete!<CR>
+" tmap <Leader>t <C-\><C-n>:bdelete!<CR>
+" tmap <Leader>f <C-\><C-n>:bdelete!<CR>
+" tmap <Leader>g <C-\><C-n>:bdelete!<CR>
 
 if has('nvim')
   augroup terminal_setup | au!
@@ -133,7 +133,7 @@ endif
 "execute
 noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
 noremap <Leader>x <Esc>:split % \| resize 8 \| term<CR>
-tmap <Leader>x <C-\><C-n>:bdelete!<CR>
+" tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
 
 "For javascript

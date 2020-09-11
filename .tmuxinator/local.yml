@@ -14,11 +14,6 @@ windows:
         - a:
             - cd ~/dotfiles
             - git pull
-  - leetcode:
-      layout: main-vertical
-      panes:
-        - a:
-            - cd ~/Projects/coding/leetcode
   - kamo:
       layout: main-vertical
       panes:

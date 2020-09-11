@@ -63,7 +63,7 @@ set number "relativenumber
 set mouse=a
 " for gf
 set suffixesadd=.js,.jsx
-set hidden
+"set hidden
 set directory=/tmp
 set path+=**
 set splitbelow
