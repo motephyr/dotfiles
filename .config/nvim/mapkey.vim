@@ -133,30 +133,33 @@ endif
 "execute
 noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
 noremap <Leader>x <Esc>:split % \| resize 8 \| term<CR>
-" tmap <Leader>x <C-\><C-n>:bdelete!<CR>
+tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
-nnoremap <leader>v viw"hd<Esc>:call SetVariable('')<left><left>
-vnoremap <leader>v "hd<Esc>:call SetVariable('')<left><left>
+"nnoremap <leader>v viw"hd<Esc>:call SetVariable('')<left><left>
+vnoremap <leader>v :call SetVariable('')<left><left>
 
-function SetVariable(name)
+function SetVariable(name) range
+  silent! normal gvd
   exe "normal! i".a:name    
   exe "normal! {iconst ".a:name." = "
-  :normal "hp0
+  :normal gp
+  exe "normal! i\n"    
 endfunction
 
-nnoremap <leader>` viw"hd<Esc>:call SetFunction('')<left><left>
-vnoremap <leader>` "hd<Esc>:call SetFunction('')<left><left>
+"nnoremap <leader>` viw"hd<Esc>:call SetFunction('')<left><left>
+vnoremap <leader>m :call SetMethod('')<left><left>
 
-function SetFunction(name)
-  exe "normal! i".a:name."()"    
+function SetMethod(name) range
+  silent! normal gvd
+  exe "normal! i".a:name."()\n"    
   exe "normal! }i".a:name."() {"
   :normal o
-  :normal "hgpo
-  exe "normal! i}"
+  :normal gp
+  exe "normal! i}\n"
 endfunction
 
 "macro
