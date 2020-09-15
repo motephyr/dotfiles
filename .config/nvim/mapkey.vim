@@ -25,7 +25,7 @@ vnoremap <C-c> "+ygv<Esc>
 
 "paste
 nnoremap <C-v> "+gP
-inoremap <C-v> <C-r>+
+inoremap <C-v> <Esc>"+gPi
 vnoremap <C-v> "+gPgv
 
 "undo & redo
