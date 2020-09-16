@@ -42,6 +42,11 @@ call plug#begin()
         "\ <SID>check_back_space() ? "\<TAB>" :
         "\ coc#refresh()
 
+  inoremap <silent><expr> <ScrollWheelUp>
+        \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
+  inoremap <silent><expr> <ScrollWheelDown>
+        \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
+
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
   nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)

@@ -194,28 +194,23 @@ noremap <M-LeftDrag> <LeftDrag>
 inoremap <M-LeftDrag> <LeftDrag>
 onoremap <M-LeftDrag> <Esc><LeftDrag>
 
-
 "other
-noremap <leader>1 :1wincmd w<CR>
-noremap <leader>2 :2wincmd w<CR>
-noremap <leader>3 :3wincmd w<CR>
-noremap <leader>4 :4wincmd w<CR>
-noremap <leader>5 :5wincmd w<CR>
-noremap <leader>6 :6wincmd w<CR>
-noremap <leader>7 :7wincmd w<CR>
-noremap <leader>8 :8wincmd w<CR>
-noremap <leader>9 :9wincmd w<CR>
-noremap <leader>0 :exe winnr('$') 'wincmd w'<CR>
-tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
-tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
-tnoremap <leader>3 <C-\><C-n>:3wincmd w<CR>
-tnoremap <leader>4 <C-\><C-n>:4wincmd w<CR>
-tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
-tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
-tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
-tnoremap <leader>8 <C-\><C-n>:8wincmd w<CR>
-tnoremap <leader>9 <C-\><C-n>:9wincmd w<CR>
-tnoremap <leader>0 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+noremap <M-1> :1wincmd w<CR>
+noremap <M-2> :2wincmd w<CR>
+noremap <M-3> :3wincmd w<CR>
+noremap <M-4> :4wincmd w<CR>
+noremap <M-5> :5wincmd w<CR>
+noremap <M-6> :6wincmd w<CR>
+noremap <M-7> :7wincmd w<CR>
+noremap <M-8> :exe winnr('$') 'wincmd w'<CR>
+tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
+tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
+tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
+tnoremap <M-4> <C-\><C-n>:4wincmd w<CR>
+tnoremap <M-5> <C-\><C-n>:5wincmd w<CR>
+tnoremap <M-6> <C-\><C-n>:6wincmd w<CR>
+tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
+tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
 
 
 cabbr <expr> %% expand('%:p:h')
