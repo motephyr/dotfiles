@@ -1,7 +1,4 @@
 call plug#begin()
-  Plug 'ianding1/leetcode.vim'
-  let g:leetcode_solution_filetype = 'javascript'
-  let g:leetcode_browser = 'chrome'
 
   Plug 'ybian/smartim'
 
@@ -14,6 +11,15 @@ call plug#begin()
   "Plug 'airblade/vim-gitgutter'
   "Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
+
+
+  noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+  noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
+  noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
+
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -29,23 +35,23 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? '<Down>' :
-        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ "\<TAB>"
-        "\ <SID>check_back_space() ? "\<TAB>" :
-        "\ coc#refresh()
+    \ pumvisible() ? '<Down>' :
+    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ "\<TAB>"
+  "\ <SID>check_back_space() ? "\<TAB>" :
+  "\ coc#refresh()
 
   inoremap <silent><expr> <S-TAB>
-        \ pumvisible() ? '<Up>' :
-        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        \ "\<C-D>"
-        "\ <SID>check_back_space() ? "\<TAB>" :
-        "\ coc#refresh()
+    \ pumvisible() ? '<Up>' :
+    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ "\<C-D>"
+  "\ <SID>check_back_space() ? "\<TAB>" :
+  "\ coc#refresh()
 
   inoremap <silent><expr> <ScrollWheelUp>
-        \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
+    \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
   inoremap <silent><expr> <ScrollWheelDown>
-        \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
+    \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
   nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
@@ -71,6 +77,7 @@ call plug#begin()
   inoremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
   tnoremap <C-g> <C-\><C-n>:bdelete!<CR>
 
+
   Plug 'tomtom/tcomment_vim'
   nmap <M-/> <Leader>__
   vmap <M-/> <Leader>__gv=gv
@@ -80,20 +87,28 @@ call plug#begin()
   "nmap M ds
 
   "Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-abolish'
-  vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
-  Plug 'whiteinge/diffconflicts'
-  noremap <Leader>c :DiffConflicts<CR>
   Plug 'jparise/vim-graphql'
+  "Plug 'rbtnn/vim-vimscript_formatter'
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
-  
+
   "Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
   "Plug 'haya14busa/incsearch.vim'
   "Plug 'haya14busa/incsearch-easymotion.vim'  
   "noremap <silent> ' :call IncSearch()<CR>
-  
+
+  " Plug 'ianding1/leetcode.vim'
+  " let g:leetcode_solution_filetype = 'javascript'
+  " let g:leetcode_browser = 'chrome'
+  "
+  " Plug 'tpope/vim-abolish'
+  " vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
+  " Plug 'whiteinge/diffconflicts'
+  " noremap <Leader>c :DiffConflicts<CR>
+  "
+  " noremap <C-e> :call OpenItermTab()<CR>
+
   " Plug 'APZelos/blamer.nvim'
   " let g:blamer_enabled = 1
   " let g:blamer_show_in_visual_modes = 0
@@ -147,8 +162,8 @@ autocmd BufWinEnter * call PreventBuffersInExplorer()
 
 function! PreventBuffersInExplorer()
   if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-        \ && &buftype == '' 
+      \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+      \ && &buftype == '' 
     let bufnum = bufnr('%')
     close
     exe 'b ' . bufnum
@@ -165,7 +180,14 @@ let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set undofile
 
 "vim-wintabs
+let g:wintabs_ui_vimtab_name_format='%t'
 set sessionoptions+=globals
+
+function OpenItermTab()
+  let path = CocAction('currentWorkspacePath')
+  execute 'tabclose'
+  execute '!open -a iTerm '.path
+endfunction
 
 "vim-colorschemes syntax
 set t_Co=256
@@ -193,7 +215,10 @@ augroup END
 function! s:fzf_preview_settings() abort
   "let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
-  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
+  let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+  let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | diff-so-fancy || " .
+    \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | diff-so-fancy || " .
+    \ g:fzf_preview_command
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 
   let g:fzf_preview_custom_processes['open-file'] = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
@@ -212,7 +237,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-vimlsp']
 command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()
@@ -232,11 +257,11 @@ endfunction
 
 "function! s:config_easyfuzzymotion(...) abort
 "return extend(copy({
-      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
-      "\   'is_expr': 1,
-      "\   'is_stay': 0
-      "\ }), get(a:, 1, {}))
+"\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+"\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+"\   'is_expr': 1,
+"\   'is_stay': 0
+"\ }), get(a:, 1, {}))
 "endfunction
 
 "if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>

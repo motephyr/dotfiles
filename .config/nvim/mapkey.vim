@@ -4,11 +4,11 @@ nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 "tnoremap <Esc> <C-\><C-n>
-map zz <Esc>
-imap zz <Esc>
-tnoremap zz <C-\><C-n>:bdelete!<CR>
+map ;; <Esc>
+imap ;; <Esc>
+tnoremap ;; <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c
-cnoremap zz <C-c> 
+cnoremap ;; <C-c>
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map
@@ -68,10 +68,10 @@ vnoremap D "*d
 
 "Fix
 "nnoremap ' i<Space><Esc><right>
-  nnoremap ' vi
-  nnoremap " va
-  vnoremap ' <Esc>vi
-  vnoremap " <Esc>va
+nnoremap ' vi
+nnoremap , va
+vnoremap ' <Esc>vi
+vnoremap , <Esc>va
 
 nnoremap M 'm
 vnoremap M 'm
@@ -110,11 +110,6 @@ tnoremap <C-h> <Left>
 tnoremap <C-j> <Down>
 tnoremap <C-k> <Up>
 tnoremap <C-l> <Right>
-
-noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
-noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD~ --color %<CR>' : ''
 
 "cnoremap <Leader>d <C-c> "type Leader key<Space> wiil slow
 " tmap <Leader>t <C-\><C-n>:bdelete!<CR>
