@@ -203,8 +203,8 @@ hi! Normal ctermbg=NONE guibg=NONE
 "ctermfg=white  guifg=white
 hi! Search ctermbg=yellow guibg=yellow ctermfg=black guifg=black
 hi! IncSearch ctermbg=darkred guibg=darkred ctermfg=white guifg=white
-hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-hi TabLineSel cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorLine cterm=NONE ctermbg=darkred guibg=darkred 
+hi TabLineSel cterm=NONE ctermbg=darkred guibg=darkred
 
 "fzf
 augroup fzf_preview

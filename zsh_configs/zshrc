@@ -81,9 +81,9 @@ else
 ##source ~/.nvm/nvm.sh
 ##export DOCKER_HOST=tcp://localhost:2375
 ##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
-alias vim="vim"
-alias nvim="~/Downloads/nvim-osx64/bin/nvim"
 alias vi="nvim"
+alias vim="vim"
+alias nvim5="~/Downloads/nvim-osx64/bin/nvim"
 alias tig="tig --date-order --all"
 alias tmuxinator="ASDF_RUBY_VERSION=2.6.4 tmuxinator"
 
