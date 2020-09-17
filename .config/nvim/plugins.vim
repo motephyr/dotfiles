@@ -54,7 +54,7 @@ call plug#begin()
     \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
-  nnoremap <silent> <C-LeftMouse> <LeftMouse>:call <SID>show_documentation()<CR>
+  nnoremap <silent> . <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)
   nmap <silent> <M-g> :CocDiagnostic<CR>
   nmap <silent> <M-9> <Plug>(coc-diagnostic-prev)

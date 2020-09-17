@@ -1,4 +1,4 @@
-let mapleader = " "
+let mapleader = ","
 nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
@@ -79,6 +79,9 @@ nnoremap m mm
 vnoremap m mm
 nnoremap <Bs> i<Bs>
 vnoremap <Bs> s
+nnoremap <Space> i<Space>
+vnoremap <Space> s
+
 nnoremap \ a<Space>\<Enter><Esc>h
 nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
 vnoremap <CR> xi<CR>
@@ -158,6 +161,9 @@ function SetMethod(name) range
 endfunction
 
 "macro
+nnoremap q qq
+vnoremap q :norm qq<CR>
+
 nnoremap Q @q
 vnoremap Q :norm @q<CR>
 

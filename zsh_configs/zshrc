@@ -82,7 +82,7 @@ else
 ##export DOCKER_HOST=tcp://localhost:2375
 ##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
 alias vim="vim"
-#alias vi="~/Downloads/nvim-osx64/bin/nvim"
+alias nvim="~/Downloads/nvim-osx64/bin/nvim"
 alias vi="nvim"
 alias tig="tig --date-order --all"
 alias tmuxinator="ASDF_RUBY_VERSION=2.6.4 tmuxinator"
