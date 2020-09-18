@@ -29,8 +29,10 @@ set noswapfile
 set updatetime=750
 set cmdheight=2
 set lazyredraw
-set re=1
-set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+"set re=1
+set statusline=%{ScrollBarWidth(BarWidth())}
+set statusline+=%=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
@@ -42,8 +44,6 @@ set statusline+=%#CursorIM#     " colour
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
 set statusline+=%#CursorLine#     " colour
-set statusline+=\%{ScrollBarWidth()}
-set statusline+=%=
 set statusline+=\ %t\                   " short file name
 set statusline+=\ %Y\                   " short file name
 set statusline+=%#CursorIM#     " colour
@@ -69,27 +69,66 @@ set path+=**
 set splitbelow
 set splitright
 
-let g:start = 8
-let g:barWidth = winwidth('$') - (23+len(expand('%:t'))+len(&filetype)+ len(line('$'))*2+g:start) 
-func! ScrollBarWidth()
-  let g:barWidth = winwidth('$') - (23+len(expand('%:t'))+len(&filetype)+ len(line('$'))*2+g:start) 
-  let lineOfScreen = winheight('%')
-  if line('$') > lineOfScreen && g:barWidth > 2
-    let left = (line('$') - line('w0') >= lineOfScreen) ? (line('w0') - 1) *g:barWidth/line('$') : (line('$') - lineOfScreen)*g:barWidth/line('$') 
-    let scroll = (lineOfScreen*g:barWidth/line('$') > 1) ? lineOfScreen*g:barWidth/line('$') : 1
-    "let right = (line('$') - line('w$'))*g:barWidth/line('$')
-    return ' ['
-          \.repeat('-',line('$') > line('w$') ? left : left + 1)
-          \.repeat('#', scroll )
-          \.repeat('-',line('$') > line('w$') ? g:barWidth - left - scroll : 0).']'
+func! BarWidth()
+    let lessLength = winwidth('$') - (len(expand('%:t'))+len(&filetype)+ len(line('$'))*2+31)
+    return line('$') > winheight('%') ? lessLength : line('$')*lessLength/winheight('%')
+endfun
+
+
+let b:cmdlist = []
+func! GetDiffList()
+  let cmd = "git diff --unified=0 ".expand('%')." | sed -n -e 's/^.*+\\([0-9]*\\)\\([ ,]\\).*/\\1/p' | awk 'NF > 0'"
+  "sed -n -e 's/^.*+\([0-9]*\)\([ ,]\).*/\1/p' | awk 'NF > 0'
+  let b:cmdlist = systemlist(cmd)
+endfun
+
+autocmd BufWinEnter,BufWritePost * call GetDiffList()
+
+
+func! ScrollBarWidth(barWidth)
+  if a:barWidth > 3 
+    let left = (line('$') - line('w0') >= winheight('%')) ? (line('w0') - 1) *a:barWidth/line('$') : (line('$') - winheight('%'))*a:barWidth/line('$') 
+    let front = line('$') > line('w$') ? left : left + 1
+    let scroll = (winheight('%')*a:barWidth/line('$') > 1) ? winheight('%')*a:barWidth/line('$') : 1
+
+    let s = GetPosition(front, scroll, a:barWidth)
+    return '['.s.']'
   else
     return ''
   endif
 endfun
 
+func! GetPosition(front, scroll,  barWidth)
+  let c = ''
+  let n = 1
+  while n <= a:barWidth
+    if index(TransDiffList(a:barWidth), n) >= 0
+      let c .= '|'
+    elseif n >= a:front && n <= a:front+a:scroll 
+      let c .= '-'
+    else
+      let c .= ' '
+    endif
+    let n += 1
+  endwhile
+  return c
+endfun
+
+func! TransDiffList(barWidth)
+  let nlist = []
+  for l in b:cmdlist
+    let nlist = add(nlist, str2nr(l)*a:barWidth/line('$'))
+  endfor
+  "echo cmd
+  "echo list
+  "echo nlist
+  return nlist
+endfun
+
+
+
 fun! CaptureClickStatusLine(position)
-  let lineOfScreen = winheight('%')
-  let line = line('$')/lineOfScreen 
+  let line = line('$')/winheight('%') 
   if a:position == 'down'
     let aline = line('.') + line
   else
@@ -97,6 +136,7 @@ fun! CaptureClickStatusLine(position)
   endif
   return aline.'G'
 endfun
+
 
 nnoremap <expr> <M-ScrollWheelUp> CaptureClickStatusLine('up')
 nnoremap <expr> <M-ScrollWheelDown> CaptureClickStatusLine('down')

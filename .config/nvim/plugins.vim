@@ -12,7 +12,6 @@ call plug#begin()
   "Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
 
-
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
   noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
@@ -56,6 +55,7 @@ call plug#begin()
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
   nnoremap <silent> . <LeftMouse>:call <SID>show_documentation()<CR>
   nmap <M-.> <Plug>(coc-codeaction)
+  nmap <M-d> :CocCommand docthis.documentThis<CR>
   nmap <silent> <M-g> :CocDiagnostic<CR>
   nmap <silent> <M-9> <Plug>(coc-diagnostic-prev)
   nmap <silent> <M-0> <Plug>(coc-diagnostic-next)
@@ -237,7 +237,9 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis']
+"let g:coc_global_extensions = ['coc-explorer']
+
 command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()
