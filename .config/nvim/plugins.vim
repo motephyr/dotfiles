@@ -88,6 +88,7 @@ call plug#begin()
 
   "Plug 'tpope/vim-repeat'
   Plug 'jparise/vim-graphql'
+  Plug 'motephyr/vim-horizonbar'
   "Plug 'rbtnn/vim-vimscript_formatter'
 
   " search
@@ -114,10 +115,32 @@ call plug#begin()
   " let g:blamer_show_in_visual_modes = 0
 call plug#end()
 
-"ag
-"if executable('ag')
-"cnoreabbrev ag Ag
-"endif
+set statusline=%{horizonbar#ScrollBarWidth(horizonbar#BarWidth())}
+set statusline+=%=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
+set statusline+=%#CursorLine#     " colour
+set statusline+=\ %t\                   " short file name
+set statusline+=\ %Y\                   " short file name
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %2l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+set statusline+=\ %{line('$')}
+set statusline+=\ Lines\                " percentage
+
+
+autocmd User CocGitStatusChange call horizonbar#GetDiffList()
+nnoremap <M-ScrollWheelUp> <C-u>
+nnoremap <M-ScrollWheelDown> <C-d>
 
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 "autocmd SessionLoadPost * call OpenExplorer()
@@ -131,6 +154,7 @@ autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 function! GitAdd()
   if bufname('%') !~ 'coc-explorer'
     :! git add %
+    :doautocmd User CocGitStatusChange
     if exists('t:explorer_winnr')
       :1wincmd w
       :normal R
@@ -141,6 +165,7 @@ endfunction
 function! GitRm()
   if bufname('%') !~ 'coc-explorer'
     :! git reset -- %
+    :doautocmd User CocGitStatusChange
     if exists('t:explorer_winnr')
       :1wincmd w
       :normal R
