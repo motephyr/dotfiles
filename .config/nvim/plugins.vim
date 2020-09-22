@@ -63,7 +63,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   nnoremap <C-t> :CocCommand fzf-preview.ProjectMruFiles<CR>
-  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles<CR>:sleep 300m<CR><C-\><C-n>"hp
+  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
   inoremap <C-t> <Esc>:CocCommand fzf-preview.ProjectMruFiles<CR>
   tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 
@@ -240,6 +240,7 @@ augroup END
 function! s:fzf_preview_settings() abort
   "let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
+
   let g:fzf_preview_command = 'bat --color=always --plain {-1}'
   let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | diff-so-fancy || " .
     \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | diff-so-fancy || " .

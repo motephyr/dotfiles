@@ -123,8 +123,9 @@ if has('nvim')
   augroup terminal_setup | au!
     autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> ik
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> ij
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
+    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> i<Down>
+    autocmd FileType fzf nnoremap <buffer><LeftMouse> i
   augroup end
 endif
 
@@ -170,14 +171,25 @@ vnoremap Q :norm @q<CR>
 "mouse
 "nnoremap <expr> <LeftDrag> col('$')==col('.')?'<left><LeftDrag>':'<LeftDrag>'
 
+
+
 inoremap <LeftMouse> <Esc><LeftMouse>
-"vnoremap <2-LeftMouse> <2-LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
+nnoremap <M-LeftMouse> <4-LeftMouse>
+vnoremap <M-LeftMouse> <RightMouse>
+inoremap <M-LeftMouse> <4-LeftMouse>
+onoremap <M-LeftMouse> <Esc><4-LeftMouse>
+noremap <M-LeftDrag> <LeftDrag>
+inoremap <M-LeftDrag> <LeftDrag>
+onoremap <M-LeftDrag> <Esc><LeftDrag>
 
 "Command mode need use C-c, not esc. otherwise there is error message
 cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelUp> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
+
+noremap <ScrollWheelUp> <C-u>
+noremap <ScrollWheelDown> <C-d>
 
 nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
 nnoremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
@@ -187,13 +199,6 @@ nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
 nnoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
 nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
-
-noremap <M-LeftMouse> <4-LeftMouse>
-inoremap <M-LeftMouse> <4-LeftMouse>
-onoremap <M-LeftMouse> <Esc><4-LeftMouse>
-noremap <M-LeftDrag> <LeftDrag>
-inoremap <M-LeftDrag> <LeftDrag>
-onoremap <M-LeftDrag> <Esc><LeftDrag>
 
 "other
 noremap <M-1> :1wincmd w<CR>
