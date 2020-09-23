@@ -1,6 +1,5 @@
 let projectPath = substitute(getcwd(), expand('~'), '~', '')
 set title titlestring=%{projectPath}
-"set nocompatible " VIM 不使用和 VI 相容的模式
 set shiftwidth=2 " 設定縮排寬度 = 4 
 set tabstop=2    " tab 的字元數
 set softtabstop=2
@@ -13,7 +12,6 @@ set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
-"set cursorline!   " 顯示目前的游標位置
 set ve+=onemore  " 在最後加一個字元
 let CursorColumnI = 0 "the cursor column position in INSERT
 autocmd InsertEnter * let CursorColumnI = col('.')
@@ -29,18 +27,17 @@ set noswapfile
 set updatetime=750
 set cmdheight=2
 set lazyredraw
-"set re=1
 
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
-set number "relativenumber
-"set clipboard=unnamed
+set number 
 
 "set ai           " 自動縮排
 set mouse=a
-" for gf
+
+" for gf key
 set suffixesadd=.js,.jsx
 set hidden
 set directory=/tmp
