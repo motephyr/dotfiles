@@ -53,18 +53,37 @@ call plug#begin()
     \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
-  nnoremap <silent> . <LeftMouse>:call <SID>show_documentation()<CR>
-  nmap <M-.> <Plug>(coc-codeaction)
+
+  " nmap <C-]> :echo "tags"<CR>
+  " set tagfunc=CocTagFunc
+  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
+  nmap <silent> . :call <SID>show_documentation()<CR>
+
+  nmap <silent> <C-LeftMouse> <LeftMouse><Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap 'f v<Plug>(coc-funcobj-i)
+  omap if <Plug>(coc-funcobj-i)
+  nmap "f v<Plug>(coc-funcobj-a)
+  omap af <Plug>(coc-funcobj-a)
+  nmap 'c v<Plug>(coc-classobj-i)
+  omap ic <Plug>(coc-classobj-i)
+  nmap "c v<Plug>(coc-classobj-a)
+  omap ac <Plug>(coc-classobj-a)
+  nmap <M-a> <Plug>(coc-codeaction)
+  xmap <M-s> <Plug>(coc-codeaction-selected)
+  nmap <M-s> V<Plug>(coc-codeaction-selected)
   nmap <M-d> :CocCommand docthis.documentThis<CR>
   nmap <silent> <M-g> :CocDiagnostic<CR>
-  nmap <silent> <M-9> <Plug>(coc-diagnostic-prev)
-  nmap <silent> <M-0> <Plug>(coc-diagnostic-next)
+  nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
+  nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-  nnoremap <C-t> :CocCommand fzf-preview.ProjectMruFiles<CR>
+  nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
   vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
-  inoremap <C-t> <Esc>:CocCommand fzf-preview.ProjectMruFiles<CR>
+  inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
   tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 
   nnoremap <C-f> :CocCommand fzf-preview.ProjectGrep<Space>''<left>
@@ -113,6 +132,7 @@ call plug#begin()
   " Plug 'APZelos/blamer.nvim'
   " let g:blamer_enabled = 1
   " let g:blamer_show_in_visual_modes = 0
+  Plug 'rhysd/devdocs.vim'
 call plug#end()
 
 set statusline=%{horizonbar#ScrollBarWidth(horizonbar#BarWidth())}
@@ -263,17 +283,18 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
 "let g:coc_global_extensions = ['coc-explorer']
 
 command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) < 0)
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
     call CocActionAsync('doHover')
   endif
 endfunction
-
 " Apply AutoFix to problem on the current line.
 "nmap <leader>qf  <Plug>(coc-fix-current)
 

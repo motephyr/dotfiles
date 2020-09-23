@@ -69,9 +69,9 @@ vnoremap D "*d
 "Fix
 "nnoremap ' i<Space><Esc><right>
 nnoremap ' vi
-nnoremap , va
+nnoremap " va
 vnoremap ' <Esc>vi
-vnoremap , <Esc>va
+vnoremap " <Esc>va
 
 nnoremap M 'm
 vnoremap M 'm
@@ -126,6 +126,10 @@ if has('nvim')
     autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
     autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> i<Down>
     autocmd FileType fzf nnoremap <buffer><LeftMouse> i
+    autocmd FileType fzf nnoremap <buffer>k i<Up>
+    autocmd FileType fzf nnoremap <buffer>j i<Down>
+    autocmd FileType fzf nnoremap <buffer><Up> i<Up>
+    autocmd FileType fzf nnoremap <buffer><Down> i<Down>
   augroup end
 endif
 
@@ -139,27 +143,27 @@ tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 "nnoremap <leader>v viw"hd<Esc>:call SetVariable('')<left><left>
-vnoremap <leader>v :call SetVariable('')<left><left>
-
-function SetVariable(name) range
-  silent! normal gvd
-  exe "normal! i".a:name    
-  exe "normal! {iconst ".a:name." = "
-  :normal gp
-  exe "normal! i\n"    
-endfunction
+" vnoremap <leader>v :call SetVariable('')<left><left>
+"
+" function SetVariable(name) range
+"   silent! normal gvd
+"   exe "normal! i".a:name    
+"   exe "normal! {iconst ".a:name." = "
+"   :normal gp
+"   exe "normal! i\n"    
+" endfunction
 
 "nnoremap <leader>` viw"hd<Esc>:call SetFunction('')<left><left>
-vnoremap <leader>m :call SetMethod('')<left><left>
-
-function SetMethod(name) range
-  silent! normal gvd
-  exe "normal! i".a:name."()\n"    
-  exe "normal! }i".a:name."() {"
-  :normal o
-  :normal gp
-  exe "normal! i}\n"
-endfunction
+" vnoremap <leader>m :call SetMethod('')<left><left>
+"
+" function SetMethod(name) range
+"   silent! normal gvd
+"   exe "normal! i".a:name."()\n"    
+"   exe "normal! }i".a:name."() {"
+"   :normal o
+"   :normal gp
+"   exe "normal! i}\n"
+" endfunction
 
 "macro
 nnoremap q qq

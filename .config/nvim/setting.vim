@@ -47,5 +47,4 @@ set directory=/tmp
 set path+=**
 set splitbelow
 set splitright
-
-
+let g:loaded_matchparen = 1
