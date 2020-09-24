@@ -59,7 +59,10 @@ call plug#begin()
   nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
   nmap <silent> . :call <SID>show_documentation()<CR>
 
-  nmap <silent> <C-LeftMouse> <LeftMouse><Plug>(coc-definition)
+  nmap <silent> <C-LeftMouse> <LeftMouse>i
+  imap <silent> <C-LeftMouse> <LeftMouse>i
+  vmap <silent> <C-LeftMouse> <LeftMouse>i
+  nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)

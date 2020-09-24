@@ -50,6 +50,7 @@ vnoremap <C-s> <Esc>:update<CR>
 
 "search
 vnoremap / "hy/<C-r>h<CR>
+nnoremap ? viw"hy/<C-r>h<CR>
 
 "replace
 vnoremap <M-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
