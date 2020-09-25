@@ -22,10 +22,10 @@ call plug#begin()
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
-  Plug 'zefei/vim-wintabs'
-  map <M-[> <Plug>(wintabs_previous)
-  map <M-]> <Plug>(wintabs_next)
-  map <C-w> <Plug>(wintabs_close)
+  Plug 'pacha/vem-tabline'
+  map <M-[> <Plug>vem_prev_buffer- 
+  map <M-]> <Plug>vem_next_buffer-
+  map <C-w> <Plug>vem_delete_buffer-
   noremap <M-t> <C-w>v<C-w>h  "open pane
 
   Plug 'tomasiser/vim-code-dark'
@@ -227,8 +227,6 @@ let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set undofile
 
-"vim-wintabs
-let g:wintabs_ui_vimtab_name_format='%t'
 set sessionoptions+=globals
 
 function OpenItermTab()
