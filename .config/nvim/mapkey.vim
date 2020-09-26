@@ -4,8 +4,8 @@ nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 "tnoremap <Esc> <C-\><C-n>
-map ;; <Esc>
-imap ;; <Esc>
+nnoremap ;; <Esc>
+inoremap ;; <Esc>
 tnoremap ;; <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c
 cnoremap ;; <C-c>
@@ -34,6 +34,10 @@ inoremap <C-z> <Esc>u
 vnoremap <C-z> <Esc>u
 inoremap <C-r> <Esc><C-r>
 vnoremap <C-r> <Esc><C-r>
+
+nnoremap u <Esc>
+vnoremap u <Esc>
+
 
 "quit
 nnoremap <C-q> :q<CR>

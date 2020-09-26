@@ -31,8 +31,21 @@ call plug#begin()
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  nnoremap <C-t> :vs **/*
+  vnoremap <C-t> "hy<Esc> :vs **/*<C-r>h
+  inoremap <C-t> <Esc>:vs **/*
+  cnoremap <C-t> <C-c>
 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
+
+  nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
+  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
+  inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
+  tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
+
+
+  "
   inoremap <silent><expr> <TAB>
     \ pumvisible() ? '<Down>' :
     \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -84,19 +97,7 @@ call plug#begin()
 
   Plug 'rbgrouleff/bclose.vim'
 
-  nnoremap <C-t> :vs **/*
-  vnoremap <C-t> "hy<Esc> :vs **/*<C-r>h
-  inoremap <C-t> <Esc>:vs **/*
-  cnoremap <C-t> <C-c>
-
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
-
-
-  " nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
-  " vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
-  " inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
-  " tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 
   nnoremap <C-f> :CocCommand fzf-preview.ProjectGrep<Space>''<left>
   vnoremap <C-f> "hy<Esc>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
