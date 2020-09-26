@@ -25,7 +25,7 @@ call plug#begin()
   Plug 'pacha/vem-tabline'
   map <M-[> <Plug>vem_prev_buffer- 
   map <M-]> <Plug>vem_next_buffer-
-  map <C-w> <Plug>vem_delete_buffer-
+  map <C-w> <Esc>:Bclose<CR>
   noremap <M-t> <C-w>v<C-w>h  "open pane
 
   Plug 'tomasiser/vim-code-dark'
@@ -82,12 +82,21 @@ call plug#begin()
   nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
   nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
 
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'rbgrouleff/bclose.vim'
 
-  nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
-  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
-  inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
-  tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
+  nnoremap <C-t> :vs **/*
+  vnoremap <C-t> "hy<Esc> :vs **/*<C-r>h
+  inoremap <C-t> <Esc>:vs **/*
+  cnoremap <C-t> <C-c>
+
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
+
+
+  " nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
+  " vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
+  " inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
+  " tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
 
   nnoremap <C-f> :CocCommand fzf-preview.ProjectGrep<Space>''<left>
   vnoremap <C-f> "hy<Esc>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
@@ -284,8 +293,6 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>' 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
-"let g:coc_global_extensions = ['coc-explorer']
 
 command! -nargs=0 Format :call CocAction('format')
 

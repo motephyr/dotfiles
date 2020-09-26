@@ -44,4 +44,8 @@ set directory=/tmp
 set path+=**
 set splitbelow
 set splitright
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=node_modules/*,bower_components/*
+
 let g:loaded_matchparen = 1
