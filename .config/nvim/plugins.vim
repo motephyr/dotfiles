@@ -7,10 +7,10 @@ call plug#begin()
   noremap <silent> << :call GitAdd()<CR>
   noremap <silent> >> :call GitRm()<CR>
   noremap <silent> <Leader>>> :call GitRevert()<CR>
-
+ 
   "Plug 'airblade/vim-gitgutter'
-  "Plug 'mhinz/vim-signify'
-  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify'
+  "Plug 'tpope/vim-fugitive'
 
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
@@ -18,7 +18,7 @@ call plug#begin()
   noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
-
+  
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -31,18 +31,9 @@ call plug#begin()
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
-  nnoremap <C-t> :vs **/*
-  vnoremap <C-t> "hy<Esc> :vs **/*<C-r>h
-  inoremap <C-t> <Esc>:vs **/*
-  cnoremap <C-t> <C-c>
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph', 'coc-fzf-preview', 'coc-git', 'coc-docthis', 'coc-vimlsp']
-
-  nnoremap <C-t> :CocCommand fzf-preview.FromResources project_mru project<CR>
-  vnoremap <C-t> "hy<Esc>:CocCommand fzf-preview.DirectoryFiles --add-fzf-arg=--query="<C-r>h"<CR>
-  inoremap <C-t> <Esc>:CocCommand fzf-preview.FromResources project_mru project<CR>
-  tnoremap <C-t> <C-\><C-n>:bdelete!<CR>
+  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp']
 
 
   "
@@ -99,16 +90,21 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-  nnoremap <C-f> :CocCommand fzf-preview.ProjectGrep<Space>''<left>
-  vnoremap <C-f> "hy<Esc>:CocCommand fzf-preview.ProjectGrep<Space>'<C-r>h'<left>
-  inoremap <C-f> <Esc>:CocCommand fzf-preview.ProjectGrep<Space>''<left>
-  tnoremap <C-f> <C-\><C-n>:bdelete!<CR>
+  Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
+
+  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
+  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
+  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
+  tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
+  noremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
+  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectMruFiles<CR><C-\><C-n>"hpi
+  inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
+  tnoremap <C-t> <C-c>
 
-  noremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
-  inoremap <C-g> <Esc>:CocCommand fzf-preview.GitStatus<CR>
-  tnoremap <C-g> <C-\><C-n>:bdelete!<CR>
-
+  noremap <C-g> <C-c>:FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
+  inoremap <C-g> <C-c>:FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
+  tnoremap <C-g> <C-c>
 
   Plug 'tomtom/tcomment_vim'
   nmap <M-/> <Leader>__
@@ -184,35 +180,23 @@ autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 "endfunction
 
 "
-function! GitAdd()
+function! GitAdd() abort
   if bufname('%') !~ 'coc-explorer'
     :! git add %
     :doautocmd User CocGitStatusChange
-    if exists('t:explorer_winnr')
-      :1wincmd w
-      :normal R
-    endif
   endif
 endfunction
 
-function! GitRm()
+function! GitRm() abort
   if bufname('%') !~ 'coc-explorer'
     :! git reset -- %
     :doautocmd User CocGitStatusChange
-    if exists('t:explorer_winnr')
-      :1wincmd w
-      :normal R
-    endif
   endif
 endfunction
 
-function! GitRevert()
+function! GitRevert() abort
   if bufname('%') !~ 'coc-explorer'
     :! git checkout HEAD -- %
-    if exists('t:explorer_winnr')
-      :1wincmd w
-      :normal R
-    endif
   endif
 endfunction
 
@@ -268,23 +252,37 @@ augroup fzf_preview
   autocmd User fzf_preview#initialized call s:fzf_preview_settings()
 augroup END
 
+function! s:fugitive_add(paths) abort
+  for path in a:paths
+    execute '! git add ' . path
+  endfor
+endfunction
+
+function! s:fugitive_reset(paths) abort
+  for path in a:paths
+    execute '! git reset -- ' . path
+  endfor
+endfunction
+
+function! s:fugitive_revert() abort
+  for path in a:paths
+    execute '! git checkout HEAD -- ' . path
+  endfor
+endfunction
+
 function! s:fzf_preview_settings() abort
-  "let g:fzf_preview_filelist_command = 'ag --hidden --ignore .git -g ""'
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
+  let g:fzf_preview_grep_cmd = 'rg --hidden --line-number --no-heading'
 
-  let g:fzf_preview_command = 'bat --color=always --plain {-1}'
-  let g:fzf_preview_git_status_preview_command =  "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | diff-so-fancy || " .
-    \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | diff-so-fancy || " .
-    \ g:fzf_preview_command
-  let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
+  let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
 
-  let g:fzf_preview_custom_processes['open-file'] = fzf_preview#remote#process#get_default_processes('open-file', 'coc')
-
-  let g:fzf_preview_custom_processes['open-file']['ctrl-i'] = g:fzf_preview_custom_processes['open-file']['ctrl-x']
-  call remove(g:fzf_preview_custom_processes['open-file'], 'ctrl-x')
-
-  let g:fzf_preview_custom_processes['open-file']['ctrl-s'] = g:fzf_preview_custom_processes['open-file']['ctrl-v']
-  call remove(g:fzf_preview_custom_processes['open-file'], 'ctrl-v')
+  let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
+  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
+  let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
+  let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
+  let g:fzf_preview_fugitive_processors['ctrl-a'] = function('s:fugitive_add')
+  let g:fzf_preview_fugitive_processors['ctrl-r'] = function('s:fugitive_reset')
+  let g:fzf_preview_fugitive_processors['ctrl-e'] = function('s:fugitive_revert')
 endfunction
 
 "coc
