@@ -87,8 +87,8 @@ nnoremap <Space> i<Space>
 vnoremap <Space> s
 
 nnoremap \ a<Space>\<Enter><Esc>h
-nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
-vnoremap <CR> xi<CR>
+" nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
+" vnoremap <CR> xi<CR>
 
 " for move block
 nnoremap <M-j> :m .+1<CR>==
@@ -196,8 +196,8 @@ cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelUp> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 
-noremap <ScrollWheelUp> <C-u>
-noremap <ScrollWheelDown> <C-d>
+noremap <M-ScrollWheelUp> <C-u>
+noremap <M-ScrollWheelDown> <C-d>
 
 nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
 nnoremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
