@@ -58,7 +58,7 @@ nnoremap ? viw"hy/<C-r>h<CR>
 
 "replace
 vnoremap <M-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
-nnoremap <M-h> :cfdo s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
+vnoremap <Leader>h "hy:grep <C-r>h \| cfdo %s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 "select all
 nnoremap <silent> <C-a> ggVG

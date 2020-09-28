@@ -4,21 +4,20 @@ call plug#begin()
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
-  noremap <silent> << :call GitAdd()<CR>
-  noremap <silent> >> :call GitRm()<CR>
-  noremap <silent> <Leader>>> :call GitRevert()<CR>
- 
+  noremap <silent> <Leader>a :call GitAdd()<CR>
+  noremap <silent> <Leader>r :call GitRm()<CR>
+  noremap <silent> <Leader>c :call GitDiscard()<CR>
+
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
-  noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
   noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
   noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
-  
+
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
@@ -38,23 +37,23 @@ call plug#begin()
 
   "
   inoremap <silent><expr> <TAB>
-    \ pumvisible() ? '<Down>' :
-    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ "\<TAB>"
-  "\ <SID>check_back_space() ? "\<TAB>" :
-  "\ coc#refresh()
+        \ pumvisible() ? '<Down>' :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<TAB>"
+        "\ <SID>check_back_space() ? "\<TAB>" :
+        "\ coc#refresh()
 
   inoremap <silent><expr> <S-TAB>
-    \ pumvisible() ? '<Up>' :
-    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ "\<C-D>"
-  "\ <SID>check_back_space() ? "\<TAB>" :
-  "\ coc#refresh()
+        \ pumvisible() ? '<Up>' :
+        \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ "\<C-D>"
+        "\ <SID>check_back_space() ? "\<TAB>" :
+        "\ coc#refresh()
 
   inoremap <silent><expr> <ScrollWheelUp>
-    \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
+        \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
   inoremap <silent><expr> <ScrollWheelDown>
-    \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
+        \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
@@ -102,8 +101,8 @@ call plug#begin()
   inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
   tnoremap <C-t> <C-c>
 
-  noremap <C-g> <C-c>:FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
-  inoremap <C-g> <C-c>:FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors<CR>
+  noremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
+  inoremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
   tnoremap <C-g> <C-c>
 
   Plug 'tomtom/tcomment_vim'
@@ -135,6 +134,7 @@ call plug#begin()
   " vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
   " Plug 'whiteinge/diffconflicts'
   " noremap <Leader>c :DiffConflicts<CR>
+  noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   "
   " noremap <C-e> :call OpenItermTab()<CR>
 
@@ -194,9 +194,10 @@ function! GitRm() abort
   endif
 endfunction
 
-function! GitRevert() abort
+function! GitDiscard() abort
   if bufname('%') !~ 'coc-explorer'
-    :! git checkout HEAD -- %
+    :! git checkout -- %
+    :doautocmd User CocGitStatusChange
   endif
 endfunction
 
@@ -204,8 +205,8 @@ autocmd BufWinEnter * call PreventBuffersInExplorer()
 
 function! PreventBuffersInExplorer()
   if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-      \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-      \ && &buftype == '' 
+        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+        \ && &buftype == '' 
     let bufnum = bufnr('%')
     close
     exe 'b ' . bufnum
@@ -252,22 +253,34 @@ augroup fzf_preview
   autocmd User fzf_preview#initialized call s:fzf_preview_settings()
 augroup END
 
-function! s:fugitive_add(paths) abort
+function! s:fugitive_add(paths) 
   for path in a:paths
     execute '! git add ' . path
   endfor
+  :doautocmd User FzfPreviewGitStatusCallback
+  call feedkeys('i', '')
 endfunction
 
-function! s:fugitive_reset(paths) abort
+function! s:fugitive_reset(paths) 
   for path in a:paths
     execute '! git reset -- ' . path
   endfor
+  :doautocmd User FzfPreviewGitStatusCallback
+  call feedkeys('i', '')
 endfunction
 
-function! s:fugitive_revert() abort
+function! s:fugitive_discard(paths) 
   for path in a:paths
-    execute '! git checkout HEAD -- ' . path
+    execute '! git checkout -- ' . path
   endfor
+  :doautocmd User FzfPreviewGitStatusCallback
+  call feedkeys('i', '')
+endfunction
+
+autocmd User FzfPreviewGitStatusCallback call OpenFzfPreviewGitStatus()
+
+function! OpenFzfPreviewGitStatus()
+  execute 'FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors'
 endfunction
 
 function! s:fzf_preview_settings() abort
@@ -282,7 +295,7 @@ function! s:fzf_preview_settings() abort
   let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
   let g:fzf_preview_fugitive_processors['ctrl-a'] = function('s:fugitive_add')
   let g:fzf_preview_fugitive_processors['ctrl-r'] = function('s:fugitive_reset')
-  let g:fzf_preview_fugitive_processors['ctrl-e'] = function('s:fugitive_revert')
+  let g:fzf_preview_fugitive_processors['ctrl-c'] = function('s:fugitive_discard')
 endfunction
 
 "coc
@@ -313,11 +326,11 @@ endfunction
 
 "function! s:config_easyfuzzymotion(...) abort
 "return extend(copy({
-"\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-"\   'keymap': {"\<CR>": '<Over>(easymotion)'},
-"\   'is_expr': 1,
-"\   'is_stay': 0
-"\ }), get(a:, 1, {}))
+      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+      "\   'is_expr': 1,
+      "\   'is_stay': 0
+      "\ }), get(a:, 1, {}))
 "endfunction
 
 "if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
