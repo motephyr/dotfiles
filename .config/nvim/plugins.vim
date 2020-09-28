@@ -94,16 +94,12 @@ call plug#begin()
   nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
   vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
   inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
-  tnoremap <C-f> <C-c>
   cnoremap <C-f> <C-c>
   noremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
   vnoremap <C-t> "hy<C-c>:FzfPreviewProjectMruFiles<CR><C-\><C-n>"hpi
   inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
-  tnoremap <C-t> <C-c>
-
   noremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
   inoremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
-  tnoremap <C-g> <C-c>
 
   Plug 'tomtom/tcomment_vim'
   nmap <M-/> <Leader>__
