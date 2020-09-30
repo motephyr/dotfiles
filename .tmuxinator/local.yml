@@ -8,12 +8,6 @@ windows:
         - a:
             - pg_ctl start
             - export PGGSSENCMODE=disable && pgcli -U postgres -h localhost kamo
-  - dotfiles:
-      layout: main-vertical
-      panes:
-        - a:
-            - cd ~/dotfiles
-            - git pull
   - kamo:
       layout: main-vertical
       panes:
@@ -31,3 +25,10 @@ windows:
             - yarn dev
         - d:
             - cd kamo-admin
+  - dotfiles:
+      layout: main-vertical
+      panes:
+        - a:
+            - cd ~/dotfiles
+            - git pull
+

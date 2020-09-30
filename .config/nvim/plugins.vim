@@ -77,7 +77,10 @@ call plug#begin()
   omap ic <Plug>(coc-classobj-i)
   nmap "c v<Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
-  nmap <M-a> <Plug>(coc-codeaction)
+  xmap <CR> <Plug>(coc-codeaction-selected)
+  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'V<Plug>(coc-codeaction-selected)'
+  " nmap <M-a> <Plug>(coc-codeaction)
+  nmap <M-a> <Plug>(coc-fix-current)
   xmap <M-s> <Plug>(coc-codeaction-selected)
   nmap <M-s> V<Plug>(coc-codeaction-selected)
   nmap <M-d> :CocCommand docthis.documentThis<CR>
@@ -95,15 +98,15 @@ call plug#begin()
   vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
   inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
   cnoremap <C-f> <C-c>
-  tnoremap <C-f> <C-c>
-  nnoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
-  vnoremap <C-t> "hy<C-c>:FzfPreviewProjectMruFiles<CR><C-\><C-n>"hpi
-  inoremap <C-t> <C-c>:FzfPreviewProjectMruFiles<CR>
-  tnoremap <C-t> <C-c>
+  tnoremap <C-f> <Esc>
+  nnoremap <C-t> <C-c>:FzfPreviewFromResources project_mru git<CR>
+  vnoremap <C-t> "hy<C-c>:FzfPreviewFromResources project_mru git<CR><C-\><C-n>"hpi
+  inoremap <C-t> <C-c>:FzfPreviewFromResources project_mru git<CR>
+  tnoremap <C-t> <Esc>
 
   noremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
   inoremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
-  tnoremap <C-g> <C-c>
+  tnoremap <C-g> <Esc>
 
   Plug 'tomtom/tcomment_vim'
   nmap <M-/> <Leader>__
@@ -285,7 +288,7 @@ endfunction
 
 function! s:fzf_preview_settings() abort
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
-  let g:fzf_preview_grep_cmd = 'rg --hidden --line-number --no-heading'
+  let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading'
 
   let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
 

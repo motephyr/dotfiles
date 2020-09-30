@@ -87,8 +87,6 @@ nnoremap <Space> i<Space>
 vnoremap <Space> s
 
 nnoremap \ a<Space>\<Enter><Esc>h
-" nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
-" vnoremap <CR> xi<CR>
 
 " for move block
 nnoremap <M-j> :m .+1<CR>==
@@ -139,7 +137,7 @@ endif
 
 "execute
 noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
-noremap <Leader>x <Esc>:split % \| resize 8 \| term<CR>
+noremap <Leader>x <Esc>:split \| resize 8 \| term<CR>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
 
