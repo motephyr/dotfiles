@@ -21,10 +21,11 @@ call plug#begin()
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
-  Plug 'pacha/vem-tabline'
-  map <M-[> <Plug>vem_prev_buffer- 
-  map <M-]> <Plug>vem_next_buffer-
-  map <C-w> <Esc>:Bclose<CR>
+Plug 'zefei/vim-wintabs'
+map <M-[> <Plug>(wintabs_previous)
+map <M-]> <Plug>(wintabs_next)
+map <C-w> <Plug>(wintabs_close)
+
   noremap <M-t> <C-w>v<C-w>h  "open pane
 
   Plug 'tomasiser/vim-code-dark'
@@ -88,8 +89,6 @@ call plug#begin()
   nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
   nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
 
-  Plug 'rbgrouleff/bclose.vim'
-
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
@@ -146,6 +145,9 @@ call plug#begin()
   " let g:blamer_show_in_visual_modes = 0
   Plug 'rhysd/devdocs.vim'
 call plug#end()
+"vim-wintabs
+let g:wintabs_ui_vimtab_name_format='%t'
+
 
 set statusline=%{horizonbar#ScrollBarWidth(horizonbar#BarWidth())}
 set statusline+=%=
