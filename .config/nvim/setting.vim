@@ -24,7 +24,10 @@ autocmd BufEnter *.png,*.jpg,*.gif,*.svg exec "! open ".expand("%") | :bw
 set nobackup
 set nowritebackup
 set noswapfile
-set updatetime=750
+set updatetime=300
+set shortmess+=c
+set signcolumn=number
+
 set cmdheight=2
 set lazyredraw
 

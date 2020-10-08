@@ -230,7 +230,6 @@ function OpenItermTab()
 endfunction
 
 "vim-colorschemes syntax
-set t_Co=256
 "set termguicolors
 
 "For tmux
