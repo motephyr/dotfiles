@@ -51,3 +51,5 @@ set wildignore+=node_modules/*,bower_components/*
 let g:loaded_matchparen = 1
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set grepformat=%f:%l:%c:%m
+let loaded_netrwPlugin = 1
+

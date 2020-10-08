@@ -123,10 +123,10 @@ tnoremap <C-l> <Right>
 
 if has('nvim')
   augroup terminal_setup | au!
-    autocmd TermOpen,BufEnter term://* startinsert
+    " autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
-    autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> i<Down>
+    " autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
+    " autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> i<Down>
     autocmd FileType fzf nnoremap <buffer><LeftMouse> i
     autocmd FileType fzf nnoremap <buffer>k i<Up>
     autocmd FileType fzf nnoremap <buffer>j i<Down>
@@ -233,3 +233,5 @@ cnoreabbrev Qa qa
 " nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+noremap <M-t> <C-w>v<C-w>h

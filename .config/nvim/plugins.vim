@@ -21,12 +21,9 @@ call plug#begin()
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
-Plug 'zefei/vim-wintabs'
-map <M-[> <Plug>(wintabs_previous)
-map <M-]> <Plug>(wintabs_next)
-map <C-w> <Plug>(wintabs_close)
+  Plug 'rbgrouleff/bclose.vim'
+  map <C-w> <Esc>:Bclose<CR>
 
-  noremap <M-t> <C-w>v<C-w>h  "open pane
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -145,9 +142,6 @@ map <C-w> <Plug>(wintabs_close)
   " let g:blamer_show_in_visual_modes = 0
   Plug 'rhysd/devdocs.vim'
 call plug#end()
-"vim-wintabs
-let g:wintabs_ui_vimtab_name_format='%t'
-
 
 set statusline=%{horizonbar#ScrollBarWidth(horizonbar#BarWidth())}
 set statusline+=%=
@@ -206,18 +200,18 @@ function! GitDiscard() abort
   endif
 endfunction
 
-autocmd BufWinEnter * call PreventBuffersInExplorer()
-
-function! PreventBuffersInExplorer()
-  if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-        \ && &buftype == '' 
-    let bufnum = bufnr('%')
-    close
-    exe 'b ' . bufnum
-    :CocCommand explorer
-  endif
-endfunction
+" autocmd BufWinEnter * call PreventBuffersInExplorer()
+"
+" function! PreventBuffersInExplorer()
+"   if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
+"         \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+"         \ && &buftype == '' 
+"     let bufnum = bufnr('%')
+"     close
+"     exe 'b ' . bufnum
+"     :CocCommand explorer
+"   endif
+" endfunction
 
 autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
 
