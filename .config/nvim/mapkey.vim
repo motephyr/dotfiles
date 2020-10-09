@@ -123,7 +123,7 @@ tnoremap <C-l> <Right>
 
 if has('nvim')
   augroup terminal_setup | au!
-    " autocmd TermOpen,BufEnter term://* startinsert
+    autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
     " autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
     " autocmd TermOpen * nnoremap <buffer><ScrollWheelDown> i<Down>
@@ -188,6 +188,7 @@ onoremap <M-LeftMouse> <Esc><4-LeftMouse>
 noremap <M-LeftDrag> <LeftDrag>
 inoremap <M-LeftDrag> <LeftDrag>
 onoremap <M-LeftDrag> <Esc><LeftDrag>
+noremap <M-LeftRelease> <Nop>
 
 "Command mode need use C-c, not esc. otherwise there is error message
 cnoremap <expr> <LeftMouse> getcmdtype()==#'/' ? '<CR>' : '<C-c>'

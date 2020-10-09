@@ -30,10 +30,7 @@ call plug#begin()
   Plug 'honza/vim-snippets'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp']
 
-
-  "
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
         \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -170,13 +167,18 @@ autocmd User CocGitStatusChange call horizonbar#GetDiffList()
 nnoremap <M-ScrollWheelUp> <C-u>
 nnoremap <M-ScrollWheelDown> <C-d>
 
+let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp']
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-"autocmd SessionLoadPost * call OpenExplorer()
-"function! OpenExplorer()
-"if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
-":CocCommand explorer
-"endif
-"endfunction
+
+" autocmd VimEnter * call OpenExplorer()
+" function! OpenExplorer()
+"   if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
+"     :CocCommand explorer --no-focus
+"   endif
+" endfunction
+
+autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
+
 
 "
 function! GitAdd() abort
@@ -200,20 +202,18 @@ function! GitDiscard() abort
   endif
 endfunction
 
-" autocmd BufWinEnter * call PreventBuffersInExplorer()
-"
-" function! PreventBuffersInExplorer()
-"   if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-"         \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-"         \ && &buftype == '' 
-"     let bufnum = bufnr('%')
-"     close
-"     exe 'b ' . bufnum
-"     :CocCommand explorer
-"   endif
-" endfunction
+autocmd BufWinEnter * call PreventBuffersInExplorer()
 
-autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
+function! PreventBuffersInExplorer()
+  if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
+        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
+        \ && &buftype == '' 
+    let bufnum = bufnr('%')
+    close
+    exe 'b ' . bufnum
+    :CocCommand explorer
+  endif
+endfunction
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -255,27 +255,26 @@ function! s:fugitive_add(paths)
   for path in a:paths
     execute '! git add ' . path
   endfor
-  :doautocmd User FzfPreviewGitStatusCallback
-  call feedkeys('i', '')
+  :doautocmd User CocGitStatusChange
+  call OpenFzfPreviewGitStatus()
 endfunction
 
 function! s:fugitive_reset(paths) 
   for path in a:paths
     execute '! git reset -- ' . path
   endfor
-  :doautocmd User FzfPreviewGitStatusCallback
-  call feedkeys('i', '')
+  :doautocmd User CocGitStatusChange
+  call OpenFzfPreviewGitStatus()
 endfunction
 
 function! s:fugitive_discard(paths) 
   for path in a:paths
     execute '! git checkout -- ' . path
   endfor
-  :doautocmd User FzfPreviewGitStatusCallback
-  call feedkeys('i', '')
+  :doautocmd User CocGitStatusChange
+  call OpenFzfPreviewGitStatus()
 endfunction
 
-autocmd User FzfPreviewGitStatusCallback call OpenFzfPreviewGitStatus()
 
 function! OpenFzfPreviewGitStatus()
   execute 'FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors'
