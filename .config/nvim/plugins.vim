@@ -21,10 +21,6 @@ call plug#begin()
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
-  Plug 'rbgrouleff/bclose.vim'
-  map <C-w> <Esc>:Bclose<CR>
-
-
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
@@ -139,9 +135,7 @@ call plug#begin()
   Plug 'rhysd/devdocs.vim'
 call plug#end()
 
-set statusline=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
-set statusline+=%=
-set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
@@ -150,6 +144,8 @@ set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
+set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
+set statusline+=%=
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
 set statusline+=%#CursorLine#     " colour
@@ -176,8 +172,8 @@ autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 "   endif
 " endfunction
 
-autocmd VimLeave * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif  | :tabonly | :CloseHiddenBuffers
-
+autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif 
+autocmd VimLeave * :tabonly | :CloseHiddenBuffers
 
 "
 function! GitAdd() abort
@@ -273,7 +269,6 @@ function! s:fugitive_discard(paths)
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
-
 
 function! OpenFzfPreviewGitStatus()
   execute 'FzfPreviewGitStatus -processors=g:fzf_preview_fugitive_processors'

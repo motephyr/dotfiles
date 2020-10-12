@@ -123,7 +123,7 @@ tnoremap <C-l> <Right>
 
 if has('nvim')
   augroup terminal_setup | au!
-    autocmd TermOpen,BufEnter term://* startinsert
+    "autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * setlocal nonumber
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
     " autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
@@ -138,7 +138,20 @@ endif
 
 "execute
 noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
-noremap <Leader>x <Esc>:split \| resize 8 \| term<CR>
+function! TerminalPane()
+    " find evey terminal buffer
+    let b = filter(range(1, winnr('$')),
+                \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
+    " if no terminal buffers are available
+    if len(b) == 0
+        :split | resize 8 | term
+    else
+        exe b[0].'wincmd w'
+    endif
+    " we open a terminal to do something
+    startinsert
+endfunc
+nmap <silent> <leader>x :call TerminalPane()<cr>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
 
@@ -236,4 +249,4 @@ cnoreabbrev Qa qa
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-noremap <M-t> <C-w>v<C-w>h
+noremap <M-t> <Esc>:vnew<CR>
