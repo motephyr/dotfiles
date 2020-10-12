@@ -4,9 +4,9 @@ call plug#begin()
 
   " browse
   noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
-  noremap <silent> <Leader>a :call GitAdd()<CR>
-  noremap <silent> <Leader>r :call GitRm()<CR>
-  noremap <silent> <Leader>c :call GitDiscard()<CR>
+  noremap <silent> <M-a> :call GitAdd()<CR>
+  noremap <silent> <M-r> :call GitRm()<CR>
+  noremap <silent> <M-c> :call GitDiscard()<CR>
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
@@ -53,7 +53,7 @@ call plug#begin()
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
   " nmap <C-]> :echo "tags"<CR>
-  " set tagfunc=CocTagFunc
+  set tagfunc=CocTagFunc
   nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
   nmap <silent> . :call <SID>show_documentation()<CR>
 
@@ -72,14 +72,13 @@ call plug#begin()
   omap ic <Plug>(coc-classobj-i)
   nmap "c v<Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
+
+  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : '<Plug>(coc-codeaction)'
   xmap <CR> <Plug>(coc-codeaction-selected)
-  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'V<Plug>(coc-codeaction-selected)'
-  " nmap <M-a> <Plug>(coc-codeaction)
-  nmap <M-a> <Plug>(coc-fix-current)
-  xmap <M-s> <Plug>(coc-codeaction-selected)
-  nmap <M-s> V<Plug>(coc-codeaction-selected)
+  nmap <silent> <M-e> <Plug>(coc-refactor)
+  nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
   nmap <M-d> :CocCommand docthis.documentThis<CR>
-  nmap <silent> <M-g> :CocDiagnostic<CR>
+  nnoremap <silent><nowait> <M-m> :<C-u>CocDiagnostic<cr>
   nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
   nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
 
@@ -140,7 +139,7 @@ call plug#begin()
   Plug 'rhysd/devdocs.vim'
 call plug#end()
 
-set statusline=%{horizonbar#ScrollBarWidth(horizonbar#BarWidth())}
+set statusline=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
 set statusline+=%=
 set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
@@ -290,9 +289,9 @@ function! s:fzf_preview_settings() abort
   let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
   let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
   let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
-  let g:fzf_preview_fugitive_processors['ctrl-a'] = function('s:fugitive_add')
-  let g:fzf_preview_fugitive_processors['ctrl-r'] = function('s:fugitive_reset')
-  let g:fzf_preview_fugitive_processors['ctrl-c'] = function('s:fugitive_discard')
+  let g:fzf_preview_fugitive_processors['alt-a'] = function('s:fugitive_add')
+  let g:fzf_preview_fugitive_processors['alt-r'] = function('s:fugitive_reset')
+  let g:fzf_preview_fugitive_processors['alt-c'] = function('s:fugitive_discard')
 endfunction
 
 "coc
