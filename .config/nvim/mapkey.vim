@@ -3,7 +3,6 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-"tnoremap <Esc> <C-\><C-n>
 nnoremap ;; <Esc>
 inoremap ;; <Esc>
 tnoremap ;; <C-\><C-n>:bdelete!<CR>
@@ -49,8 +48,6 @@ tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
-"inoremap <C-s> <Esc>:update<CR>==gi
-"vnoremap <C-s> <Esc>:update<CR>gv=gv
 
 "search
 vnoremap / "hy/<C-r>h<CR>
@@ -116,11 +113,6 @@ tnoremap <C-j> <Down>
 tnoremap <C-k> <Up>
 tnoremap <C-l> <Right>
 
-"cnoremap <Leader>d <C-c> "type Leader key<Space> wiil slow
-" tmap <Leader>t <C-\><C-n>:bdelete!<CR>
-" tmap <Leader>f <C-\><C-n>:bdelete!<CR>
-" tmap <Leader>g <C-\><C-n>:bdelete!<CR>
-
 if has('nvim')
   augroup terminal_setup | au!
     "autocmd TermOpen,BufEnter term://* startinsert
@@ -139,17 +131,17 @@ endif
 "execute
 noremap <C-x> <Esc>:!echo %:p \| xargs -I {} open {}<left><left><left>
 function! TerminalPane()
-    " find evey terminal buffer
-    let b = filter(range(1, winnr('$')),
-                \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
-    " if no terminal buffers are available
-    if len(b) == 0
-        :split | resize 8 | term
-    else
-        exe b[0].'wincmd w'
-    endif
-    " we open a terminal to do something
-    startinsert
+  " find evey terminal buffer
+  let b = filter(range(1, winnr('$')),
+        \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
+  " if no terminal buffers are available
+  if len(b) == 0
+    :1wincmd w | :sp | resize 8 | term
+  else
+    exe b[0].'wincmd w'
+  endif
+  " we open a terminal to do something
+  startinsert
 endfunc
 nmap <silent> <leader>x :call TerminalPane()<cr>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
@@ -158,28 +150,6 @@ tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
-"nnoremap <leader>v viw"hd<Esc>:call SetVariable('')<left><left>
-" vnoremap <leader>v :call SetVariable('')<left><left>
-"
-" function SetVariable(name) range
-"   silent! normal gvd
-"   exe "normal! i".a:name    
-"   exe "normal! {iconst ".a:name." = "
-"   :normal gp
-"   exe "normal! i\n"    
-" endfunction
-
-"nnoremap <leader>` viw"hd<Esc>:call SetFunction('')<left><left>
-" vnoremap <leader>m :call SetMethod('')<left><left>
-"
-" function SetMethod(name) range
-"   silent! normal gvd
-"   exe "normal! i".a:name."()\n"    
-"   exe "normal! }i".a:name."() {"
-"   :normal o
-"   :normal gp
-"   exe "normal! i}\n"
-" endfunction
 
 "macro
 nnoremap q qq
@@ -189,9 +159,6 @@ nnoremap Q @q
 vnoremap Q :norm @q<CR>
 
 "mouse
-"nnoremap <expr> <LeftDrag> col('$')==col('.')?'<left><LeftDrag>':'<LeftDrag>'
-
-
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$h
@@ -244,8 +211,6 @@ cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 
-" nnoremap <Tab> >>_
-" nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 

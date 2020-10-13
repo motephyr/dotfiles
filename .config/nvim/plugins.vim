@@ -162,15 +162,8 @@ autocmd User CocGitStatusChange call horizonbar#GetDiffList()
 nnoremap <M-ScrollWheelUp> <C-u>
 nnoremap <M-ScrollWheelDown> <C-d>
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-explorer', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp', 'coc-angular']
 autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-
-" autocmd VimEnter * call OpenExplorer()
-" function! OpenExplorer()
-"   if !exists('t:explorer_winnr') && bufwinnr('%') == 1 
-"     :CocCommand explorer --no-focus
-"   endif
-" endfunction
 
 autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif 
 autocmd VimLeave * :tabonly | :CloseHiddenBuffers
@@ -308,28 +301,3 @@ function! s:show_documentation()
 endfunction
 " Apply AutoFix to problem on the current line.
 "nmap <leader>qf  <Plug>(coc-fix-current)
-
-"incsearch
-"function IncSearch()
-"call incsearch#go(<SID>config_easyfuzzymotion())
-":let @/ = ""
-"endfunction
-
-"function! s:config_easyfuzzymotion(...) abort
-"return extend(copy({
-      "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-      "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
-      "\   'is_expr': 1,
-      "\   'is_stay': 0
-      "\ }), get(a:, 1, {}))
-"endfunction
-
-"if'fff'asdf fff" 'dfasbbb' {adsfssffffsdfafffff)  aaaa \dsfa\  /fasdf/ <asdfasdff  fsavdf>asdfadsf<dfasdf>
-"vi(text obj) va
-"di"
-"da"
-"dw
-"
-"delete diw
-"replace ciw cw 
-"visual viw
