@@ -1,0 +1,2 @@
+\pset pager on
+\setenv PAGER 'less -S'

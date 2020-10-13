@@ -107,6 +107,15 @@ call plug#begin()
   "Plug 'tpope/vim-repeat'
   Plug 'jparise/vim-graphql'
   Plug 'motephyr/vim-horizonbar'
+  Plug 'eliba2/vim-node-inspect'
+
+  nnoremap <silent><F4> :NodeInspectStart<cr>
+  nnoremap <silent><F5> :NodeInspectRun<cr>
+  nnoremap <silent><F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
+  nnoremap <silent><F7> :NodeInspectStepInto<cr>
+  nnoremap <silent><F8> :NodeInspectStepOver<cr>
+  nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
+  nnoremap <silent><F10> :NodeInspectStop<cr>
   "Plug 'rbtnn/vim-vimscript_formatter'
 
   " search
@@ -134,6 +143,7 @@ call plug#begin()
   " let g:blamer_show_in_visual_modes = 0
   Plug 'rhysd/devdocs.vim'
 call plug#end()
+
 
 set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}

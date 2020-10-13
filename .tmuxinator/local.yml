@@ -2,12 +2,12 @@ name: phoenix
 root: ~/Projects/nodejs/kamo_all/
 
 windows:
-  - pgctl:
+  - psql:
       layout: main-vertical
       panes:
         - a:
             - pg_ctl start
-            - export PGGSSENCMODE=disable && pgcli -U postgres -h localhost kamo
+            - psql -U postgres -h localhost kamo
   - kamo:
       layout: main-vertical
       panes:
