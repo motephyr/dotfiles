@@ -3,11 +3,11 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-nnoremap ;; <Esc>
-inoremap ;; <Esc>
-tnoremap ;; <C-\><C-n>:bdelete!<CR>
+nnoremap zz <Esc>
+inoremap zz <Esc>
+tnoremap zz <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c
-cnoremap ;; <C-c>
+cnoremap zz <C-c>
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map

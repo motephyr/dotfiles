@@ -49,7 +49,10 @@ call plug#begin()
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
   " nmap <C-]> :echo "tags"<CR>
-  set tagfunc=CocTagFunc
+  if has('nvim-0.5')
+    set tagfunc=CocTagFunc
+    set signcolumn=number
+  endif
   nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
   nmap <silent> . :call <SID>show_documentation()<CR>
 
