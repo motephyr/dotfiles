@@ -3,7 +3,7 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-nnoremap zz <Esc>
+noremap zz <Esc>
 inoremap zz <Esc>
 tnoremap zz <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c

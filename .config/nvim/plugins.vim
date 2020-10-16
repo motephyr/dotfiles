@@ -25,7 +25,7 @@ call plug#begin()
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
@@ -53,12 +53,6 @@ call plug#begin()
     set tagfunc=CocTagFunc
     set signcolumn=number
   endif
-  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
-  nmap <silent> . :call <SID>show_documentation()<CR>
-
-  nmap <silent> <C-LeftMouse> <LeftMouse>i
-  imap <silent> <C-LeftMouse> <LeftMouse>i
-  vmap <silent> <C-LeftMouse> <LeftMouse>i
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
@@ -72,8 +66,15 @@ call plug#begin()
   nmap "c v<Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
 
-  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : '<Plug>(coc-codeaction)'
+  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'viw<Plug>(coc-codeaction-selected)'
   xmap <CR> <Plug>(coc-codeaction-selected)
+  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
+
+  nmap <silent> <C-LeftMouse> <LeftMouse>i
+  imap <silent> <C-LeftMouse> <LeftMouse>i
+  vmap <silent> <C-LeftMouse> <LeftMouse>i
+
+  nmap <silent> .  :call <SID>show_documentation()<CR>
   nmap <silent> <M-e> <Plug>(coc-refactor)
   nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
   nmap <M-d> :CocCommand docthis.documentThis<CR>
