@@ -3,7 +3,7 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-noremap zz <Esc>
+noremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
 inoremap zz <Esc>
 tnoremap zz <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c
@@ -50,13 +50,17 @@ inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
 "search
-vnoremap / "hy/<C-r>h<CR>
-nnoremap ? viw"hy/<C-r>h<CR>
+nmap / <Plug>(incsearch-forward)
+vmap / y/<C-r>"
+nmap ? viw/
+nnoremap <silent> n :exe (search(@/, 'nW') == 0 ? "normal \<lt>c-w>\<lt>c-w>ggn" : "normal! n")<cr>
+nnoremap <silent> N :exe (search(@/, 'bnW') == 0 ? "normal \<lt>c-w>\<lt>c-w>G$N" : "normal! N")<cr>
+vnoremap <silent> n <Esc>ngn
+vnoremap <silent> N <Esc>NgN
 
 "replace
 vnoremap <M-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>
 vnoremap <Leader>h "hy:grep <C-r>h \| cfdo %s/<C-r>h//gIc \| update<left><left><left><left><left><left><left><left><left><left><left><left><left>
-
 "select all
 nnoremap <silent> <C-a> ggVG
 inoremap <silent> <C-a> <Esc>ggVG

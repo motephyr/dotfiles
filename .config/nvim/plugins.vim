@@ -120,15 +120,30 @@ call plug#begin()
   nnoremap <silent><F8> :NodeInspectStepOver<cr>
   nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
   nnoremap <silent><F10> :NodeInspectStop<cr>
-  "Plug 'rbtnn/vim-vimscript_formatter'
 
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
+  Plug 'easymotion/vim-easymotion'
+  Plug 'haya14busa/incsearch.vim'
+  augroup incsearch-easymotion
+    autocmd!
+    autocmd User IncSearchEnter autocmd! incsearch-easymotion-impl
+  augroup END
+  augroup incsearch-easymotion-impl
+    autocmd!
+  augroup END
+  function! IncsearchEasyMotion() abort
+    autocmd incsearch-easymotion-impl User IncSearchExecute :silent! call EasyMotion#Search(0, 2, 0)
+    return "\<CR>"
+  endfunction
+  let g:incsearch_cli_key_mappings = {
+        \   "\/": {
+        \       'key': 'IncsearchEasyMotion()',
+        \       'noremap': 1,
+        \       'expr': 1
+        \   }
+        \ }
 
-  "Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
-  "Plug 'haya14busa/incsearch.vim'
-  "Plug 'haya14busa/incsearch-easymotion.vim'  
-  "noremap <silent> ' :call IncSearch()<CR>
 
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
