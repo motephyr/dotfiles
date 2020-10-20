@@ -45,7 +45,9 @@ call plug#begin()
         \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
   inoremap <silent><expr> <ScrollWheelDown>
         \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
-
+  inoremap <silent><expr> <Space>
+        \ pumvisible() ? ' <left>' :' '
+  
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
   " nmap <C-]> :echo "tags"<CR>
@@ -68,13 +70,12 @@ call plug#begin()
 
   nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'viw<Plug>(coc-codeaction-selected)'
   xmap <CR> <Plug>(coc-codeaction-selected)
-  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
 
   nmap <silent> <C-LeftMouse> <LeftMouse>i
   imap <silent> <C-LeftMouse> <LeftMouse>i
   vmap <silent> <C-LeftMouse> <LeftMouse>i
 
-  nmap <silent> .  :call <SID>show_documentation()<CR>
+  nmap <silent> . :call <SID>show_documentation()<CR>
   nmap <silent> <M-e> <Plug>(coc-refactor)
   nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
   nmap <M-d> :CocCommand docthis.documentThis<CR>
@@ -155,12 +156,12 @@ call plug#begin()
   " noremap <Leader>c :DiffConflicts<CR>
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   "
-  " noremap <C-e> :call OpenItermTab()<CR>
 
   " Plug 'APZelos/blamer.nvim'
   " let g:blamer_enabled = 1
   " let g:blamer_show_in_visual_modes = 0
   Plug 'rhysd/devdocs.vim'
+  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
 call plug#end()
 
 
@@ -239,12 +240,6 @@ let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set undofile
 
 set sessionoptions+=globals
-
-function OpenItermTab()
-  let path = CocAction('currentWorkspacePath')
-  execute 'tabclose'
-  execute '!open -a iTerm '.path
-endfunction
 
 "vim-colorschemes syntax
 "set termguicolors

@@ -3,7 +3,7 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-noremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
+nnoremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
 inoremap zz <Esc>
 tnoremap zz <C-\><C-n>:bdelete!<CR>
 "Avoid execute command by C-c
@@ -51,10 +51,10 @@ vnoremap <C-s> <Esc>:update<CR>
 
 "search
 nmap / <Plug>(incsearch-forward)
-vmap / y/<C-r>"
+vmap / y/<C-r>"<CR>
 nmap ? viw/
-nnoremap <silent> n :exe (search(@/, 'nW') == 0 ? "normal \<lt>c-w>\<lt>c-w>ggn" : "normal! n")<cr>
-nnoremap <silent> N :exe (search(@/, 'bnW') == 0 ? "normal \<lt>c-w>\<lt>c-w>G$N" : "normal! N")<cr>
+nnoremap <silent> n gn 
+nnoremap <silent> N gN
 vnoremap <silent> n <Esc>ngn
 vnoremap <silent> N <Esc>NgN
 
@@ -193,6 +193,7 @@ nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
+nnoremap <silent> <M-`> <C-w><C-w>
 noremap <M-1> :1wincmd w<CR>
 noremap <M-2> :2wincmd w<CR>
 noremap <M-3> :3wincmd w<CR>
