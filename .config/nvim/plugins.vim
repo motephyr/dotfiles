@@ -193,12 +193,7 @@ nnoremap <M-ScrollWheelUp> <C-u>
 nnoremap <M-ScrollWheelDown> <C-d>
 
 let g:coc_global_extensions = ['coc-explorer', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp', 'coc-angular']
-autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
 
-autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif 
-autocmd VimLeave * :tabonly | :CloseHiddenBuffers
-
-"
 function! GitAdd() abort
   if bufname('%') !~ 'coc-explorer'
     :! git add %

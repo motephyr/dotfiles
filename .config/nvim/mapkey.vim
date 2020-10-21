@@ -119,7 +119,7 @@ tnoremap <C-l> <Right>
 
 if has('nvim')
   augroup terminal_setup | au!
-    "autocmd TermOpen,BufEnter term://* startinsert
+    autocmd TermOpen,BufEnter term://* startinsert
     autocmd TermOpen * setlocal nonumber
     autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
     " autocmd TermOpen * nnoremap <buffer><ScrollWheelUp> i<Up>
@@ -138,17 +138,32 @@ function! TerminalPane()
   " find evey terminal buffer
   let b = filter(range(1, winnr('$')),
         \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
-  " if no terminal buffers are available
-  if len(b) == 0
-    :1wincmd w | :sp | resize 8 | term
-  else
+  if len(b) > 0
     exe b[0].'wincmd w'
+  else
+    :1wincmd w | :sp | resize 8 | term
   endif
-  " we open a terminal to do something
   startinsert
 endfunc
+
 nmap <silent> <leader>x :call TerminalPane()<cr>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
+
+function! TerminalAllClose()
+  let b = filter(range(1, winnr('$')),
+        \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
+  if len(b) > 0
+    for pane in b
+      exe pane.'wincmd w'
+      exe 'bdelete!'
+    endfor
+  endif
+endfunc
+
+
+autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
+autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif 
+autocmd VimLeave * :tabonly | call TerminalAllClose() | :CloseHiddenBuffers
 
 
 "For javascript
@@ -194,14 +209,14 @@ nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
 nnoremap <silent> <M-`> <C-w><C-w>
-noremap <M-1> :1wincmd w<CR>
-noremap <M-2> :2wincmd w<CR>
-noremap <M-3> :3wincmd w<CR>
-noremap <M-4> :4wincmd w<CR>
-noremap <M-5> :5wincmd w<CR>
-noremap <M-6> :6wincmd w<CR>
-noremap <M-7> :7wincmd w<CR>
-noremap <M-8> :exe winnr('$') 'wincmd w'<CR>
+nnoremap <M-1> <Esc>:1wincmd w<CR>
+nnoremap <M-2> <Esc>:2wincmd w<CR>
+nnoremap <M-3> <Esc>:3wincmd w<CR>
+nnoremap <M-4> <Esc>:4wincmd w<CR>
+nnoremap <M-5> <Esc>:5wincmd w<CR>
+nnoremap <M-6> <Esc>:6wincmd w<CR>
+nnoremap <M-7> <Esc>:7wincmd w<CR>
+nnoremap <M-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
 tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
 tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
 tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
