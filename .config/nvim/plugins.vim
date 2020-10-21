@@ -192,7 +192,18 @@ autocmd User CocGitStatusChange call horizonbar#GetDiffList()
 nnoremap <M-ScrollWheelUp> <C-u>
 nnoremap <M-ScrollWheelDown> <C-d>
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-yaml',  'coc-snippets', 'coc-vetur', 'coc-solargraph',  'coc-docthis', 'coc-vimlsp', 'coc-angular']
+let g:coc_global_extensions = ['coc-explorer', 
+      \ 'coc-eslint', 
+      \ 'coc-tsserver', 
+      \ 'coc-json', 
+      \ 'coc-yaml',  
+      \ 'coc-snippets', 
+      \ 'coc-vetur', 
+      \ 'coc-docthis', 
+      \ 'coc-vimlsp', 
+      \ 'coc-angular', 
+      \ 'coc-omnisharp', 
+      \ 'coc-html']
 
 function! GitAdd() abort
   if bufname('%') !~ 'coc-explorer'

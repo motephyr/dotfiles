@@ -3,21 +3,12 @@
   "suggest.noselect": false,
   "suggest.enablePreview": true,
   "list.maxPreviewHeight": 60,
-  "list.maxHeight": 20,
   "suggest.minTriggerInputLength": 2,
   "suggest.acceptSuggestionOnCommitCharacter": false,
 
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
 
-  "_coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx"
-  ],
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": [
     "javascript",
@@ -33,7 +24,7 @@
 
   "solargraph.autoformat": false,
   "solargraph.formatting": true,
-
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true, 
   "explorer.file.showHiddenFiles": true,
   "explorer.sources": [
     {
@@ -42,7 +33,11 @@
     }
   ],
   "explorer.keyMappings": {
-    "<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "<2-LeftMouse>": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "<space>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "i": "open:split",

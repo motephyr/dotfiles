@@ -1,11 +1,9 @@
 let mapleader = ","
-nnoremap <leader>vs :source $MYVIMRC<CR>
-nnoremap <Leader>ve :e $MYVIMRC<cr>
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 nnoremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
 inoremap zz <Esc>
-tnoremap zz <C-\><C-n>:bdelete!<CR>
+tnoremap zz <C-\><C-n>
 "Avoid execute command by C-c
 cnoremap zz <C-c>
 
@@ -141,7 +139,7 @@ function! TerminalPane()
   if len(b) > 0
     exe b[0].'wincmd w'
   else
-    :1wincmd w | :sp | resize 8 | term
+    :exe winnr('$') 'wincmd w' | :sp | resize 8 | term
   endif
   startinsert
 endfunc
@@ -217,6 +215,7 @@ nnoremap <M-5> <Esc>:5wincmd w<CR>
 nnoremap <M-6> <Esc>:6wincmd w<CR>
 nnoremap <M-7> <Esc>:7wincmd w<CR>
 nnoremap <M-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
+tnoremap <silent> <M-`> <C-\><C-n><C-w><C-w>
 tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
 tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
 tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
@@ -226,6 +225,19 @@ tnoremap <M-6> <C-\><C-n>:6wincmd w<CR>
 tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
 tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
 
+nnoremap <leader>`  :tabnext<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tabnew \| term<CR>
+nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<CR>
 
 cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q
