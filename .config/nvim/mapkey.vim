@@ -48,7 +48,6 @@ inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
 "search
-nmap / <Plug>(incsearch-forward)
 vmap / y/<C-r>"<CR>
 nmap ? viw/
 nnoremap <silent> n gn 
