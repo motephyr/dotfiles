@@ -46,8 +46,8 @@ call plug#begin()
   inoremap <silent><expr> <ScrollWheelDown>
         \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
   inoremap <silent><expr> <Space>
-        \ pumvisible() ? ' <left>' :' '
-  
+        \ pumvisible() ? '<left><right>' :' '
+
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
   " nmap <C-]> :echo "tags"<CR>
@@ -68,14 +68,18 @@ call plug#begin()
   nmap "c v<Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
 
-  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'viw<Plug>(coc-codeaction-selected)'
+  nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
   xmap <CR> <Plug>(coc-codeaction-selected)
 
   nmap <silent> <C-LeftMouse> <LeftMouse>i
   imap <silent> <C-LeftMouse> <LeftMouse>i
   vmap <silent> <C-LeftMouse> <LeftMouse>i
 
-  nmap <silent> . :call <SID>show_documentation()<CR>
+  nnoremap . $A
+  xnoremap . <C-q>$A
+
+  autocmd CursorMoved * silent call <SID>show_documentation()
+
   nmap <silent> <M-e> <Plug>(coc-refactor)
   nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
   nmap <M-d> :CocCommand docthis.documentThis<CR>
@@ -305,7 +309,7 @@ command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+    "execute 'h '.expand('<cword>')
   else
     call CocActionAsync('doHover')
   endif

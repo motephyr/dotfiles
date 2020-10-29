@@ -1,7 +1,7 @@
 let mapleader = ","
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-nnoremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
+noremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
 inoremap zz <Esc>
 tnoremap zz <C-\><C-n>
 "Avoid execute command by C-c
@@ -27,8 +27,8 @@ vnoremap <C-v> "+gPgv
 
 "undo & redo
 nnoremap <C-z> u
-inoremap <C-z> <Esc>u
-vnoremap <C-z> <Esc>u
+inoremap <C-z> <Esc>
+vnoremap <C-z> <Esc>
 inoremap <C-r> <Esc><C-r>
 vnoremap <C-r> <Esc><C-r>
 
@@ -37,10 +37,10 @@ vnoremap u <Esc>
 
 
 "quit
-nnoremap <C-q> :q<CR>
-inoremap <C-q> <Esc>:q<CR>
-vnoremap <C-q> <Esc>:q<CR>
-tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
+nnoremap <C-w> :q<CR>
+inoremap <C-w> <Esc>:q<CR>
+vnoremap <C-w> <Esc>:q<CR>
+tnoremap <C-w> <C-\><C-n>:bdelete!<CR>
 
 "save
 nnoremap <C-s> :update<CR>
@@ -171,13 +171,13 @@ vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 nnoremap q qq
 vnoremap q :norm qq<CR>
 
-nnoremap Q @q
+nnoremap Q @q<Esc>
 vnoremap Q :norm @q<CR>
 
 "mouse
 
 inoremap <LeftMouse> <Esc><LeftMouse>
-vnoremap <3-LeftMouse> <Esc>0v$h
+vnoremap <3-LeftMouse> <Esc>0v$
 nnoremap <M-LeftMouse> <4-LeftMouse>
 vnoremap <M-LeftMouse> <RightMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
@@ -245,4 +245,5 @@ cnoreabbrev Qa qa
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-noremap <M-t> <Esc>:vnew<CR>
+map <M-t> zz:sp \| resize 8 \| term<CR>
+tmap <M-t> zz:sp \| resize 8 \| term<CR>
