@@ -224,7 +224,7 @@ tnoremap <M-6> <C-\><C-n>:6wincmd w<CR>
 tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
 tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
 
-nnoremap <leader>`  :tabnext<CR>
+nnoremap <leader>` :tabnext<CR>
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
@@ -235,6 +235,18 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 :tabnew \| term<CR>
+tnoremap <leader>` <C-\><C-n>:tabnext<CR>
+tnoremap <leader>1 <C-\><C-n>1gt
+tnoremap <leader>2 <C-\><C-n>2gt
+tnoremap <leader>3 <C-\><C-n>3gt
+tnoremap <leader>4 <C-\><C-n>4gt
+tnoremap <leader>5 <C-\><C-n>5gt
+tnoremap <leader>6 <C-\><C-n>6gt
+tnoremap <leader>7 <C-\><C-n>7gt
+tnoremap <leader>8 <C-\><C-n>8gt
+tnoremap <leader>9 <C-\><C-n>9gt
+tnoremap <leader>0 <C-\><C-n>:tabnew \| term<CR>
+
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>
 

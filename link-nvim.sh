@@ -10,15 +10,17 @@ mv ~/.vimrc $DOTFILES/$BACKUPFILES/vimrc.bk
 ln -s $DOTFILES/vimrc ~/.vimrc
 ln -s $DOTFILES/.config/nvim ~/.config/nvim
 
-echo "Files are linked."
-
 sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
 echo "Installed vim-plug for neovim"
+
+
+echo "alias vi=\"~/nvim.appimage\"" >> ~/.bashrc
+echo "Add alias vi=\"~/nvim.appimage\" to ~/.bashrc or ~/.zshrc"
+
+source ~/.bashrc
+echo "source ~/.bashrc"
 
 echo "=================================================="
 echo "Need install rg. check https://github.com/BurntSushi/ripgrep#installation"
-echo "Add alias vi=\"~/nvim.appimage\" to ~/.bashrc or ~/.zshrc"
-echo "source ~/.bashrc"
 echo "=================================================="
