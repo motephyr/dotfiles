@@ -87,8 +87,8 @@ call plug#begin()
   imap <silent> <C-LeftMouse> <LeftMouse>i
   vmap <silent> <C-LeftMouse> <LeftMouse>i
 
-  nnoremap . $A
-  xnoremap . <C-q>$A
+  nnoremap . :norm! $x<CR>
+  xnoremap . :norm! $x<CR>gv
 
   autocmd CursorMoved * silent call <SID>show_documentation()
 
@@ -166,6 +166,8 @@ set statusline=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%{(mode()=='c')?'\ \ \ \ \ \ \ \ \ ':''}
+set statusline+=%{(mode()=='t')?'\ \ \ \ \ \ \ \ \ ':''}
 set statusline+=\ %n\           " buffer number
 set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
