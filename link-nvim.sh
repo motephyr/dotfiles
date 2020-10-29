@@ -18,4 +18,6 @@ echo "Installed vim-plug for neovim"
 
 echo "=================================================="
 echo "Need install rg. check https://github.com/BurntSushi/ripgrep#installation"
+echo "Add alias vi=\"~/nvim.appimage\" to .bashrc or .zshrc"
+echo "source ~/.bashrc"
 echo "=================================================="
