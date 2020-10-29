@@ -26,19 +26,18 @@ call plug#begin()
   Plug 'honza/vim-snippets'
 
   Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
-  let g:coc_global_extensions = ['coc-explorer'
-      \ ,'coc-eslint'
-      \ ,'coc-tsserver'
-      \ ,'coc-json'
-      \ ,'coc-yaml'
-      \ ,'coc-snippets'
-      \ ,'coc-vetur' 
-      \ ,'coc-docthis' 
-      \ ,'coc-vimlsp' 
-      \ ,'coc-angular' 
-      \ ,'coc-omnisharp'
-      \ ,'coc-html'
-      \ ]
+  let g:coc_global_extensions = ['coc-explorer',
+      \ 'coc-eslint',
+      \ 'coc-tsserver',
+      \ 'coc-json',
+      \ 'coc-yaml',
+      \ 'coc-snippets',
+      \ 'coc-vetur',
+      \ 'coc-docthis',
+      \ 'coc-vimlsp',
+      \ 'coc-angular',
+      \ 'coc-omnisharp',
+      \ 'coc-html']
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
