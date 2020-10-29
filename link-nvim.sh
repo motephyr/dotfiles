@@ -5,11 +5,13 @@ BACKUPFILES=dotfiles_backup
 
 echo "Linking .vimrc & install vim-plug"
 
-mv .vimrc $DOTFILES/$BACKUPFILES/vimrc.bk
+mv ~/.vimrc $DOTFILES/$BACKUPFILES/vimrc.bk
 
-ln -s $DOTFILES/vimrc .vimrc
+ln -s $DOTFILES/vimrc ~/.vimrc
 
 echo "Files are linked."
+
+mkdir -p ~/.vim/autoload
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
