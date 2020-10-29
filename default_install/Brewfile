@@ -45,7 +45,6 @@ redis
 ruby-install
 socat
 ssh-copy-id
-the_silver_searcher
 tig
 v8
 wget

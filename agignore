@@ -1,9 +1,0 @@
-# Plugin files
-vendor
-node_modules
-
-# Log files
-log
-
-# Minified files
-*.min.js

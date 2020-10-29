@@ -78,10 +78,6 @@ config/deploy/local.yml
 # Gemfile.lock, .ruby-version, .ruby-gemset
 ##########
 
-
-# The silver searcher ignore
-.agignore
-
 # ctags file
 tags
 
