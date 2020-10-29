@@ -7,7 +7,8 @@ echo "Linking .vimrc & install vim-plug"
 
 mv ~/.vimrc $DOTFILES/$BACKUPFILES/vimrc.bk
 
-ln -s $DOTFILES/.config/nvim/init.vim ~/.vimrc
+ln -s $DOTFILES/vimrc ~/.vimrc
+ln -s $DOTFILES/.config/nvim ~/.config/nvim
 
 echo "Files are linked."
 
