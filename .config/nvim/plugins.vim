@@ -58,7 +58,7 @@ call plug#begin()
   inoremap <silent><expr> <ScrollWheelDown>
         \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
   inoremap <silent><expr> <Space>
-        \ pumvisible() ? '<left><right>' :' '
+        \ pumvisible() ? '<Esc>' :' '
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 
@@ -83,9 +83,9 @@ call plug#begin()
   nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
   xmap <CR> <Plug>(coc-codeaction-selected)
 
-  nmap <silent> <C-LeftMouse> <LeftMouse>i
-  imap <silent> <C-LeftMouse> <LeftMouse>i
-  vmap <silent> <C-LeftMouse> <LeftMouse>i
+  nmap <silent> <C-LeftMouse> <LeftMouse>viw
+  imap <silent> <C-LeftMouse> <LeftMouse>viw
+  vmap <silent> <C-LeftMouse> <LeftMouse>viw
 
   nnoremap . :norm! $x<CR>
   xnoremap . :norm! $x<CR>gv
@@ -312,7 +312,7 @@ command! -nargs=0 Format :call CocAction('format')
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     "execute 'h '.expand('<cword>')
-  else
+  elseif bufname('%') !~ 'coc-explorer' && mode() == 'n'
     call CocActionAsync('doHover')
   endif
 endfunction
