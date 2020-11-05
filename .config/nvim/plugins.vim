@@ -57,8 +57,8 @@ call plug#begin()
         \ pumvisible() ? '<Esc>' : '<ScrollWheelUp>'
   inoremap <silent><expr> <ScrollWheelDown>
         \ pumvisible() ? '<Esc>' :'<ScrollWheelDown>'
-  inoremap <silent><expr> <Space>
-        \ pumvisible() ? '<Esc>' :' '
+  " inoremap <silent><expr> <Space>
+  "       \ pumvisible() ? '<Esc>' :' '
 
   " inoremap <silent><expr> <cr> pumvisible() ? "<Esc>i<CR>" : "<CR>"
 

@@ -37,6 +37,8 @@ set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
 set number 
+set clipboard=unnamedplus
+
 
 "set ai           " 自動縮排
 set mouse=a
