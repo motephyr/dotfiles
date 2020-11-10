@@ -20,7 +20,7 @@ autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
-au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.ejs,*.edge set filetype=html
 autocmd BufEnter *.png,*.jpg,*.gif,*.svg exec "! open ".expand("%") | :bw
 
 set nobackup
@@ -37,8 +37,6 @@ set noimdisable "切换到 normal,insert,search 模式时使用英文输入法
 set iminsert=0
 set imsearch=0
 set number 
-set clipboard^=unnamed,unnamedplus
-
 
 "set ai           " 自動縮排
 set mouse=a

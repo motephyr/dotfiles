@@ -24,6 +24,7 @@ vnoremap <C-c> "+ygv<Esc>
 nnoremap <C-v> "+gP
 inoremap <C-v> <Esc>"+gPi
 vnoremap <C-v> "+gPgv
+"set clipboard^=,unnamedplus
 
 "undo & redo
 nnoremap <C-z> u
