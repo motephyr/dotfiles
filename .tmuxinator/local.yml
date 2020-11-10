@@ -25,6 +25,7 @@ windows:
             - yarn dev
         - d:
             - cd kamo-admin
+            - redis-server
   - dotfiles:
       layout: main-vertical
       panes:

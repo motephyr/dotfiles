@@ -66,8 +66,8 @@ vnoremap <silent> <C-a> <Esc>ggVG
 "delete
 nnoremap x "_x
 vnoremap x "_x
-nnoremap D "*dd
-vnoremap D "*d
+nnoremap D "+dd
+vnoremap D "+d
 
 "Fix
 nnoremap ' vi
