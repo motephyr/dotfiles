@@ -9,7 +9,6 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
 
-  "eslint.autoFixOnSave": true,
   "eslint.filetypes": [
     "javascript",
     "typescript",
@@ -43,7 +42,7 @@
     "i": "open:split",
     "s": "open:vsplit"
   },
-  "explorer.openAction.strategy": "previousBuffer",
+  "explorer.openAction.strategy": "select",
   "explorer.previewAction.onHover": false,
   "explorer.file.root.template": "  [root]",
   "explorer.file.child.template": "[selection | clip][indent][icon & 1][git][diagnosticError & 1][filename omitCenter 1][readonly]",

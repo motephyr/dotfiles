@@ -26,18 +26,6 @@ call plug#begin()
   Plug 'honza/vim-snippets'
 
   Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
-  let g:coc_global_extensions = ['coc-explorer',
-      \ 'coc-eslint',
-      \ 'coc-tsserver',
-      \ 'coc-json',
-      \ 'coc-yaml',
-      \ 'coc-snippets',
-      \ 'coc-vetur',
-      \ 'coc-docthis',
-      \ 'coc-vimlsp',
-      \ 'coc-angular',
-      \ 'coc-omnisharp',
-      \ 'coc-html']
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
@@ -157,8 +145,8 @@ call plug#begin()
   " Plug 'APZelos/blamer.nvim'
   " let g:blamer_enabled = 1
   " let g:blamer_show_in_visual_modes = 0
-  Plug 'rhysd/devdocs.vim'
-  nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
+  " Plug 'rhysd/devdocs.vim'
+  " nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
 call plug#end()
 
 
@@ -232,7 +220,7 @@ let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 set undofile
 
-set sessionoptions+=globals
+"set sessionoptions+=globals
 
 "vim-colorschemes syntax
 "set termguicolors
