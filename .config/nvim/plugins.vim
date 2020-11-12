@@ -25,7 +25,8 @@ call plug#begin()
   "Plug 'morhetz/gruvbox'
   Plug 'honza/vim-snippets'
 
-  Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
+  " Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
