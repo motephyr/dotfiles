@@ -1,9 +1,13 @@
 call plug#begin()
 
-  Plug 'ybian/smartim'
+Plug 'ybian/smartim'
+Plug 'kyazdani42/nvim-tree.lua'
+
+nnoremap <leader>e :LuaTreeToggle<CR>
+nnoremap <leader>r :LuaTreeRefresh<CR>
 
   " browse
-  noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
+  " noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   noremap <silent> <M-a> :call GitAdd()<CR>
   noremap <silent> <M-r> :call GitRm()<CR>
   noremap <silent> <M-c> :call GitDiscard()<CR>
@@ -12,11 +16,11 @@ call plug#begin()
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
-  noremap <expr> <Leader>t bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig<CR>' : ''
-  noremap <expr> <Leader>f bufname('%') !~ 'coc-explorer' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
+  noremap <expr> <Leader>t bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig<CR>' : ''
+  noremap <expr> <Leader>f bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+  noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -54,7 +58,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " nmap <C-]> :echo "tags"<CR>
   if has('nvim-0.5')
     set tagfunc=CocTagFunc
-    set signcolumn=number
+    "set signcolumn=number
   endif
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
@@ -162,7 +166,7 @@ set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
-set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
+set statusline+=%{(index(['','LuaTree'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
 set statusline+=%=
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
@@ -182,36 +186,26 @@ nnoremap <M-ScrollWheelDown> <C-d>
 
 
 function! GitAdd() abort
-  if bufname('%') !~ 'coc-explorer'
+  if bufname('%') !~ 'LuaTree'
     :! git add %
+  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
   endif
 endfunction
 
 function! GitRm() abort
-  if bufname('%') !~ 'coc-explorer'
+  if bufname('%') !~ 'LuaTree'
     :! git reset -- %
+  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
   endif
 endfunction
 
 function! GitDiscard() abort
-  if bufname('%') !~ 'coc-explorer'
+  if bufname('%') !~ 'LuaTree'
     :! git checkout -- %
+  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
-  endif
-endfunction
-
-autocmd BufWinEnter * call PreventBuffersInExplorer()
-
-function! PreventBuffersInExplorer()
-  if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
-        \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-        \ && &buftype == '' 
-    let bufnum = bufnr('%')
-    close
-    exe 'b ' . bufnum
-    :CocCommand explorer
   endif
 endfunction
 
@@ -249,6 +243,7 @@ function! s:fugitive_add(paths)
   for path in a:paths
     execute '! git add ' . path
   endfor
+  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -257,6 +252,7 @@ function! s:fugitive_reset(paths)
   for path in a:paths
     execute '! git reset -- ' . path
   endfor
+  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -265,6 +261,7 @@ function! s:fugitive_discard(paths)
   for path in a:paths
     execute '! git checkout -- ' . path
   endfor
+  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -301,7 +298,7 @@ command! -nargs=0 Format :call CocAction('format')
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     "execute 'h '.expand('<cword>')
-  elseif bufname('%') !~ 'coc-explorer' && mode() == 'n'
+  elseif bufname('%') !~ 'LuaTree' && mode() == 'n'
     call CocActionAsync('doHover')
   endif
 endfunction

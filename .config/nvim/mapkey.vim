@@ -158,11 +158,7 @@ function! TerminalAllClose()
   endif
 endfunc
 
-
-autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif 
 autocmd VimLeave * :tabonly | call TerminalAllClose() | :CloseHiddenBuffers
-
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
