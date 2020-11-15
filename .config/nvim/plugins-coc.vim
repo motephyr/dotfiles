@@ -58,7 +58,7 @@ let g:lua_tree_icons = {
     \ }
 augroup CursorLine
   au!
-  au BufEnter * if bufname('%') =~ 'LuaTree' | setlocal cursorline | endif
+  au BufEnter * if bufname('%') =~ 'LuaTree' | setlocal cursorline | exe 'LuaTreeRefresh' | endif
 augroup END
 
 autocmd FileType LuaTree let t:explorer_winnr = bufwinnr('%')

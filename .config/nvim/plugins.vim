@@ -188,7 +188,6 @@ nnoremap <M-ScrollWheelDown> <C-d>
 function! GitAdd() abort
   if bufname('%') !~ 'LuaTree'
     :! git add %
-  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
   endif
 endfunction
@@ -196,7 +195,6 @@ endfunction
 function! GitRm() abort
   if bufname('%') !~ 'LuaTree'
     :! git reset -- %
-  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
   endif
 endfunction
@@ -204,7 +202,6 @@ endfunction
 function! GitDiscard() abort
   if bufname('%') !~ 'LuaTree'
     :! git checkout -- %
-  :LuaTreeRefresh
     :doautocmd User CocGitStatusChange
   endif
 endfunction
@@ -243,7 +240,6 @@ function! s:fugitive_add(paths)
   for path in a:paths
     execute '! git add ' . path
   endfor
-  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -252,7 +248,6 @@ function! s:fugitive_reset(paths)
   for path in a:paths
     execute '! git reset -- ' . path
   endfor
-  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -261,7 +256,6 @@ function! s:fugitive_discard(paths)
   for path in a:paths
     execute '! git checkout -- ' . path
   endfor
-  :LuaTreeRefresh
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
 endfunction
@@ -293,7 +287,15 @@ endfunction
 
 let g:coc_snippet_next = '<tab>' 
 
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call Format()
+
+function Format()
+  if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"], &filetype) > -1
+    :CocCommand eslint.executeAutofix
+  else
+    :call CocAction('format')
+  endif
+endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
