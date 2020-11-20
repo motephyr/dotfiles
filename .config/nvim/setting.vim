@@ -21,7 +21,7 @@ autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
 au BufNewFile,BufRead *.ejs,*.edge,*.cshtml set filetype=html
-autocmd BufEnter *.png,*.jpg,*.gif,*.svg exec "! open ".expand("%") | :bw
+autocmd BufEnter *.png,*.jpg,*.gif exec "! open ".expand("%") | :bw
 
 set nobackup
 set nowritebackup

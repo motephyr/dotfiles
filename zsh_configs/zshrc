@@ -52,8 +52,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-NPM_PACKAGES="${HOME}/.npm-packages"
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+#NPM_PACKAGES="${HOME}/.npm-packages"
+#NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 # export PATH="$PATH:/Users/motephyr/.rvm/bin:
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:$NPM_PACKAGES/bin:/Library/PostgreSQL/9.4/bin/"

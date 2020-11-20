@@ -16,9 +16,9 @@ nnoremap <leader>r :LuaTreeRefresh<CR>
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
-  noremap <expr> <Leader>t bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig<CR>' : ''
+  noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig<CR>' : ''
   noremap <expr> <Leader>f bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  noremap <expr> <M-g> bufname('%') !~ 'LuaTree' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
 
