@@ -3,9 +3,17 @@ let mapleader = ","
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
 noremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
 inoremap zz <Esc>
-tnoremap zz <C-\><C-n>
+tnoremap zz <C-\><C-n>:call CloseWindow()<CR>
 "Avoid execute command by C-c
 cnoremap zz <C-c>
+
+function! CloseWindow()
+  if expand('%:t') !~ 'zsh'
+    exe 'bdelete!'
+  else
+    call feedkeys("azz", "n")
+  endif
+endfunction
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map
@@ -24,6 +32,10 @@ vnoremap <C-c> "+ygv<Esc>
 nnoremap <C-q> :qa<CR>
 inoremap <C-q> <Esc>:qa<CR>
 vnoremap <C-q> <Esc>:qa<CR>
+
+"for visual insert
+vnoremap <S-a> <Esc>i
+vmap <S-i> o<S-a>
 
 "paste
 " nnoremap <C-v> "+gP
