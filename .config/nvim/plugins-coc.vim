@@ -8,7 +8,7 @@ let g:lua_tree_root_folder_modifier = ':~' "This is the default. See :help filen
 let g:lua_tree_allow_resize = 1 "0 by default, will not resize the tree when opening a file
 let g:lua_tree_show_icons = {
     \ 'git': 1,
-    \ 'folders': 0,
+    \ 'folders': 1,
     \ 'files': 0,
     \ }
 "If 0, do not show the icons for one of 'git' 'folder' and 'files'
@@ -45,8 +45,8 @@ let g:lua_tree_bindings = {
 " default will show icon by default if no icon is provided
 " default shows no icon by default
 let g:lua_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
+    \ 'default': '  ',
+    \ 'symlink': '  ',
     \ 'git': {
     \   'unstaged': "[~]",
     \   'staged': "[+]",
@@ -54,6 +54,10 @@ let g:lua_tree_icons = {
     \   'renamed': "[➜]",
     \   'untracked': "[✭]",
     \   'deleted': "[_]"
+    \   },
+    \ 'folder': {
+    \   'default': " ",
+    \   'open': " "
     \   }
     \ }
 augroup CursorLine

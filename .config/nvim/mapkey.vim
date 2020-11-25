@@ -20,10 +20,15 @@ nnoremap <C-n> :set invnu<CR>
 "copy
 vnoremap <C-c> "+ygv<Esc>
 
+"quit all
+nnoremap <C-q> :qa<CR>
+inoremap <C-q> <Esc>:qa<CR>
+vnoremap <C-q> <Esc>:qa<CR>
+
 "paste
-nnoremap <C-v> "+gP
-inoremap <C-v> <Esc>"+gPi
-vnoremap <C-v> "+gPgv
+" nnoremap <C-v> "+gP
+" inoremap <C-v> <Esc>"+gPi
+" vnoremap <C-v> "+gPgv
 "set clipboard^=,unnamedplus
 
 "undo & redo
@@ -254,5 +259,5 @@ cnoreabbrev Qa qa
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-map <M-t> zz:sp \| resize 8 \| term<CR>
-tmap <M-t> zz:sp \| resize 8 \| term<CR>
+map <M-t> zz:vsp<CR>
+tmap <M-t> zz:vsp<CR>
