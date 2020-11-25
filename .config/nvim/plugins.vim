@@ -181,9 +181,7 @@ set statusline+=\ Lines\                " percentage
 
 
 autocmd User CocGitStatusChange call horizonbar#GetDiffList()
-nnoremap <M-ScrollWheelUp> <C-u>
-nnoremap <M-ScrollWheelDown> <C-d>
-
+autocmd User CocGitStatusChange exe 'LuaTreeRefresh'
 
 function! GitAdd() abort
   if bufname('%') !~ 'LuaTree'
@@ -205,6 +203,9 @@ function! GitDiscard() abort
     :doautocmd User CocGitStatusChange
   endif
 endfunction
+
+nnoremap <M-ScrollWheelUp> <C-u>
+nnoremap <M-ScrollWheelDown> <C-d>
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
@@ -265,6 +266,8 @@ function! OpenFzfPreviewGitStatus()
 endfunction
 
 function! s:fzf_preview_settings() abort
+  let g:fzf_preview_fzf_preview_window_option = 'right:70%'
+
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
   let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading'
 
