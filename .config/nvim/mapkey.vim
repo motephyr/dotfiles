@@ -115,23 +115,6 @@ nnoremap <M-f> :Format<CR>
 inoremap <M-f> <Esc>:Format<CR>
 vnoremap <M-f> <Esc>:Format<CR>
 
-noremap <C-h> <Left>
-noremap <C-j> <Down>
-noremap <C-k> <Up>
-noremap <C-l> <Right>
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-cnoremap <C-h> <Left>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-l> <Right>
-tnoremap <C-h> <Left>
-tnoremap <C-j> <Down>
-tnoremap <C-k> <Up>
-tnoremap <C-l> <Right>
-
 if has('nvim')
   augroup terminal_setup | au!
     autocmd TermOpen,BufEnter term://* startinsert

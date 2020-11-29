@@ -19,7 +19,6 @@ windows:
             - yarn dev
         - e:
             - cd kamo_manager
-            - yarn dev
         - c:
             - cd kamo_candidate
             - yarn dev
