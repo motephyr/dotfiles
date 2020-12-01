@@ -1,11 +1,16 @@
 call plug#begin()
 
 Plug 'ybian/smartim'
-Plug 'kyazdani42/nvim-tree.lua'
+  if bufname('%') !~ 'scp'
+    Plug 'kyazdani42/nvim-tree.lua'
 
-nnoremap <leader>e :LuaTreeToggle<CR>
-nnoremap <leader>r :LuaTreeRefresh<CR>
+    nnoremap <leader>e :LuaTreeToggle<CR>
+    nnoremap <leader>r :LuaTreeRefresh<CR>
+  else
 
+    nnoremap <silent> <leader>e :call ToggleVExplorer()<CR>
+
+  endif
   " browse
   " noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   noremap <silent> <M-a> :call GitAdd()<CR>
@@ -30,7 +35,7 @@ nnoremap <leader>r :LuaTreeRefresh<CR>
   Plug 'honza/vim-snippets'
 
   " Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
