@@ -192,14 +192,22 @@ cnoremap <expr> <ScrollWheelDown> getcmdtype()==#'/' ? '<CR>' : '<C-c>'
 noremap <M-ScrollWheelUp> <C-u>
 noremap <M-ScrollWheelDown> <C-d>
 
-nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
-nnoremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
-nnoremap <S-3-ScrollWheelUp> <3-ScrollWheelLeft>
-nnoremap <S-4-ScrollWheelUp> <4-ScrollWheelLeft>
-nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
-nnoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
-nnoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
-nnoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
+noremap <S-ScrollWheelUp> <ScrollWheelLeft>
+noremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
+noremap <S-3-ScrollWheelUp> <3-ScrollWheelLeft>
+noremap <S-4-ScrollWheelUp> <4-ScrollWheelLeft>
+noremap <S-ScrollWheelDown> <ScrollWheelRight>
+noremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
+noremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
+noremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
+inoremap <S-ScrollWheelUp> <ScrollWheelLeft>
+inoremap <S-2-ScrollWheelUp> <2-ScrollWheelLeft>
+inoremap <S-3-ScrollWheelUp> <3-ScrollWheelLeft>
+inoremap <S-4-ScrollWheelUp> <4-ScrollWheelLeft>
+inoremap <S-ScrollWheelDown> <ScrollWheelRight>
+inoremap <S-2-ScrollWheelDown> <2-ScrollWheelRight>
+inoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
+inoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
 nnoremap <silent> <M-`> <C-w><C-w>

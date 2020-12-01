@@ -84,10 +84,12 @@ if bufname('%') !~ 'scp'
 
 else
   autocmd FileType netrw let t:explorer_winnr = bufwinnr('%') | let g:NetrwIsOpen = 1
+  autocmd FileType netrw nmap <buffer> <2-leftmouse> <CR>
   autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'NetrwTreeListing' | execute t:explorer_winnr.'wincmd c' | endif 
 
   autocmd BufWinEnter * call PreventBuffersInExplorer()
 
+  let g:scp_path = bufname('%')
   function! PreventBuffersInExplorer()
     if bufname('%') !~ 'NetrwTreeListing'
           \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
@@ -95,9 +97,10 @@ else
       let bufnum = bufnr('%')
       close
       exe 'b ' . bufnum
-      :Vexplore
+      exe 'Nread ' . g:scp_path
     endif
   endfunction
+
 
   function! ToggleVExplorer()
     if g:NetrwIsOpen
@@ -111,8 +114,9 @@ else
         let g:NetrwIsOpen=0
     else
         let g:NetrwIsOpen=1
-        :lefta vsp 
-        :Vexplore
+        exe 'lefta vsp'
+        exe 'lefta vsp'
+        exe 'Nread ' . g:scp_path
     endif
   endfunction
   let g:netrw_banner = 0
