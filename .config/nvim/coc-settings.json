@@ -14,8 +14,7 @@
     "typescript",
     "typescriptreact",
     "javascriptreact",
-    "typescript.tsx",
-    "vue"
+    "typescript.tsx"
   ],
   "diagnostic.infoSign": "ღ",
   "diagnostic.warningSign": "⚠",

@@ -298,7 +298,7 @@ let g:coc_snippet_next = '<tab>'
 command! -nargs=0 Format :call Format()
 
 function Format()
-  if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx", "vue"], &filetype) > -1
+  if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"], &filetype) > -1
     :CocCommand eslint.executeAutofix
   else
     :call CocAction('format')
