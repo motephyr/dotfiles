@@ -21,9 +21,9 @@ Plug 'ybian/smartim'
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
-  noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig<CR>' : ''
-  noremap <expr> <Leader>f bufname('%') !~ 'LuaTree' ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <M-g> bufname('%') !~ 'LuaTree' ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  noremap <Leader>g <Esc>:tabnew \| term tig<CR>
+  noremap <expr> <Leader>f (index(['','LuaTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+  noremap <expr> <M-g> (index(['','LuaTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
   "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
 
@@ -209,9 +209,6 @@ function! GitDiscard() abort
   endif
 endfunction
 
-nnoremap <M-ScrollWheelUp> <C-u>
-nnoremap <M-ScrollWheelDown> <C-d>
-
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
@@ -298,17 +295,16 @@ let g:coc_snippet_next = '<tab>'
 command! -nargs=0 Format :call Format()
 
 function Format()
-  if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"], &filetype) > -1
-    :CocCommand eslint.executeAutofix
-  else
     :call CocAction('format')
-  endif
+    if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"], &filetype) > -1
+      :CocCommand eslint.executeAutofix
+    endif
 endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     "execute 'h '.expand('<cword>')
-  elseif bufname('%') !~ 'LuaTree' && mode() == 'n'
+  elseif bufname('%') !~ 'LuaTree' && bufname('%') !~ 'NetrwTreeListing' && mode() == 'n' && &filetype != ''
     call CocActionAsync('doHover')
   endif
 endfunction
