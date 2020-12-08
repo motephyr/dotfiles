@@ -72,6 +72,7 @@ nnoremap <silent> n gn
 nnoremap <silent> N gN
 vnoremap <silent> n <Esc>ngn
 vnoremap <silent> N <Esc>NgN
+cnoremap <expr> <CR> getcmdtype()=='/' ? '<CR>gn' : '<CR>'
 
 "replace
 vnoremap <M-h> "hy:.,$s/<C-r>h//gIc<left><left><left><left>

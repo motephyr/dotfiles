@@ -27,7 +27,7 @@ if bufname('%') !~ 'scp'
       \ 'toggle_ignored':  'I',
       \ 'toggle_dotfiles': 'H',
       \ 'refresh':         'R',
-      \ 'preview':         '<Tab>',
+      \ 'preview':         'gp',
       \ 'cd':              '<C-]>',
       \ 'create':          'a',
       \ 'remove':          'd',

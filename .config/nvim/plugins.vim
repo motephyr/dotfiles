@@ -101,19 +101,19 @@ Plug 'ybian/smartim'
 
   Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
 
-  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
-  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep<Space>'<C-r>h'<left>
-  inoremap <C-f> <C-c>:FzfPreviewProjectGrep<Space>''<left>
+  nnoremap <C-f> <C-c>:FzfPreviewProjectGrep --ignore-case<Space>''<left>
+  vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep --ignore-case<Space>'<C-r>h'<left>
+  inoremap <C-f> <C-c>:FzfPreviewProjectGrep --ignore-case<Space>''<left>
   cnoremap <C-f> <C-c>
-  tnoremap <C-f> <Esc>
+  tnoremap <C-f> <Esc><C-\><C-n>
   nnoremap <C-t> <C-c>:FzfPreviewFromResources project_mru git<CR>
   vnoremap <C-t> "hy<C-c>:FzfPreviewFromResources project_mru git<CR><C-\><C-n>"hpi
   inoremap <C-t> <C-c>:FzfPreviewFromResources project_mru git<CR>
-  tnoremap <C-t> <Esc>
+  tnoremap <C-t> <Esc><C-\><C-n>
 
   noremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
   inoremap <C-g> <C-c>:call OpenFzfPreviewGitStatus()<CR>
-  tnoremap <C-g> <Esc>
+  tnoremap <C-g> <Esc><C-\><C-n>
 
   Plug 'tomtom/tcomment_vim'
   nmap <M-/> <Leader>__
@@ -139,7 +139,11 @@ Plug 'ybian/smartim'
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   Plug 'easymotion/vim-easymotion'
-  cnoremap <expr> / getcmdtype()==#'/' ? '<CR>:silent! call EasyMotion#Search(0, 2, 0)<CR>' : '/'
+  cnoremap <expr> <TAB> getcmdtype()=='/' ?
+        \ '<CR>:silent! call EasyMotion#Search(0, 2, 0)<CR>' :
+        \ "<C-z>"
+  let g:EasyMotion_smartcase = 1
+  nmap <TAB> <Plug>(easymotion-overwin-f2)
 
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
