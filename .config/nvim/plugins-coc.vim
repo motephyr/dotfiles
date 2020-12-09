@@ -57,8 +57,8 @@ if bufname('%') !~ 'scp'
       \   'deleted': "[_]"
       \   },
       \ 'folder': {
-      \   'default': " ",
-      \   'open': " "
+      \   'default': "  📁",
+      \   'open': "  📂"
       \   }
       \ }
   augroup CursorLine
@@ -103,7 +103,7 @@ else
 
 
   function! ToggleVExplorer()
-    if g:NetrwIsOpen
+    if exists('g:NetrwIsOpen')
         let i = bufnr("$")
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
