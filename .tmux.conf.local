@@ -169,7 +169,7 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #{username}#{root} | #{hostname} '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -277,7 +277,7 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -285,14 +285,14 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
+set -gu prefix2
+unbind C-a
 # unbind C-b
 # set -g prefix C-a
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+set -g status-position top
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -305,3 +305,15 @@ set -g @continuum-restore 'on'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
+
+bind-key -n C-0 select-window -t :0
+bind-key -n C-1 select-window -t :1
+bind-key -n C-2 select-window -t :2
+bind-key -n C-3 select-window -t :3
+bind-key -n C-4 select-window -t :4
+bind-key -n C-5 select-window -t :5
+bind-key -n C-6 select-window -t :6
+bind-key -n C-7 select-window -t :7
+bind-key -n C-8 select-window -t :8
+bind-key -n C-9 select-window -t :9
+

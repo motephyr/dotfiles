@@ -32,6 +32,7 @@ vnoremap <C-c> "+ygv<Esc>
 nnoremap <C-q> :qa<CR>
 inoremap <C-q> <Esc>:qa<CR>
 vnoremap <C-q> <Esc>:qa<CR>
+tnoremap <C-q> <C-\><C-n>:qa<CR>
 
 "for visual insert
 vnoremap <S-a> <Esc>i
