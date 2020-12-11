@@ -158,7 +158,7 @@ function! TerminalAllClose()
   endif
 endfunc
 
-autocmd VimLeave * :tabonly | call TerminalAllClose() | :CloseHiddenBuffers
+autocmd VimLeave *  call TerminalAllClose() | :CloseHiddenBuffers
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -239,7 +239,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>t :tabnew \| term<CR>
+nnoremap <leader>t :tabnew \| CocCommand explorer ../
 tnoremap <leader>` <C-\><C-n>:tabnext<CR>
 tnoremap <leader>1 <C-\><C-n>1gt
 tnoremap <leader>2 <C-\><C-n>2gt
@@ -250,7 +250,7 @@ tnoremap <leader>6 <C-\><C-n>6gt
 tnoremap <leader>7 <C-\><C-n>7gt
 tnoremap <leader>8 <C-\><C-n>8gt
 tnoremap <leader>9 <C-\><C-n>9gt
-tnoremap <leader>t <C-\><C-n>:tabnew \| term<CR>
+tnoremap <leader>t <C-\><C-n>:tabnew \| CocCommand explorer ../
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>

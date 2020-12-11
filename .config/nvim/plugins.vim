@@ -1,18 +1,16 @@
 call plug#begin()
 
-Plug 'ybian/smartim'
+  Plug 'ybian/smartim'
+  Plug 'antoinemadec/FixCursorHold.nvim'
   if bufname('%') !~ 'scp'
-    Plug 'kyazdani42/nvim-tree.lua'
 
-    nnoremap <leader>e :LuaTreeToggle<CR>
-    nnoremap <leader>r :LuaTreeRefresh<CR>
+    noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   else
 
     nnoremap <silent> <leader>e :call ToggleVExplorer()<CR>
 
   endif
   " browse
-  " noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   noremap <silent> <M-a> :call GitAdd()<CR>
   noremap <silent> <M-r> :call GitRm()<CR>
   noremap <silent> <M-c> :call GitDiscard()<CR>
@@ -21,11 +19,13 @@ Plug 'ybian/smartim'
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
+  Plug 'airblade/vim-rooter'
+
   noremap <Leader>g <Esc>:tabnew \| term tig<CR>
-  noremap <expr> <Leader>f (index(['','LuaTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <M-g> (index(['','LuaTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'LuaTree' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
+  noremap <expr> <Leader>f (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+  noremap <expr> <M-g> (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
+  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -156,9 +156,9 @@ Plug 'ybian/smartim'
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   "
 
-  " Plug 'APZelos/blamer.nvim'
-  " let g:blamer_enabled = 1
-  " let g:blamer_show_in_visual_modes = 0
+  Plug 'APZelos/blamer.nvim'
+  let g:blamer_enabled = 1
+  let g:blamer_show_in_visual_modes = 0
   " Plug 'rhysd/devdocs.vim'
   " nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
 call plug#end()
@@ -175,7 +175,7 @@ set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
-set statusline+=%{(index(['','LuaTree'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
+set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
 set statusline+=%=
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
@@ -190,24 +190,23 @@ set statusline+=\ Lines\                " percentage
 
 
 autocmd User CocGitStatusChange call horizonbar#GetDiffList()
-autocmd User CocGitStatusChange exe 'LuaTreeRefresh'
 
 function! GitAdd() abort
-  if bufname('%') !~ 'LuaTree'
+  if bufname('%') !~ 'coc-explorer'
     :! git add %
     :doautocmd User CocGitStatusChange
   endif
 endfunction
 
 function! GitRm() abort
-  if bufname('%') !~ 'LuaTree'
+  if bufname('%') !~ 'coc-explorer'
     :! git reset -- %
     :doautocmd User CocGitStatusChange
   endif
 endfunction
 
 function! GitDiscard() abort
-  if bufname('%') !~ 'LuaTree'
+  if bufname('%') !~ 'coc-explorer'
     :! git checkout -- %
     :doautocmd User CocGitStatusChange
   endif
@@ -308,7 +307,7 @@ endfunction
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     "execute 'h '.expand('<cword>')
-  elseif bufname('%') !~ 'LuaTree' && bufname('%') !~ 'NetrwTreeListing' && mode() == 'n' && &filetype != ''
+  elseif bufname('%') !~ 'coc-explorer' && bufname('%') !~ 'NetrwTreeListing' && mode() == 'n' && &filetype != ''
     call CocActionAsync('doHover')
   endif
 endfunction
