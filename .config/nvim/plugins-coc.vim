@@ -1,7 +1,6 @@
 if bufname('%') !~ 'scp'
 
   autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-  autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'coc-explorer' | execute t:explorer_winnr.'wincmd c' | endif
   autocmd BufWinEnter * call PreventBuffersInExplorer()
 
   function! PreventBuffersInExplorer()

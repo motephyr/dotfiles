@@ -20,7 +20,7 @@ windows:
         - e:
             - cd kamo_manager
         - c:
-            - cd kamo_candidate
+            - cd kamo-candidate
             - yarn dev
         - d:
             - cd kamo-admin

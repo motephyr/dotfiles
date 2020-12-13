@@ -66,8 +66,25 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
+"fold
+noremap <C-l> :call ToogleFold()<CR>
+vnoremap <C-l> :call ToogleFold()<CR>
+function! ToogleFold()
+     if &foldlevel == 0
+       :Fold
+     endif
+     if &foldlevel >= 20
+         "normal! zM<CR> (folds all)
+         set foldlevel=1
+     else
+         "normal! zR<CR> (unfolds everything)
+         set foldlevel=20
+     endif
+endfunction
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 "search
-vmap / y/<C-r>"<CR>
+vmap / y/<C-r>"<CR>NNo
 nmap ? viw/
 nnoremap <silent> n gn 
 nnoremap <silent> N gN
@@ -147,18 +164,21 @@ endfunc
 nmap <silent> <leader>x :call TerminalPane()<cr>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
-function! TerminalAllClose()
-  let b = filter(range(1, winnr('$')),
-        \'getwinvar(v:val, "&buftype", "ERROR") == "terminal"')
-  if len(b) > 0
-    for pane in b
-      exe pane.'wincmd w'
-      exe 'bdelete!'
-    endfor
-  endif
+function! TerminalAndExplorerAllClose()
+  let t = range(1, tabpagenr('$'))
+  for tabnumber in t
+    let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer"'))
+    if len(b) > 0
+      for pane in b
+        exe pane.'wincmd w'
+        exe 'bdelete!'
+      endfor
+    endif
+    exe 'tabnext'
+  endfor
 endfunc
 
-autocmd VimLeave *  call TerminalAllClose() | :CloseHiddenBuffers
+autocmd VimLeave * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -239,7 +259,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>t :tabnew \| CocCommand explorer ../
+nnoremap <leader>t :tabnew \| cd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 tnoremap <leader>` <C-\><C-n>:tabnext<CR>
 tnoremap <leader>1 <C-\><C-n>1gt
 tnoremap <leader>2 <C-\><C-n>2gt
@@ -250,7 +270,7 @@ tnoremap <leader>6 <C-\><C-n>6gt
 tnoremap <leader>7 <C-\><C-n>7gt
 tnoremap <leader>8 <C-\><C-n>8gt
 tnoremap <leader>9 <C-\><C-n>9gt
-tnoremap <leader>t <C-\><C-n>:tabnew \| CocCommand explorer ../
+tnoremap <leader>t <C-\><C-n>:tabnew \| cd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>

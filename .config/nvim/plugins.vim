@@ -170,12 +170,11 @@ set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 set statusline+=%{(mode()=='c')?'\ \ \ \ \ \ \ \ \ ':''}
 set statusline+=%{(mode()=='t')?'\ \ \ \ \ \ \ \ \ ':''}
-set statusline+=\ %n\           " buffer number
 set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
-set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()):''}
+set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()+3):''}
 set statusline+=%=
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag

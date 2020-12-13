@@ -33,7 +33,7 @@
       "open"
     ],
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
-    "<space>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "<space>": "cd",
     "i": "open:split",
     "s": "open:vsplit"
   },
