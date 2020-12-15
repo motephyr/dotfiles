@@ -192,6 +192,9 @@ nnoremap Q @q<Esc>
 vnoremap Q :norm @q<CR>
 
 "mouse
+nmap <silent> <C-LeftMouse> <LeftMouse>viw
+imap <silent> <C-LeftMouse> <LeftMouse>viw
+vmap <silent> <C-LeftMouse> <LeftMouse>viw
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$
@@ -230,47 +233,49 @@ inoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 inoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
-nnoremap <silent> <M-`> <C-w><C-w>
-nnoremap <M-1> <Esc>:1wincmd w<CR>
-nnoremap <M-2> <Esc>:2wincmd w<CR>
-nnoremap <M-3> <Esc>:3wincmd w<CR>
-nnoremap <M-4> <Esc>:4wincmd w<CR>
-nnoremap <M-5> <Esc>:5wincmd w<CR>
-nnoremap <M-6> <Esc>:6wincmd w<CR>
-nnoremap <M-7> <Esc>:7wincmd w<CR>
-nnoremap <M-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
-tnoremap <silent> <M-`> <C-\><C-n><C-w><C-w>
-tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
-tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
-tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
-tnoremap <M-4> <C-\><C-n>:4wincmd w<CR>
-tnoremap <M-5> <C-\><C-n>:5wincmd w<CR>
-tnoremap <M-6> <C-\><C-n>:6wincmd w<CR>
-tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
-tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+nnoremap <silent> <leader>` <C-w><C-w>
+nnoremap <leader>1 <Esc>:1wincmd w<CR>
+nnoremap <leader>2 <Esc>:2wincmd w<CR>
+nnoremap <leader>3 <Esc>:3wincmd w<CR>
+nnoremap <leader>4 <Esc>:4wincmd w<CR>
+nnoremap <leader>5 <Esc>:5wincmd w<CR>
+nnoremap <leader>6 <Esc>:6wincmd w<CR>
+nnoremap <leader>7 <Esc>:7wincmd w<CR>
+nnoremap <leader>8 <Esc>:exe winnr('$') 'wincmd w'<CR>
+map <leader>t zz:vsp<CR>
+tnoremap <silent> <leader>` <C-\><C-n><C-w><C-w>
+tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
+tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
+tnoremap <leader>3 <C-\><C-n>:3wincmd w<CR>
+tnoremap <leader>4 <C-\><C-n>:4wincmd w<CR>
+tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
+tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
+tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
+tnoremap <leader>8 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+tmap <leader> zz:vsp<CR>
 
-nnoremap <leader>` :tabnext<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>t :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-tnoremap <leader>` <C-\><C-n>:tabnext<CR>
-tnoremap <leader>1 <C-\><C-n>1gt
-tnoremap <leader>2 <C-\><C-n>2gt
-tnoremap <leader>3 <C-\><C-n>3gt
-tnoremap <leader>4 <C-\><C-n>4gt
-tnoremap <leader>5 <C-\><C-n>5gt
-tnoremap <leader>6 <C-\><C-n>6gt
-tnoremap <leader>7 <C-\><C-n>7gt
-tnoremap <leader>8 <C-\><C-n>8gt
-tnoremap <leader>9 <C-\><C-n>9gt
-tnoremap <leader>t <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+nnoremap <M-`> :tabnext<CR>
+nnoremap <M-1> 1gt
+nnoremap <M-2> 2gt
+nnoremap <M-3> 3gt
+nnoremap <M-4> 4gt
+nnoremap <M-5> 5gt
+nnoremap <M-6> 6gt
+nnoremap <M-7> 7gt
+nnoremap <M-8> 8gt
+nnoremap <M-9> 9gt
+nnoremap <M-t> :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+tnoremap <M-`> <C-\><C-n>:tabnext<CR>
+tnoremap <M-1> <C-\><C-n>1gt
+tnoremap <M-2> <C-\><C-n>2gt
+tnoremap <M-3> <C-\><C-n>3gt
+tnoremap <M-4> <C-\><C-n>4gt
+tnoremap <M-5> <C-\><C-n>5gt
+tnoremap <M-6> <C-\><C-n>6gt
+tnoremap <M-7> <C-\><C-n>7gt
+tnoremap <M-8> <C-\><C-n>8gt
+tnoremap <M-9> <C-\><C-n>9gt
+tnoremap <M-t> <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>
@@ -282,5 +287,3 @@ cnoreabbrev Qa qa
 vnoremap > >gv
 vnoremap < <gv
 
-map <M-t> zz:vsp<CR>
-tmap <M-t> zz:vsp<CR>

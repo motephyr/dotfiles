@@ -3,9 +3,9 @@ call plug#begin()
   Plug 'ybian/smartim'
   Plug 'antoinemadec/FixCursorHold.nvim'
   if bufname('%') !~ 'scp'
-    noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
+    noremap <silent> <C-e> :CocCommand explorer --no-focus<CR>
   else
-    noremap <silent> <leader>e :call ToggleVExplorer()<CR>
+    noremap <silent> <C-e> :call ToggleVExplorer()<CR>
   endif
   " browse
   noremap <silent> <M-a> :call GitAdd()<CR>
@@ -19,8 +19,6 @@ call plug#begin()
   noremap <Leader>g <Esc>:tabnew \| term tig<CR>
   noremap <expr> <Leader>f (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
   noremap <expr> <M-g> (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vertical Git diff HEAD %<CR>' : ''
-  "noremap <expr> <Leader>g bufname('%') !~ 'coc-explorer' ? '<Esc>:vnew \| r !git diff HEAD <C-r>%<CR>' : ''
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -76,10 +74,6 @@ call plug#begin()
 
   nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
   xmap <CR> <Plug>(coc-codeaction-selected)
-
-  nmap <silent> <C-LeftMouse> <LeftMouse>viw
-  imap <silent> <C-LeftMouse> <LeftMouse>viw
-  vmap <silent> <C-LeftMouse> <LeftMouse>viw
 
   nnoremap . :norm! $x<CR>
   xnoremap . :norm! $x<CR>gv
@@ -170,7 +164,7 @@ set statusline+=%#Visual#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 set statusline+=%#CursorIM#     " colour
-set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()+3):''}
+set statusline+=%{(index(['','coc-explorer'],&filetype)<0)?horizonbar#ScrollBarWidth(horizonbar#BarWidth()+2):''}
 set statusline+=%=
 set statusline+=%R                        " readonly flag
 set statusline+=%M                        " modified [+] flag
@@ -209,7 +203,7 @@ endfunction
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-let g:workspace_autosave = 0
+"let g:workspace_autosave = 0 issue for create tab
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 let g:workspace_create_new_tabs = 1
 set undofile
