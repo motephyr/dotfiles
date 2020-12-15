@@ -56,3 +56,29 @@ let g:loaded_matchparen = 1
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set grepformat=%f:%l:%c:%m
 
+
+fu! MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+   " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+      " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+      " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  return s
+endfu
+
+fu! MyTabLabel(n)
+   return substitute(getcwd(0, a:n), expand('~'), '~', '')
+endfu
+set tabline=%!MyTabLine()
+

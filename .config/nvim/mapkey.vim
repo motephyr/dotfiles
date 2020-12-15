@@ -259,7 +259,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>t :tabnew \| cd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+nnoremap <leader>t :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 tnoremap <leader>` <C-\><C-n>:tabnext<CR>
 tnoremap <leader>1 <C-\><C-n>1gt
 tnoremap <leader>2 <C-\><C-n>2gt
@@ -270,7 +270,7 @@ tnoremap <leader>6 <C-\><C-n>6gt
 tnoremap <leader>7 <C-\><C-n>7gt
 tnoremap <leader>8 <C-\><C-n>8gt
 tnoremap <leader>9 <C-\><C-n>9gt
-tnoremap <leader>t <C-\><C-n>:tabnew \| cd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+tnoremap <leader>t <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>
@@ -279,8 +279,8 @@ cabbr <expr> %% expand('%:p:h')
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+vnoremap > >gv
+vnoremap < <gv
 
 map <M-t> zz:vsp<CR>
 tmap <M-t> zz:vsp<CR>

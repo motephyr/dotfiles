@@ -3,12 +3,9 @@ call plug#begin()
   Plug 'ybian/smartim'
   Plug 'antoinemadec/FixCursorHold.nvim'
   if bufname('%') !~ 'scp'
-
     noremap <silent> <Leader>e :CocCommand explorer --no-focus<CR>
   else
-
-    nnoremap <silent> <leader>e :call ToggleVExplorer()<CR>
-
+    noremap <silent> <leader>e :call ToggleVExplorer()<CR>
   endif
   " browse
   noremap <silent> <M-a> :call GitAdd()<CR>
@@ -19,8 +16,6 @@ call plug#begin()
   Plug 'mhinz/vim-signify'
   "Plug 'tpope/vim-fugitive'
 
-  Plug 'airblade/vim-rooter'
-
   noremap <Leader>g <Esc>:tabnew \| term tig<CR>
   noremap <expr> <Leader>f (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
   noremap <expr> <M-g> (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
@@ -29,6 +24,7 @@ call plug#begin()
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
+  " nnoremap <Leader>sa :ToggleAutosave<cr>
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -144,7 +140,7 @@ call plug#begin()
         \ "<C-z>"
   let g:EasyMotion_smartcase = 1
   nmap <TAB> <Plug>(easymotion-overwin-f2)
-
+  vmap <TAB> <Plug>(easymotion-f2)
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
   " let g:leetcode_browser = 'chrome'
@@ -215,6 +211,7 @@ endfunction
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
+let g:workspace_create_new_tabs = 1
 set undofile
 
 "set sessionoptions+=globals
@@ -234,6 +231,8 @@ hi! Search ctermbg=yellow guibg=yellow ctermfg=black guifg=black
 hi! IncSearch ctermbg=darkred guibg=darkred ctermfg=white guifg=white
 hi CursorLine cterm=NONE ctermbg=darkred guibg=darkred 
 hi TabLineSel cterm=NONE ctermbg=darkred guibg=darkred
+hi Folded ctermfg=grey guifg=grey
+
 
 "fzf
 augroup fzf_preview
