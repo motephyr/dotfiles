@@ -29,13 +29,27 @@
   "explorer.keyMappings.global": {
     "<2-LeftMouse>": [
       "expandable?",
-      ["expanded?", "collapse", "expand"],
+      [
+        "expanded?",
+        "collapse",
+        "expand"
+      ],
       "open"
     ],
-    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "<cr>": [
+      "expandable?",
+      [
+        "expanded?",
+        "collapse",
+        "expand"
+      ],
+      "open"
+    ],
     "<space>": "cd",
     "i": "open:split",
-    "s": "open:vsplit"
+    "s": "open:vsplit",
+    "<M-a>": "gitStage()",
+    "<M-r>": "gitUnstage()"
   },
   "explorer.openAction.strategy": "select",
   "explorer.previewAction.onHover": false,

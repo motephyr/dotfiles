@@ -10,8 +10,12 @@ if bufname('%') !~ 'scp'
       let bufnum = bufnr('%')
       close
       exe 'b ' . bufnum
-      :CocCommand explorer
+      :CocCommand explorer --no-focus
     endif
+  endfunction
+
+  function! ToggleVExplorer()
+      :CocCommand explorer --no-focus
   endfunction
 else
   autocmd FileType netrw let t:explorer_winnr = bufwinnr('%') | let g:NetrwIsOpen = 1

@@ -2,11 +2,7 @@ call plug#begin()
 
   Plug 'ybian/smartim'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  if bufname('%') !~ 'scp'
-    noremap <silent> <C-e> :CocCommand explorer --no-focus<CR>
-  else
-    noremap <silent> <C-e> :call ToggleVExplorer()<CR>
-  endif
+  noremap <silent> <C-e> :call ToggleVExplorer()<CR>
   " browse
   noremap <silent> <M-a> :call GitAdd()<CR>
   noremap <silent> <M-r> :call GitRm()<CR>
@@ -75,8 +71,10 @@ call plug#begin()
   nmap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : 'i<CR>'
   xmap <CR> <Plug>(coc-codeaction-selected)
 
-  nnoremap . :norm! $x<CR>
-  xnoremap . :norm! $x<CR>gv
+  Plug 'tpope/vim-repeat'
+  Plug 'inkarkat/vim-visualrepeat'
+  " nnoremap . :norm! $x<CR>
+  " xnoremap . :norm! $x<CR>gv
 
   autocmd CursorMoved * silent call <SID>show_documentation()
 
@@ -89,7 +87,7 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-  Plug 'yuki-ycino/fzf-preview.vim',  { 'tag': 'version_1' }
+  Plug 'motephyr/fzf-preview.vim',  { 'branch': 'motephyr' }
 
   nnoremap <C-f> <C-c>:FzfPreviewProjectGrep --ignore-case<Space>''<left>
   vnoremap <C-f> "hy<C-c>:FzfPreviewProjectGrep --ignore-case<Space>'<C-r>h'<left>
@@ -132,9 +130,12 @@ call plug#begin()
   cnoremap <expr> <TAB> getcmdtype()=='/' ?
         \ '<CR>:silent! call EasyMotion#Search(0, 2, 0)<CR>' :
         \ "<C-z>"
+  let g:EasyMotion_do_mapping = 0
   let g:EasyMotion_smartcase = 1
-  nmap <TAB> <Plug>(easymotion-overwin-f2)
-  vmap <TAB> <Plug>(easymotion-f2)
+  nnoremap <S-TAB> <C-o>
+  vnoremap <S-TAB> <C-o>
+  nmap <Leader>, <Plug>(easymotion-overwin-f2)
+  vmap <Leader>, <Plug>(easymotion-f2)
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
   " let g:leetcode_browser = 'chrome'
@@ -203,7 +204,9 @@ endfunction
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-"let g:workspace_autosave = 0 issue for create tab
+let g:workspace_autosave = 1
+let g:workspace_autosave_untrailspaces = 0
+let g:workspace_autosave_untrailtabs = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'
 let g:workspace_create_new_tabs = 1
 set undofile
@@ -263,7 +266,7 @@ function! OpenFzfPreviewGitStatus()
 endfunction
 
 function! s:fzf_preview_settings() abort
-  let g:fzf_preview_fzf_preview_window_option = 'right:70%'
+  let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 
   let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
   let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading'

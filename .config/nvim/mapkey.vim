@@ -242,7 +242,7 @@ nnoremap <leader>5 <Esc>:5wincmd w<CR>
 nnoremap <leader>6 <Esc>:6wincmd w<CR>
 nnoremap <leader>7 <Esc>:7wincmd w<CR>
 nnoremap <leader>8 <Esc>:exe winnr('$') 'wincmd w'<CR>
-map <leader>t zz:vsp<CR>
+map <leader>t zz:vnew<CR>
 tnoremap <silent> <leader>` <C-\><C-n><C-w><C-w>
 tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
 tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
@@ -252,7 +252,7 @@ tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
 tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
 tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
 tnoremap <leader>8 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
-tmap <leader> zz:vsp<CR>
+tmap <leader>t zz:vnew<CR>
 
 nnoremap <M-`> :tabnext<CR>
 nnoremap <M-1> 1gt
@@ -263,7 +263,8 @@ nnoremap <M-5> 5gt
 nnoremap <M-6> 6gt
 nnoremap <M-7> 7gt
 nnoremap <M-8> 8gt
-nnoremap <M-9> 9gt
+nnoremap <M-9> :tabnew \| terminal<CR>
+nnoremap <M-0> :tabclose<CR>
 nnoremap <M-t> :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 tnoremap <M-`> <C-\><C-n>:tabnext<CR>
 tnoremap <M-1> <C-\><C-n>1gt
@@ -274,7 +275,8 @@ tnoremap <M-5> <C-\><C-n>5gt
 tnoremap <M-6> <C-\><C-n>6gt
 tnoremap <M-7> <C-\><C-n>7gt
 tnoremap <M-8> <C-\><C-n>8gt
-tnoremap <M-9> <C-\><C-n>9gt
+tnoremap <M-9> <C-\><C-n>:tabnew \| terminal<CR>
+tnoremap <M-0> <C-\><C-n>:tabclose<CR>
 tnoremap <M-t> <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>

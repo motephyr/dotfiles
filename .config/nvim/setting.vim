@@ -28,7 +28,6 @@ set nowritebackup
 set noswapfile
 set updatetime=300
 set shortmess+=c
-
 set cmdheight=2
 set lazyredraw
 
@@ -78,7 +77,8 @@ fu! MyTabLine()
 endfu
 
 fu! MyTabLabel(n)
-   return substitute(getcwd(0, a:n), expand('~'), '~', '')
+  return split(getcwd(0, a:n),'/')[-1]
+   " return substitute(getcwd(0, a:n), expand('~'), '~', '')
 endfu
 set tabline=%!MyTabLine()
 
