@@ -16,12 +16,14 @@ set ve+=onemore  " 在最後加一個字元
 set sel=exclusive
 
 let CursorColumnI = 0 "the cursor column position in INSERT
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
-au BufNewFile,BufRead *.ejs,*.edge,*.cshtml set filetype=html
-autocmd BufEnter *.png,*.jpg,*.gif exec "! open ".expand("%") | :bw
+augroup setting | au!
+  au InsertEnter * let CursorColumnI = col('.')
+  au CursorMovedI * let CursorColumnI = col('.')
+  au InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+  au BufNewFile,BufRead *.ejs,*.edge,*.cshtml set filetype=html
+  au BufEnter *.png,*.jpg,*.gif exec "! open ".expand("%") | :bw
+augroup end
 
 set nobackup
 set nowritebackup

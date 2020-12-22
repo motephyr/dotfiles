@@ -76,8 +76,6 @@ call plug#begin()
   " nnoremap . :norm! $x<CR>
   " xnoremap . :norm! $x<CR>gv
 
-  autocmd CursorMoved * silent call <SID>show_documentation()
-
   nmap <silent> <M-e> <Plug>(coc-refactor)
   nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
   nmap <M-d> :CocCommand docthis.documentThis<CR>
@@ -178,8 +176,26 @@ set statusline+=%#Cursor#       " colour
 set statusline+=\ %{line('$')}
 set statusline+=\ Lines\                " percentage
 
+augroup plugin | au!
+  autocmd CursorMoved * silent call <SID>show_documentation()
+  autocmd User CocGitStatusChange call horizonbar#GetDiffList()
+  autocmd VimLeave * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
+augroup END
 
-autocmd User CocGitStatusChange call horizonbar#GetDiffList()
+function! TerminalAndExplorerAllClose()
+  let t = range(1, tabpagenr('$'))
+  for tabnumber in t
+    let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer"'))
+    if len(b) > 0
+      for pane in b
+        exe pane.'wincmd w'
+        exe 'bdelete!'
+      endfor
+    endif
+    exe 'tabnext'
+  endfor
+endfunc
+
 
 function! GitAdd() abort
   if bufname('%') !~ 'coc-explorer'

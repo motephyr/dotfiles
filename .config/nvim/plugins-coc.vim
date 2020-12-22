@@ -1,8 +1,8 @@
 if bufname('%') !~ 'scp'
-
-  autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
-  autocmd BufWinEnter * call PreventBuffersInExplorer()
-
+  augroup coc_explorer | au!
+    autocmd FileType coc-explorer let t:explorer_winnr = bufwinnr('%')
+    autocmd BufWinEnter * call PreventBuffersInExplorer()
+  augroup END
   function! PreventBuffersInExplorer()
     if bufname('#') =~ 'coc-explorer' && bufname('%') !~ 'coc-explorer'
           \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
@@ -19,10 +19,11 @@ if bufname('%') !~ 'scp'
   endfunction
 else
   command! ExploreFind let @/=expand("%:t") |  exe 'Lexplore' | call feedkeys("n", "n")
-  autocmd FileType netrw let t:explorer_winnr = bufwinnr('%') | let g:NetrwIsOpen = 1
-  autocmd FileType netrw nmap <buffer> <2-leftmouse><CR>
-  autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'NetrwTreeListing' | execute t:explorer_winnr.'wincmd c' | endif 
-
+  augroup netrw | au!
+    autocmd FileType netrw let t:explorer_winnr = bufwinnr('%') | let g:NetrwIsOpen = 1
+    autocmd FileType netrw nmap <buffer> <2-leftmouse><CR>
+    autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'NetrwTreeListing' | execute t:explorer_winnr.'wincmd c' | endif 
+  augroup END
   function! ToggleVExplorer()
     if exists('g:NetrwIsOpen') && g:NetrwIsOpen==1
         let i = bufnr("$")

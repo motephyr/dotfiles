@@ -1,19 +1,6 @@
 let mapleader = ","
 
 nnoremap <silent> <Esc> :noh<CR>:diffoff<CR><Esc>
-noremap zz <Esc>:noh<CR>:diffoff<CR><Esc>
-inoremap zz <Esc>
-tnoremap zz <C-\><C-n>:call CloseWindow()<CR>
-"Avoid execute command by C-c
-cnoremap zz <C-c>
-
-function! CloseWindow()
-  if expand('%:t') !~ 'zsh'
-    exe 'bdelete!'
-  else
-    call feedkeys("azz", "n")
-  endif
-endfunction
 
 "Generally speaking, normal insert visual needs to be mapped
 "In some cases, insert does not require map
@@ -164,22 +151,6 @@ endfunc
 nmap <silent> <leader>x :call TerminalPane()<cr>
 tmap <Leader>x <C-\><C-n>:bdelete!<CR>
 
-function! TerminalAndExplorerAllClose()
-  let t = range(1, tabpagenr('$'))
-  for tabnumber in t
-    let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer"'))
-    if len(b) > 0
-      for pane in b
-        exe pane.'wincmd w'
-        exe 'bdelete!'
-      endfor
-    endif
-    exe 'tabnext'
-  endfor
-endfunc
-
-autocmd VimLeave * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
-
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
 vnoremap ` "hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -242,7 +213,9 @@ nnoremap <leader>5 <Esc>:5wincmd w<CR>
 nnoremap <leader>6 <Esc>:6wincmd w<CR>
 nnoremap <leader>7 <Esc>:7wincmd w<CR>
 nnoremap <leader>8 <Esc>:exe winnr('$') 'wincmd w'<CR>
-map <leader>t zz:vnew<CR>
+nnoremap <leader>9 <Esc>:vnew<CR>
+nnoremap <leader>0 <Esc>:bdelete!<CR>
+nnoremap <leader>t <Esc>:vsp<CR>
 tnoremap <silent> <leader>` <C-\><C-n><C-w><C-w>
 tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
 tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
@@ -252,7 +225,9 @@ tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
 tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
 tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
 tnoremap <leader>8 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
-tmap <leader>t zz:vnew<CR>
+tnoremap <leader>9 <C-\><C-n>:vnew<CR>
+tnoremap <leader>0 <C-\><C-n>:bdelete!<CR>
+tmap <leader>t <C-\><C-n>:vsp<CR>
 
 nnoremap <M-`> :tabnext<CR>
 nnoremap <M-1> 1gt
@@ -262,7 +237,7 @@ nnoremap <M-4> 4gt
 nnoremap <M-5> 5gt
 nnoremap <M-6> 6gt
 nnoremap <M-7> 7gt
-nnoremap <M-8> 8gt
+nnoremap <M-8> :tablast
 nnoremap <M-9> :tabnew \| terminal<CR>
 nnoremap <M-0> :tabclose<CR>
 nnoremap <M-t> :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
@@ -274,7 +249,7 @@ tnoremap <M-4> <C-\><C-n>4gt
 tnoremap <M-5> <C-\><C-n>5gt
 tnoremap <M-6> <C-\><C-n>6gt
 tnoremap <M-7> <C-\><C-n>7gt
-tnoremap <M-8> <C-\><C-n>8gt
+tnoremap <M-8> <C-\><C-n>:tablast
 tnoremap <M-9> <C-\><C-n>:tabnew \| terminal<CR>
 tnoremap <M-0> <C-\><C-n>:tabclose<CR>
 tnoremap <M-t> <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
