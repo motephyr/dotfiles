@@ -18,29 +18,15 @@ if bufname('%') !~ 'scp'
       :CocCommand explorer --no-focus
   endfunction
 else
+  command! ExploreFind let @/=expand("%:t") |  exe 'Lexplore' | call feedkeys("n", "n")
   autocmd FileType netrw let t:explorer_winnr = bufwinnr('%') | let g:NetrwIsOpen = 1
-  autocmd FileType netrw nmap <buffer> <2-leftmouse> <CR>
+  autocmd FileType netrw nmap <buffer> <2-leftmouse><CR>
   autocmd VimLeavePre * if exists('t:explorer_winnr') && bufname(winbufnr(t:explorer_winnr)) =~# 'NetrwTreeListing' | execute t:explorer_winnr.'wincmd c' | endif 
 
-  autocmd BufWinEnter * call PreventBuffersInExplorer()
-
-  let g:scp_path = bufname('%')
-  function! PreventBuffersInExplorer()
-    if bufname('%') !~ 'NetrwTreeListing'
-          \ && exists('t:explorer_winnr') && bufwinnr('%') == t:explorer_winnr
-          \ && &buftype == '' && winbufnr(2) != -1
-      let bufnum = bufnr('%')
-      close
-      exe 'b ' . bufnum
-      exe 'Nread ' . g:scp_path
-    endif
-  endfunction
-
-
   function! ToggleVExplorer()
-    if exists('g:NetrwIsOpen')
+    if exists('g:NetrwIsOpen') && g:NetrwIsOpen==1
         let i = bufnr("$")
-        while (i >= 1)
+        while (i >= -1)
             if (getbufvar(i, "&filetype") == "netrw")
                 silent exe "bwipeout " . i 
             endif
@@ -49,9 +35,7 @@ else
         let g:NetrwIsOpen=0
     else
         let g:NetrwIsOpen=1
-        exe 'lefta vsp'
-        exe 'lefta vsp'
-        exe 'Nread ' . g:scp_path
+        exe 'ExploreFind'
     endif
   endfunction
   let g:netrw_banner = 0
