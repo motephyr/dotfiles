@@ -229,28 +229,28 @@ tnoremap <leader>9 <C-\><C-n>:vnew<CR>
 tnoremap <leader>0 <C-\><C-n>:bdelete!<CR>
 tmap <leader>t <C-\><C-n>:vsp<CR>
 
-nnoremap <M-`> :tabnext<CR>
-nnoremap <M-1> 1gt
-nnoremap <M-2> 2gt
-nnoremap <M-3> 3gt
-nnoremap <M-4> 4gt
-nnoremap <M-5> 5gt
-nnoremap <M-6> 6gt
-nnoremap <M-7> 7gt
-nnoremap <M-8> :tablast
-nnoremap <M-9> :tabnew \| terminal<CR>
-nnoremap <M-0> :tabclose<CR>
+nnoremap <C-`> :tabnext<CR>
+nnoremap <C-1> 1gt
+nnoremap <C-2> 2gt
+nnoremap <C-3> 3gt
+nnoremap <C-4> 4gt
+nnoremap <C-5> 5gt
+nnoremap <C-6> 6gt
+nnoremap <C-7> 7gt
+nnoremap <C-8> :tablast
+nnoremap <C-9> :tabnew \| terminal<CR>
+nnoremap <C-0> :tabclose<CR>
 nnoremap <M-t> :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-tnoremap <M-`> <C-\><C-n>:tabnext<CR>
-tnoremap <M-1> <C-\><C-n>1gt
-tnoremap <M-2> <C-\><C-n>2gt
-tnoremap <M-3> <C-\><C-n>3gt
-tnoremap <M-4> <C-\><C-n>4gt
-tnoremap <M-5> <C-\><C-n>5gt
-tnoremap <M-6> <C-\><C-n>6gt
-tnoremap <M-7> <C-\><C-n>7gt
-tnoremap <M-8> <C-\><C-n>:tablast
-tnoremap <M-9> <C-\><C-n>:tabnew \| terminal<CR>
+tnoremap <C-`> <C-\><C-n>:tabnext<CR>
+tnoremap <C-1> <C-\><C-n>1gt
+tnoremap <C-2> <C-\><C-n>2gt
+tnoremap <C-3> <C-\><C-n>3gt
+tnoremap <C-4> <C-\><C-n>4gt
+tnoremap <C-5> <C-\><C-n>5gt
+tnoremap <C-6> <C-\><C-n>6gt
+tnoremap <C-7> <C-\><C-n>7gt
+tnoremap <C-8> <C-\><C-n>:tablast
+tnoremap <C-9> <C-\><C-n>:tabnew \| terminal<CR>
 tnoremap <M-0> <C-\><C-n>:tabclose<CR>
 tnoremap <M-t> <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
