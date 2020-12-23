@@ -130,10 +130,8 @@ call plug#begin()
         \ "<C-z>"
   let g:EasyMotion_do_mapping = 0
   let g:EasyMotion_smartcase = 1
-  nnoremap <S-TAB> <C-o>
-  vnoremap <S-TAB> <C-o>
-  nmap <Leader>, <Plug>(easymotion-overwin-f2)
-  vmap <Leader>, <Plug>(easymotion-f2)
+  nmap <TAB> <Plug>(easymotion-overwin-f2)
+  vmap <TAB> <Plug>(easymotion-f2)
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
   " let g:leetcode_browser = 'chrome'
@@ -220,7 +218,7 @@ endfunction
 
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-let g:workspace_autosave = 1
+let g:workspace_autosave = 0
 let g:workspace_autosave_untrailspaces = 0
 let g:workspace_autosave_untrailtabs = 0
 let g:workspace_undodir= $HOME . '/.vim/undodir/'

@@ -57,7 +57,6 @@ let g:loaded_matchparen = 1
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set grepformat=%f:%l:%c:%m
 
-
 fu! MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
