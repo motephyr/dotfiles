@@ -5,8 +5,8 @@ call plug#begin()
   noremap <silent> <C-e> :call ToggleVExplorer()<CR>
   " browse
   noremap <silent> <M-a> :call GitAdd()<CR>
-  noremap <silent> <M-r> :call GitRm()<CR>
-  noremap <silent> <M-c> :call GitDiscard()<CR>
+  noremap <silent> <M-r> :call GitReset()<CR>
+  noremap <silent> <M-d> :call GitDiscard()<CR>
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
@@ -73,12 +73,10 @@ call plug#begin()
 
   Plug 'tpope/vim-repeat'
   Plug 'inkarkat/vim-visualrepeat'
-  " nnoremap . :norm! $x<CR>
-  " xnoremap . :norm! $x<CR>gv
 
   nmap <silent> <M-e> <Plug>(coc-refactor)
   nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
-  nmap <M-d> :CocCommand docthis.documentThis<CR>
+  nmap <M-c> :CocCommand docthis.documentThis<CR>
   nnoremap <silent><nowait> <M-m> :<C-u>CocDiagnostic<cr>
   nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
   nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
@@ -194,28 +192,6 @@ function! TerminalAndExplorerAllClose()
   endfor
 endfunc
 
-
-function! GitAdd() abort
-  if bufname('%') !~ 'coc-explorer'
-    :! git add %
-    :doautocmd User CocGitStatusChange
-  endif
-endfunction
-
-function! GitRm() abort
-  if bufname('%') !~ 'coc-explorer'
-    :! git reset -- %
-    :doautocmd User CocGitStatusChange
-  endif
-endfunction
-
-function! GitDiscard() abort
-  if bufname('%') !~ 'coc-explorer'
-    :! git checkout -- %
-    :doautocmd User CocGitStatusChange
-  endif
-endfunction
-
 "workspace save session
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_autosave = 0
@@ -244,6 +220,26 @@ hi CursorLine cterm=NONE ctermbg=darkred guibg=darkred
 hi TabLineSel cterm=NONE ctermbg=darkred guibg=darkred
 hi Folded ctermfg=grey guifg=grey
 
+function! GitAdd() abort
+  if bufname('%') !~ 'coc-explorer'
+    exe 'silent ! git add %'
+    :doautocmd User CocGitStatusChange
+  endif
+endfunction
+
+function! GitReset() abort
+  if bufname('%') !~ 'coc-explorer'
+    exe 'silent ! git reset -- %'
+    :doautocmd User CocGitStatusChange
+  endif
+endfunction
+
+function! GitDiscard() abort
+  if bufname('%') !~ 'coc-explorer'
+    exe 'silent ! git checkout -- %'
+    :doautocmd User CocGitStatusChange
+  endif
+endfunction
 
 "fzf
 augroup fzf_preview
@@ -253,7 +249,7 @@ augroup END
 
 function! s:fugitive_add(paths) 
   for path in a:paths
-    execute '! git add ' . path
+    exe 'silent ! git add ' . path
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
@@ -261,7 +257,7 @@ endfunction
 
 function! s:fugitive_reset(paths) 
   for path in a:paths
-    execute '! git reset -- ' . path
+    exe 'silent ! git reset -- ' . path
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
@@ -269,7 +265,7 @@ endfunction
 
 function! s:fugitive_discard(paths) 
   for path in a:paths
-    execute '! git checkout -- ' . path
+    exe 'silent ! git checkout -- ' . path
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
@@ -293,7 +289,7 @@ function! s:fzf_preview_settings() abort
   let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
   let g:fzf_preview_fugitive_processors['alt-a'] = function('s:fugitive_add')
   let g:fzf_preview_fugitive_processors['alt-r'] = function('s:fugitive_reset')
-  let g:fzf_preview_fugitive_processors['alt-c'] = function('s:fugitive_discard')
+  let g:fzf_preview_fugitive_processors['alt-d'] = function('s:fugitive_discard')
 endfunction
 
 "coc
