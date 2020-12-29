@@ -149,8 +149,10 @@ function! TerminalPane()
   startinsert
 endfunc
 
-nmap <silent> <leader>x :call TerminalPane()<cr>
-tmap <Leader>x <C-\><C-n>:bdelete!<CR>
+noremap <silent> <leader>x :call TerminalPane()<cr>
+tnoremap <Leader>x <C-\><C-n><C-w><C-p>
+noremap <silent> <M-x> :call TerminalPane()<cr>
+tnoremap <silent> <M-x> <C-\><C-n>:bdelete!<CR>
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
@@ -164,9 +166,8 @@ nnoremap Q @q<Esc>
 vnoremap Q :norm @q<CR>
 
 "mouse
-nmap <silent> <C-LeftMouse> <LeftMouse>viw
-imap <silent> <C-LeftMouse> <LeftMouse>viw
-vmap <silent> <C-LeftMouse> <LeftMouse>viw
+noremap <RightMouse> <LeftMouse>i
+inoremap <RightMouse> <LeftMouse>
 
 inoremap <LeftMouse> <Esc><LeftMouse>
 vnoremap <3-LeftMouse> <Esc>0v$
@@ -229,6 +230,13 @@ tnoremap <leader>8 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
 tnoremap <leader>9 <C-\><C-n>:vnew<CR>
 tnoremap <leader>0 <C-\><C-n>:bdelete!<CR>
 tmap <leader>t <C-\><C-n>:vsp<CR>
+
+
+cnoremap <silent><expr> <TAB> getcmdtype()=='/' ?
+      \ '<CR><C-w><C-w>/<CR>' :
+      \ "<C-z>"
+noremap <TAB> <C-w>w/<CR>
+noremap <S-TAB> <C-w>W/<CR>
 
 nnoremap <C-`> :tabnext<CR>
 nnoremap <C-1> 1gt

@@ -120,30 +120,33 @@ call plug#begin()
   nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
   nnoremap <silent><F10> :NodeInspectStop<cr>
 
+  noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+
+  Plug 'APZelos/blamer.nvim'
+  let g:blamer_enabled = 1
+  let g:blamer_show_in_visual_modes = 0
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
-  Plug 'easymotion/vim-easymotion'
-  cnoremap <expr> <TAB> getcmdtype()=='/' ?
-        \ '<CR>:silent! call EasyMotion#Search(0, 2, 0)<CR>' :
-        \ "<C-z>"
-  let g:EasyMotion_do_mapping = 0
-  let g:EasyMotion_smartcase = 1
-  nmap <TAB> <Plug>(easymotion-overwin-f2)
-  vmap <TAB> <Plug>(easymotion-f2)
+  "
+  " Plug 'easymotion/vim-easymotion'
+  " cnoremap <expr> <TAB> getcmdtype()=='/' ?
+  "       \ '<CR>:silent! call EasyMotion#Search(0, 2, 0)<CR>' :
+  "       \ "<C-z>"
+  " let g:EasyMotion_do_mapping = 0
+  " let g:EasyMotion_smartcase = 1
+  " nmap <TAB> <Plug>(easymotion-overwin-f2)
+  " vmap <TAB> <Plug>(easymotion-f2)
+  "
   " Plug 'ianding1/leetcode.vim'
   " let g:leetcode_solution_filetype = 'javascript'
   " let g:leetcode_browser = 'chrome'
   "
   " Plug 'tpope/vim-abolish'
   " vnoremap <Leader>h "hy:.,$Subvert/<C-r>h{,s}/{,s}/gc<left><left><left><left><left><left><left>
+  "
   " Plug 'whiteinge/diffconflicts'
   " noremap <Leader>c :DiffConflicts<CR>
-  noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
   "
-
-  Plug 'APZelos/blamer.nvim'
-  let g:blamer_enabled = 1
-  let g:blamer_show_in_visual_modes = 0
   " Plug 'rhysd/devdocs.vim'
   " nnoremap <silent> K "hyiw:DevDocs <C-r>h<CR>
 call plug#end()

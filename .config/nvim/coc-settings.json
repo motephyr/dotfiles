@@ -36,15 +36,8 @@
       ],
       "open"
     ],
-    "<cr>": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
+    "<cr>": "actionMenu",
+    "<tab>": "esc",
     "<space>": "cd",
     "i": "open:split",
     "s": "open:vsplit",
