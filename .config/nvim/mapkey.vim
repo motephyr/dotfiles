@@ -231,12 +231,15 @@ tnoremap <leader>9 <C-\><C-n>:vnew<CR>
 tnoremap <leader>0 <C-\><C-n>:bdelete!<CR>
 tmap <leader>t <C-\><C-n>:vsp<CR>
 
-
-cnoremap <silent><expr> <TAB> getcmdtype()=='/' ?
-      \ '<CR><C-w><C-w>/<CR>' :
-      \ "<C-z>"
-noremap <TAB> <C-w>w/<CR>
-noremap <S-TAB> <C-w>W/<CR>
+" cnoremap <silent><expr> <Tab> getcmdtype()=='/' ?
+"       \ '<CR><C-w>w/<CR>' :
+"       \ "<C-z>"
+cnoremap <silent><expr> <S-Tab> getcmdtype()=='/' ?
+      \ '<CR><C-w>W/<CR>' :
+      \ "<S-Tab>"
+noremap <Tab> <C-w>w
+noremap <S-Tab> <C-w>W
+tnoremap <S-Tab> <C-\><C-n><C-w>W
 
 nnoremap <C-`> :tabnext<CR>
 nnoremap <C-1> 1gt

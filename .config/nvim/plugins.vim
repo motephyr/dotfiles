@@ -18,7 +18,6 @@ call plug#begin()
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
-  " nnoremap <Leader>sa :ToggleAutosave<cr>
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -178,11 +177,12 @@ set statusline+=\ Lines\                " percentage
 augroup plugin | au!
   autocmd CursorMoved * silent call <SID>show_documentation()
   autocmd User CocGitStatusChange call horizonbar#GetDiffList()
-  autocmd VimLeave * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
+  autocmd VimLeavePre * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
 augroup END
 
 function! TerminalAndExplorerAllClose()
   let t = range(1, tabpagenr('$'))
+  exe 'tabn 1'
   for tabnumber in t
     let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer"'))
     if len(b) > 0
