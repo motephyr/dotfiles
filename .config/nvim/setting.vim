@@ -39,6 +39,7 @@ set updatetime=300
 set shortmess+=c
 set cmdheight=2
 set lazyredraw
+set regexpengine=1
 
 filetype plugin indent on     " required!
 set noimdisable "切换到 normal,insert,search 模式时使用英文输入法

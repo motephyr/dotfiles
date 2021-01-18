@@ -10,11 +10,12 @@ call plug#begin()
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
+  Plug 'kyazdani42/nvim-tree.lua'
   "Plug 'tpope/vim-fugitive'
 
   noremap <Leader>g <Esc>:tabnew \| term tig<CR>
-  noremap <expr> <Leader>f (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <M-g> (index(['','coc-explorer'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  noremap <expr> <Leader>f (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+  noremap <expr> <M-g> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -175,7 +176,7 @@ set statusline+=\ %{line('$')}
 set statusline+=\ Lines\                " percentage
 
 augroup plugin | au!
-  autocmd CursorMoved * silent call <SID>show_documentation()
+  autocmd CursorHold * silent call <SID>show_documentation()
   autocmd User CocGitStatusChange call horizonbar#GetDiffList()
   autocmd VimLeavePre * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
 augroup END
@@ -184,7 +185,7 @@ function! TerminalAndExplorerAllClose()
   let t = range(1, tabpagenr('$'))
   exe 'tabn 1'
   for tabnumber in t
-    let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer"'))
+    let b = reverse(filter(range(1, winnr('$')), 'getwinvar(v:val, "&buftype", "ERROR") == "terminal" || getwinvar(v:val, "&filetype", "ERROR") == "coc-explorer" || getwinvar(v:val, "&filetype", "ERROR") == "NvimTree"'))
     if len(b) > 0
       for pane in b
         exe pane.'wincmd w'

@@ -48,6 +48,10 @@ nnoremap <C-w> :q<CR>
 inoremap <C-w> <Esc>:q<CR>
 vnoremap <C-w> <Esc>:q<CR>
 tnoremap <C-w> <C-\><C-n>:bdelete!<CR>
+nnoremap <M-w> :q<CR>
+inoremap <M-w> <Esc>:q<CR>
+vnoremap <M-w> <Esc>:q<CR>
+tnoremap <M-w> <C-\><C-n>:bdelete!<CR>
 
 "save
 nnoremap <C-s> :update<CR>
@@ -61,12 +65,12 @@ function! ToogleFold()
      if &foldlevel == 0
        :Fold
      endif
-     if &foldlevel >= 20
+     if &foldlevel >= 99
          "normal! zM<CR> (folds all)
          set foldlevel=1
      else
          "normal! zR<CR> (unfolds everything)
-         set foldlevel=20
+         set foldlevel=99
      endif
 endfunction
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -206,30 +210,49 @@ inoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 inoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
-nnoremap <silent> <leader>` <C-w><C-w>
-nnoremap <leader>1 <Esc>:1wincmd w<CR>
-nnoremap <leader>2 <Esc>:2wincmd w<CR>
-nnoremap <leader>3 <Esc>:3wincmd w<CR>
-nnoremap <leader>4 <Esc>:4wincmd w<CR>
-nnoremap <leader>5 <Esc>:5wincmd w<CR>
-nnoremap <leader>6 <Esc>:6wincmd w<CR>
-nnoremap <leader>7 <Esc>:7wincmd w<CR>
-nnoremap <leader>8 <Esc>:exe winnr('$') 'wincmd w'<CR>
-nnoremap <leader>9 <Esc>:vnew<CR>
-nnoremap <leader>0 <Esc>:bdelete!<CR>
-nnoremap <leader>t <Esc>:vsp<CR>
-tnoremap <silent> <leader>` <C-\><C-n><C-w><C-w>
-tnoremap <leader>1 <C-\><C-n>:1wincmd w<CR>
-tnoremap <leader>2 <C-\><C-n>:2wincmd w<CR>
-tnoremap <leader>3 <C-\><C-n>:3wincmd w<CR>
-tnoremap <leader>4 <C-\><C-n>:4wincmd w<CR>
-tnoremap <leader>5 <C-\><C-n>:5wincmd w<CR>
-tnoremap <leader>6 <C-\><C-n>:6wincmd w<CR>
-tnoremap <leader>7 <C-\><C-n>:7wincmd w<CR>
-tnoremap <leader>8 <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
-tnoremap <leader>9 <C-\><C-n>:vnew<CR>
-tnoremap <leader>0 <C-\><C-n>:bdelete!<CR>
-tmap <leader>t <C-\><C-n>:vsp<CR>
+nnoremap <C-1> <Esc>:1wincmd w<CR>
+nnoremap <C-2> <Esc>:2wincmd w<CR>
+nnoremap <C-3> <Esc>:3wincmd w<CR>
+nnoremap <C-4> <Esc>:4wincmd w<CR>
+nnoremap <C-5> <Esc>:5wincmd w<CR>
+nnoremap <C-6> <Esc>:6wincmd w<CR>
+nnoremap <C-7> <Esc>:7wincmd w<CR>
+nnoremap <C-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
+nnoremap <C-9> <Esc>:vnew<CR>
+nnoremap <C-0> <Esc>:bdelete!<CR>
+tnoremap <C-1> <C-\><C-n>:1wincmd w<CR>
+tnoremap <C-2> <C-\><C-n>:2wincmd w<CR>
+tnoremap <C-3> <C-\><C-n>:3wincmd w<CR>
+tnoremap <C-4> <C-\><C-n>:4wincmd w<CR>
+tnoremap <C-5> <C-\><C-n>:5wincmd w<CR>
+tnoremap <C-6> <C-\><C-n>:6wincmd w<CR>
+tnoremap <C-7> <C-\><C-n>:7wincmd w<CR>
+tnoremap <C-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+tnoremap <C-9> <C-\><C-n>:vnew<CR>
+tnoremap <C-0> <C-\><C-n>:bdelete!<CR>
+
+nnoremap <M-1> <Esc>:1wincmd w<CR>
+nnoremap <M-2> <Esc>:2wincmd w<CR>
+nnoremap <M-3> <Esc>:3wincmd w<CR>
+nnoremap <M-4> <Esc>:4wincmd w<CR>
+nnoremap <M-5> <Esc>:5wincmd w<CR>
+nnoremap <M-6> <Esc>:6wincmd w<CR>
+nnoremap <M-7> <Esc>:7wincmd w<CR>
+nnoremap <M-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
+nnoremap <M-9> <Esc>:vsp \| terminal<CR>
+nnoremap <M-0> <Esc>:bdelete!<CR>
+nnoremap <M-t> <Esc>:vnew<CR>
+tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
+tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
+tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
+tnoremap <M-4> <C-\><C-n>:4wincmd w<CR>
+tnoremap <M-5> <C-\><C-n>:5wincmd w<CR>
+tnoremap <M-6> <C-\><C-n>:6wincmd w<CR>
+tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
+tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+tnoremap <M-9> <C-\><C-n>:vsp \| terminal<CR>
+tnoremap <M-0> <C-\><C-n>:bdelete!<CR>
+tnoremap <M-t> <C-\><C-n>:vnew<CR>
 
 " cnoremap <silent><expr> <Tab> getcmdtype()=='/' ?
 "       \ '<CR><C-w>w/<CR>' :
@@ -241,51 +264,32 @@ noremap <Tab> <C-w>w
 noremap <S-Tab> <C-w>W
 tnoremap <S-Tab> <C-\><C-n><C-w>W
 
-nnoremap <C-`> :tabnext<CR>
-nnoremap <C-1> 1gt
-nnoremap <C-2> 2gt
-nnoremap <C-3> 3gt
-nnoremap <C-4> 4gt
-nnoremap <C-5> 5gt
-nnoremap <C-6> 6gt
-nnoremap <C-7> 7gt
-nnoremap <C-8> :tablast
-nnoremap <C-9> :tabnew \| terminal<CR>
-nnoremap <C-0> :tabclose<CR>
-nnoremap <M-`> :tabnext<CR>
-nnoremap <M-1> 1gt
-nnoremap <M-2> 2gt
-nnoremap <M-3> 3gt
-nnoremap <M-4> 4gt
-nnoremap <M-5> 5gt
-nnoremap <M-6> 6gt
-nnoremap <M-7> 7gt
-nnoremap <M-8> :tablast
-nnoremap <M-9> :tabnew \| terminal<CR>
-nnoremap <M-0> :tabclose<CR>
-nnoremap <M-t> :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
-tnoremap <C-`> <C-\><C-n>:tabnext<CR>
-tnoremap <C-1> <C-\><C-n>1gt
-tnoremap <C-2> <C-\><C-n>2gt
-tnoremap <C-3> <C-\><C-n>3gt
-tnoremap <C-4> <C-\><C-n>4gt
-tnoremap <C-5> <C-\><C-n>5gt
-tnoremap <C-6> <C-\><C-n>6gt
-tnoremap <C-7> <C-\><C-n>7gt
-tnoremap <C-8> <C-\><C-n>:tablast
-tnoremap <C-9> <C-\><C-n>:tabnew \| terminal<CR>
-tnoremap <M-`> <C-\><C-n>:tabnext<CR>
-tnoremap <M-1> <C-\><C-n>1gt
-tnoremap <M-2> <C-\><C-n>2gt
-tnoremap <M-3> <C-\><C-n>3gt
-tnoremap <M-4> <C-\><C-n>4gt
-tnoremap <M-5> <C-\><C-n>5gt
-tnoremap <M-6> <C-\><C-n>6gt
-tnoremap <M-7> <C-\><C-n>7gt
-tnoremap <M-8> <C-\><C-n>:tablast
-tnoremap <M-9> <C-\><C-n>:tabnew \| terminal<CR>
-tnoremap <M-0> <C-\><C-n>:tabclose<CR>
-tnoremap <M-t> <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+nnoremap <leader>` :tabnext<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 :tablast
+nnoremap <leader>9 :tabnew \| terminal<CR>
+nnoremap <leader>0 :tabclose<CR>
+nnoremap <leader>t :tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+
+tnoremap <leader>` <C-\><C-n>:tabnext<CR>
+tnoremap <leader>1 <C-\><C-n>1gt
+tnoremap <leader>2 <C-\><C-n>2gt
+tnoremap <leader>3 <C-\><C-n>3gt
+tnoremap <leader>4 <C-\><C-n>4gt
+tnoremap <leader>5 <C-\><C-n>5gt
+tnoremap <leader>6 <C-\><C-n>6gt
+tnoremap <leader>7 <C-\><C-n>7gt
+tnoremap <leader>8 <C-\><C-n>:tablast
+tnoremap <leader>9 <C-\><C-n>:tabnew \| terminal<CR>
+tnoremap <leader>0 <C-\><C-n>:tabclose<CR>
+tnoremap <leader>t <C-\><C-n>:tabnew \| tcd ../ \| CocCommand explorer<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<CR>
