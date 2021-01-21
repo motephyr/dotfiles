@@ -15,7 +15,7 @@ call plug#begin()
 
   noremap <Leader>g <Esc>:tabnew \| term tig<CR>
   noremap <expr> <Leader>f (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <M-g> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD %<CR>' : ''
+  noremap <expr> <M-g> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD~2 %<CR>' : ''
 
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
@@ -74,12 +74,12 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'inkarkat/vim-visualrepeat'
 
-  nmap <silent> <M-e> <Plug>(coc-refactor)
-  nnoremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
-  nmap <M-c> :CocCommand docthis.documentThis<CR>
-  nnoremap <silent><nowait> <M-m> :<C-u>CocDiagnostic<cr>
-  nmap <silent> <M-,> <Plug>(coc-diagnostic-prev)
-  nmap <silent> <M-.> <Plug>(coc-diagnostic-next)
+  map <silent> <M-e> <Plug>(coc-refactor)
+  noremap <silent><nowait> <M-s> :<C-u>CocFix<cr>
+  map <M-c> :CocCommand docthis.documentThis<CR>
+  noremap <silent><nowait> <M-m> :<C-u>CocDiagnostic<cr>
+  map <silent> <M-,> <Plug>(coc-diagnostic-prev)
+  map <silent> <M-.> <Plug>(coc-diagnostic-next)
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -100,15 +100,13 @@ call plug#begin()
   tnoremap <C-g> <Esc><C-\><C-n>
 
   Plug 'tomtom/tcomment_vim'
-  nmap <M-/> <Leader>__
-  vmap <M-/> <Leader>__gv=gv
 
   "Plug 'tpope/vim-surround'
   "nmap m ysiw
   "nmap M ds
 
-  "Plug 'tpope/vim-repeat'
   Plug 'jparise/vim-graphql'
+  Plug 'posva/vim-vue'
   Plug 'motephyr/vim-horizonbar'
   Plug 'eliba2/vim-node-inspect'
 
