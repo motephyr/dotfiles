@@ -76,8 +76,10 @@ endfunction
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 "search
+" vmap / <Esc>/
+" vmap <M-/> y/<C-r>"<CR>NNo
 vmap / y/<C-r>"<CR>NNo
-vmap <M-/> /
+
 nmap ? viw/
 nnoremap <silent> n gn 
 nnoremap <silent> N gN
@@ -247,7 +249,7 @@ noremap <M-7> <Esc>:7wincmd w<CR>
 noremap <M-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
 noremap <M-9> <Esc>:vsp \| terminal<CR>
 noremap <M-0> <Esc>:bdelete!<CR>
-noremap <M-t> <Esc>:tabnew %<CR>
+
 tnoremap <M-1> <C-\><C-n>:1wincmd w<CR>
 tnoremap <M-2> <C-\><C-n>:2wincmd w<CR>
 tnoremap <M-3> <C-\><C-n>:3wincmd w<CR>
@@ -258,7 +260,7 @@ tnoremap <M-7> <C-\><C-n>:7wincmd w<CR>
 tnoremap <M-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
 tnoremap <M-9> <C-\><C-n>:vsp \| terminal<CR>
 tnoremap <M-0> <C-\><C-n>:bdelete!<CR>
-tnoremap <M-t> <C-\><C-n>:tabnew %<CR>
+
 
 " cnoremap <silent><expr> <Tab> getcmdtype()=='/' ?
 "       \ '<CR><C-w>w/<CR>' :
@@ -281,7 +283,6 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 :tablast
 nnoremap <leader>9 :tabnew \| terminal<CR>
 nnoremap <leader>0 :tabclose<CR>
-nnoremap <leader>t :tabnew \| tcd ../ \| call ToggleVExplorer()<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
 tnoremap <leader>` <C-\><C-n>:tabnext<CR>
 tnoremap <leader>1 <C-\><C-n>1gt
@@ -294,7 +295,15 @@ tnoremap <leader>7 <C-\><C-n>7gt
 tnoremap <leader>8 <C-\><C-n>:tablast
 tnoremap <leader>9 <C-\><C-n>:tabnew \| terminal<CR>
 tnoremap <leader>0 <C-\><C-n>:tabclose<CR>
-tnoremap <leader>t <C-\><C-n>:tabnew \| tcd ../ \| call ToggleVExplorer()<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+
+noremap <M-g> <Esc>:tabnew \| term tig<CR>
+inoremap <M-g> <Esc>:tabnew \| term tig<CR>
+noremap <expr> <M-t> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+inoremap <expr> <M-t> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
+
+noremap <expr> <Leader>g (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD~2 %<CR>' : ''
+noremap <leader>t :tabnew \| tcd ../ \| call ToggleVExplorer()<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+noremap <Leader>f <Esc>:tabnew %<CR>
 
 
 nnoremap <Leader>ve :tabnew \| e $MYVIMRC<cr>

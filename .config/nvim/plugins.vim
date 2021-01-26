@@ -13,10 +13,6 @@ call plug#begin()
   Plug 'kyazdani42/nvim-tree.lua'
   "Plug 'tpope/vim-fugitive'
 
-  noremap <Leader>g <Esc>:tabnew \| term tig<CR>
-  noremap <expr> <Leader>f (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:tabnew % \| term tig <C-r>%<CR>' : ''
-  noremap <expr> <M-g> (index(['','coc-explorer', 'NvimTree'],bufname('%'))<0) ? '<Esc>:vsplit % \| term git diff HEAD~2 %<CR>' : ''
-
   Plug 'thaerkh/vim-workspace'
   noremap <leader>s :ToggleWorkspace<CR>
 
