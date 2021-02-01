@@ -8,62 +8,9 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "tsserver.disableAutomaticTypeAcquisition": true,
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact",
-    "typescript.tsx"
-  ],
   "diagnostic.infoSign": "ღ",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✖",
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "explorer.file.showHiddenFiles": true,
-  "explorer.sources": [
-    {
-      "name": "file",
-      "expand": true
-    }
-  ],
-  "explorer.keyMappings.global": {
-    "<2-LeftMouse>": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
-    "<cr>": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
-    "<space>": "cd",
-    "i": "open:split",
-    "s": "open:vsplit",
-    "<M-a>": "gitStage",
-    "<M-r>": "gitUnstage"
-  },
-  "explorer.openAction.strategy": "select",
-  "explorer.previewAction.onHover": false,
-  "explorer.file.root.template": "  [root]",
-  "explorer.file.child.template": "[selection | clip][indent][icon & 1][git][diagnosticError & 1][filename omitCenter 1][readonly]",
-  "explorer.width": 33,
-  "explorer.git.icon.status.modified": "[~]",
-  "explorer.git.icon.status.unmodified": "",
-  "explorer.git.icon.status.added": "[+]",
-  "explorer.git.icon.status.deleted": "[_]",
-  "explorer.git.icon.status.renamed": "[➜]",
-  "explorer.git.icon.status.unmerged": "[=]",
-  "explorer.git.icon.status.untracked": "[✭]",
-  "explorer.git.icon.status.mixed": "[~]",
-  "explorer.icon.expanded": "▾",
-  "explorer.icon.collapsed": "▸"
+  "html.filetypes": ["html","handlebars","htmldjango","blade", "edge"]
 }

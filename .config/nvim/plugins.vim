@@ -13,8 +13,8 @@ call plug#begin()
   Plug 'kyazdani42/nvim-tree.lua'
   "Plug 'tpope/vim-fugitive'
 
-  Plug 'thaerkh/vim-workspace'
-  noremap <leader>s :ToggleWorkspace<CR>
+  " Plug 'thaerkh/vim-workspace'
+  " noremap <leader>s :ToggleWorkspace<CR>
 
   Plug 'tomasiser/vim-code-dark'
   "Plug 'morhetz/gruvbox'
@@ -170,7 +170,7 @@ set statusline+=\ %{line('$')}
 set statusline+=\ Lines\                " percentage
 
 augroup plugin | au!
-  autocmd CursorHold * silent call <SID>show_documentation()
+  " autocmd CursorHold * silent call <SID>show_documentation()
   autocmd User CocGitStatusChange call horizonbar#GetDiffList()
   autocmd VimLeavePre * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
 augroup END
@@ -191,12 +191,13 @@ function! TerminalAndExplorerAllClose()
 endfunc
 
 "workspace save session
-let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-let g:workspace_autosave = 0
-let g:workspace_autosave_untrailspaces = 0
-let g:workspace_autosave_untrailtabs = 0
-let g:workspace_undodir= $HOME . '/.vim/undodir/'
-let g:workspace_create_new_tabs = 1
+" let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+" let g:workspace_autosave = 0
+" let g:workspace_autosave_untrailspaces = 0
+" let g:workspace_autosave_untrailtabs = 0
+" let g:workspace_undodir= $HOME . '/.vim/undodir/'
+" let g:workspace_create_new_tabs = 1
+set undodir=~/.vim/undodir/
 set undofile
 
 "set sessionoptions+=globals
@@ -251,6 +252,7 @@ function! s:fugitive_add(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
+  call feedkeys("i", "n")
 endfunction
 
 function! s:fugitive_reset(paths) 
@@ -259,6 +261,7 @@ function! s:fugitive_reset(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
+  call feedkeys("i", "n")
 endfunction
 
 function! s:fugitive_discard(paths) 
@@ -267,6 +270,7 @@ function! s:fugitive_discard(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
+  call feedkeys("i", "n")
 endfunction
 
 function! OpenFzfPreviewGitStatus()
@@ -276,13 +280,13 @@ endfunction
 function! s:fzf_preview_settings() abort
   let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 
-  let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
-  let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading'
+  let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g "!*.git*"'
+  let g:fzf_preview_grep_cmd = 'rg --hidden --line-number --no-heading -g "!*.git*"'
 
   let g:fzf_preview_custom_default_processors = fzf_preview#resource_processor#get_default_processors()
 
   let g:fzf_preview_custom_default_processors['ctrl-t'] = function('fzf_preview#resource_processor#tabedit')
-  let g:fzf_preview_custom_default_processors['ctrl-i'] = function('fzf_preview#resource_processor#split')
+  let g:fzf_preview_custom_default_processors['ctrl-x'] = function('fzf_preview#resource_processor#split')
   let g:fzf_preview_custom_default_processors['ctrl-s'] =  function('fzf_preview#resource_processor#vsplit') 
   let g:fzf_preview_fugitive_processors = fzf_preview#resource_processor#get_processors()
   let g:fzf_preview_fugitive_processors['alt-a'] = function('s:fugitive_add')
@@ -302,7 +306,7 @@ command! -nargs=0 Format :call Format()
 
 function Format()
     :call CocAction('format')
-    if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"], &filetype) > -1
+    if index(["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"], &filetype) >= 0
       :CocCommand eslint.executeAutofix
     endif
 endfunction
@@ -310,7 +314,7 @@ endfunction
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     "execute 'h '.expand('<cword>')
-  elseif bufname('%') !~ 'coc-explorer' && bufname('%') !~ 'NetrwTreeListing' && mode() == 'n' && &filetype != ''
+  elseif index(["coc-explorer", "NetrwTreeListing", "NvimTree"],bufname('%')) < 0 && mode() == 'n' && &filetype != ''
     call CocActionAsync('doHover')
   endif
 endfunction

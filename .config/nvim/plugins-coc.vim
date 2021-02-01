@@ -23,7 +23,7 @@ if bufname('%') !~ 'scp'
   let g:nvim_tree_bindings = {
       \ 'edit':            ['<CR>', 'o'],
       \ 'edit_vsplit':     's',
-      \ 'edit_split':      'i',
+      \ 'edit_split':      'x',
       \ 'edit_tab':        't',
       \ 'toggle_ignored':  'I',
       \ 'toggle_dotfiles': 'H',
@@ -33,7 +33,7 @@ if bufname('%') !~ 'scp'
       \ 'create':          'a',
       \ 'remove':          'd',
       \ 'rename':          'r',
-      \ 'cut':             'x',
+      \ 'cut':             '<M-x>',
       \ 'copy':            'c',
       \ 'paste':           'p',
       \ 'prev_git_item':   '[c',
