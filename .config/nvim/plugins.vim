@@ -14,6 +14,7 @@ call plug#begin()
   "Plug 'tpope/vim-fugitive'
 
   " Plug 'thaerkh/vim-workspace'
+  Plug 'rmagatti/auto-session'
   " noremap <leader>s :ToggleWorkspace<CR>
 
   Plug 'tomasiser/vim-code-dark'
@@ -172,7 +173,7 @@ set statusline+=\ Lines\                " percentage
 augroup plugin | au!
   " autocmd CursorHold * silent call <SID>show_documentation()
   autocmd User CocGitStatusChange call horizonbar#GetDiffList()
-  autocmd VimLeavePre * call TerminalAndExplorerAllClose() | :CloseHiddenBuffers
+  autocmd VimLeavePre * call TerminalAndExplorerAllClose()
 augroup END
 
 function! TerminalAndExplorerAllClose()
