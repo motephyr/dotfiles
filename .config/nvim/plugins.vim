@@ -173,6 +173,7 @@ set statusline+=\ Lines\                " percentage
 augroup plugin | au!
   " autocmd CursorHold * silent call <SID>show_documentation()
   autocmd User CocGitStatusChange call horizonbar#GetDiffList()
+  autocmd User CocGitStatusChange :NvimTreeRefresh
   autocmd VimLeavePre * call TerminalAndExplorerAllClose()
 augroup END
 
@@ -198,6 +199,7 @@ endfunc
 " let g:workspace_autosave_untrailtabs = 0
 " let g:workspace_undodir= $HOME . '/.vim/undodir/'
 " let g:workspace_create_new_tabs = 1
+let g:auto_session_root_dir=$HOME . '/.vim/sessions/'
 set undodir=~/.vim/undodir/
 set undofile
 

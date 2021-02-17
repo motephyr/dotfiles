@@ -142,3 +142,4 @@ export LANG=en_US.UTF-8
 export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
