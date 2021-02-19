@@ -153,7 +153,7 @@ function! TerminalPane()
   if len(b) > 0
     exe b[0].'wincmd w'
   else
-    :exe winnr('$') 'wincmd w' | :sp | resize 8 | term
+    :exe '1wincmd w' | :sp | resize 8 | term
   endif
   startinsert
 endfunc

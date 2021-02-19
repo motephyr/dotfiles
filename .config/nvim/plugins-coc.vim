@@ -33,7 +33,7 @@ if bufname('%') !~ 'scp'
       \ 'create':          'a',
       \ 'remove':          'd',
       \ 'rename':          'r',
-      \ 'cut':             '<M-x>',
+      \ 'cut':             '<M-d>',
       \ 'copy':            'c',
       \ 'paste':           'p',
       \ 'prev_git_item':   '[c',
