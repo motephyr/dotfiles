@@ -10,7 +10,8 @@ call plug#begin()
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
-  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'kyazdani42/nvim-tree.lua', {'commit': '0136801444cfb2d85ae956d8c23c79f4a9f26b90'}
+  " Plug 'kyazdani42/nvim-tree.lua'
   "Plug 'tpope/vim-fugitive'
 
   " Plug 'thaerkh/vim-workspace'
@@ -105,15 +106,15 @@ call plug#begin()
   Plug 'jparise/vim-graphql'
   Plug 'posva/vim-vue'
   Plug 'motephyr/vim-horizonbar'
-  Plug 'eliba2/vim-node-inspect'
-
-  nnoremap <silent><F4> :NodeInspectStart<cr>
-  nnoremap <silent><F5> :NodeInspectRun<cr>
-  nnoremap <silent><F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
-  nnoremap <silent><F7> :NodeInspectStepInto<cr>
-  nnoremap <silent><F8> :NodeInspectStepOver<cr>
-  nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
-  nnoremap <silent><F10> :NodeInspectStop<cr>
+  " Plug 'eliba2/vim-node-inspect'
+  "
+  " nnoremap <silent><F4> :NodeInspectStart<cr>
+  " nnoremap <silent><F5> :NodeInspectRun<cr>
+  " nnoremap <silent><F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
+  " nnoremap <silent><F7> :NodeInspectStepInto<cr>
+  " nnoremap <silent><F8> :NodeInspectStepOver<cr>
+  " nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
+  " nnoremap <silent><F10> :NodeInspectStop<cr>
 
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
@@ -255,7 +256,7 @@ function! s:fugitive_add(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
-  call feedkeys("i", "n")
+  " call feedkeys("i", "n")
 endfunction
 
 function! s:fugitive_reset(paths) 
@@ -264,7 +265,7 @@ function! s:fugitive_reset(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
-  call feedkeys("i", "n")
+  " call feedkeys("i", "n")
 endfunction
 
 function! s:fugitive_discard(paths) 
@@ -273,7 +274,7 @@ function! s:fugitive_discard(paths)
   endfor
   :doautocmd User CocGitStatusChange
   call OpenFzfPreviewGitStatus()
-  call feedkeys("i", "n")
+  " call feedkeys("i", "n")
 endfunction
 
 function! OpenFzfPreviewGitStatus()

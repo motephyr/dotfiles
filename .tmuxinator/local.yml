@@ -13,15 +13,15 @@ windows:
       panes:
         - a:
             - cd kamo
-            - yarn dev
+            - pm2 startOrRestart ecosystem_local.config.js && pm2 logs
         - b:
             - cd kamo-front
-            - yarn dev
+            - npm run dev
         - e:
             - cd kamo_manager
         - c:
             - cd kamo-candidate
-            - yarn dev
+            - npm run dev
         - d:
             - cd kamo-admin
             - redis-server
@@ -31,4 +31,10 @@ windows:
         - a:
             - cd ~/dotfiles
             - git pull
+  - max:
+      layout: main-vertical
+      panes:
+        - a:
+            - cd ~/go/src/github.com/motephyr/bbgo/cmd/bbgo
+            # - source .env.local && ./bbgo run --config bbgo.yaml
 

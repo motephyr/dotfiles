@@ -153,7 +153,7 @@ function! TerminalPane()
   if len(b) > 0
     exe b[0].'wincmd w'
   else
-    :exe '1wincmd w' | :sp | resize 8 | term
+    :exe winnr('$') 'wincmd w' | :sp | resize 8 | term
   endif
   startinsert
 endfunc
@@ -218,26 +218,48 @@ inoremap <S-3-ScrollWheelDown> <3-ScrollWheelRight>
 inoremap <S-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 "other
-noremap <C-1> <Esc>:1wincmd w<CR>
-noremap <C-2> <Esc>:2wincmd w<CR>
-noremap <C-3> <Esc>:3wincmd w<CR>
-noremap <C-4> <Esc>:4wincmd w<CR>
-noremap <C-5> <Esc>:5wincmd w<CR>
-noremap <C-6> <Esc>:6wincmd w<CR>
-noremap <C-7> <Esc>:7wincmd w<CR>
-noremap <C-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
-noremap <C-9> <Esc>:vnew<CR>
-noremap <C-0> <Esc>:bdelete!<CR>
-tnoremap <C-1> <C-\><C-n>:1wincmd w<CR>
-tnoremap <C-2> <C-\><C-n>:2wincmd w<CR>
-tnoremap <C-3> <C-\><C-n>:3wincmd w<CR>
-tnoremap <C-4> <C-\><C-n>:4wincmd w<CR>
-tnoremap <C-5> <C-\><C-n>:5wincmd w<CR>
-tnoremap <C-6> <C-\><C-n>:6wincmd w<CR>
-tnoremap <C-7> <C-\><C-n>:7wincmd w<CR>
-tnoremap <C-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
-tnoremap <C-9> <C-\><C-n>:vnew<CR>
-tnoremap <C-0> <C-\><C-n>:bdelete!<CR>
+" noremap <C-1> <Esc>:1wincmd w<CR>
+" noremap <C-2> <Esc>:2wincmd w<CR>
+" noremap <C-3> <Esc>:3wincmd w<CR>
+" noremap <C-4> <Esc>:4wincmd w<CR>
+" noremap <C-5> <Esc>:5wincmd w<CR>
+" noremap <C-6> <Esc>:6wincmd w<CR>
+" noremap <C-7> <Esc>:7wincmd w<CR>
+" noremap <C-8> <Esc>:exe winnr('$') 'wincmd w'<CR>
+" noremap <C-9> <Esc>:vnew<CR>
+" noremap <C-0> <Esc>:bdelete!<CR>
+" tnoremap <C-1> <C-\><C-n>:1wincmd w<CR>
+" tnoremap <C-2> <C-\><C-n>:2wincmd w<CR>
+" tnoremap <C-3> <C-\><C-n>:3wincmd w<CR>
+" tnoremap <C-4> <C-\><C-n>:4wincmd w<CR>
+" tnoremap <C-5> <C-\><C-n>:5wincmd w<CR>
+" tnoremap <C-6> <C-\><C-n>:6wincmd w<CR>
+" tnoremap <C-7> <C-\><C-n>:7wincmd w<CR>
+" tnoremap <C-8> <C-\><C-n>:exe winnr('$') 'wincmd w'<CR>
+" tnoremap <C-9> <C-\><C-n>:vnew<CR>
+" tnoremap <C-0> <C-\><C-n>:bdelete!<CR>
+nnoremap <C-`> :tabnext<CR>
+nnoremap <C-1> 1gt
+nnoremap <C-2> 2gt
+nnoremap <C-3> 3gt
+nnoremap <C-4> 4gt
+nnoremap <C-5> 5gt
+nnoremap <C-6> 6gt
+nnoremap <C-7> 7gt
+nnoremap <C-8> :tablast
+nnoremap <C-9> :tabnew \| terminal<CR>
+nnoremap <C-0> :tabclose<CR>
+tnoremap <C-`> <C-\><C-n>:tabnext<CR>
+tnoremap <C-1> <C-\><C-n>1gt
+tnoremap <C-2> <C-\><C-n>2gt
+tnoremap <C-3> <C-\><C-n>3gt
+tnoremap <C-4> <C-\><C-n>4gt
+tnoremap <C-5> <C-\><C-n>5gt
+tnoremap <C-6> <C-\><C-n>6gt
+tnoremap <C-7> <C-\><C-n>7gt
+tnoremap <C-8> <C-\><C-n>:tablast
+tnoremap <C-9> <C-\><C-n>:tabnew \| terminal<CR>
+tnoremap <C-0> <C-\><C-n>:tabclose<CR>
 
 noremap <M-1> <Esc>:1wincmd w<CR>
 noremap <M-2> <Esc>:2wincmd w<CR>

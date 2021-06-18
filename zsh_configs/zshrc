@@ -98,6 +98,7 @@ compinit
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/opt/go@1.15/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
