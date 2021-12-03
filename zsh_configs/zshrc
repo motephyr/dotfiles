@@ -80,10 +80,9 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:
 
 ##export DOCKER_HOST=tcp://localhost:2375
 ##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
-alias vi="~/Downloads/nvim-osx64/bin/nvim"
+alias vi="nvim"
 alias vi4="nvim"
 alias tig="tig --date-order --all"
-alias tmuxinator="ASDF_RUBY_VERSION=2.6.4 tmuxinator"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 

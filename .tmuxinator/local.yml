@@ -1,5 +1,5 @@
 name: local
-root: ~/Projects/nodejs/kamo_all/
+root: ~/Projects/nodejs/
 
 windows:
   - psql:
@@ -12,18 +12,18 @@ windows:
       layout: main-vertical
       panes:
         - a:
-            - cd kamo
+            - cd kamo_all/kamo
             - pm2 startOrRestart ecosystem_local.config.js && pm2 logs
         - b:
-            - cd kamo-front
+            - cd kamo_all/kamo-front
             - npm run dev
         - e:
-            - cd kamo_manager
+            - cd kamo_all/kamo_manager
         - c:
-            - cd kamo-candidate
+            - cd kamo_all/kamo-candidate
             - npm run dev
         - d:
-            - cd kamo-admin
+            - cd kamo_all/kamo-admin
             - redis-server
   - dotfiles:
       layout: main-vertical
@@ -35,6 +35,6 @@ windows:
       layout: main-vertical
       panes:
         - a:
-            - cd ~/go/src/github.com/motephyr/bbgo/cmd/bbgo
+            # - cd binance
             # - source .env.local && ./bbgo run --config bbgo.yaml
 

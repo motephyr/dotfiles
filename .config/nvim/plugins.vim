@@ -10,8 +10,8 @@ call plug#begin()
 
   "Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
-  Plug 'kyazdani42/nvim-tree.lua', {'commit': '0136801444cfb2d85ae956d8c23c79f4a9f26b90'}
-  " Plug 'kyazdani42/nvim-tree.lua'
+  " Plug 'kyazdani42/nvim-tree.lua', {'commit': '0136801444cfb2d85ae956d8c23c79f4a9f26b90'}
+  Plug 'kyazdani42/nvim-tree.lua'
   "Plug 'tpope/vim-fugitive'
 
   " Plug 'thaerkh/vim-workspace'
