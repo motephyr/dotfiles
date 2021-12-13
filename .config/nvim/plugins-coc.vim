@@ -138,18 +138,3 @@ else
   let g:netrw_winsize = 25
 endif
 
-" if substitute(system('uname'), '\n', '', '') != 'Linux'
-"   let g:coc_global_extensions = g:coc_global_extensions + [
-let g:coc_global_extensions = [ 'coc-eslint',
-      \ 'coc-tsserver',
-      \ 'coc-json',
-      \ 'coc-yaml',
-      \ 'coc-snippets',
-      \ 'coc-docthis',
-      \ 'coc-vimlsp',
-      \ 'coc-angular',
-      \ 'coc-omnisharp',
-      \ 'coc-html',
-      \ 'coc-go',
-      \ 'coc-vetur']
-" endif

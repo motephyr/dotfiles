@@ -23,7 +23,19 @@ call plug#begin()
   Plug 'honza/vim-snippets'
 
   " Plug 'neoclide/coc.nvim', {'commit': '0e3a24b5351fbda44d884375bc48a12a97f75ffd'}
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " let g:coc_global_extensions = [ 'coc-eslint',
+  "       \ 'coc-tsserver',
+  "       \ 'coc-json',
+  "       \ 'coc-yaml',
+  "       \ 'coc-snippets',
+  "       \ 'coc-docthis',
+  "       \ 'coc-vimlsp',
+  "       \ 'coc-angular',
+  "       \ 'coc-omnisharp',
+  "       \ 'coc-html',
+  "       \ 'coc-go',
+  "       \ 'coc-vetur']
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? '<Down>' :
@@ -118,9 +130,9 @@ call plug#begin()
 
   noremap <Leader>d :vertical diffsplit <C-r>% \| windo set wrap<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 
-  Plug 'APZelos/blamer.nvim'
-  let g:blamer_enabled = 1
-  let g:blamer_show_in_visual_modes = 0
+  " Plug 'APZelos/blamer.nvim'
+  " let g:blamer_enabled = 1
+  " let g:blamer_show_in_visual_modes = 0
   " search
   " Plug 'fntlnz/atags.vim' " file tags generating with ctags
   "

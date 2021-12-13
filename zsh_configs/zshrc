@@ -80,12 +80,11 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:
 
 ##export DOCKER_HOST=tcp://localhost:2375
 ##export PATH="$PATH:/usr/local/Cellar/yarn/1.9.4/bin"
-alias vi="nvim"
-alias vi4="nvim"
+alias vi="~/nvim-osx64/bin/nvim"
+alias lvim="~/.local/bin/lvim"
 alias tig="tig --date-order --all"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-
 
 . $HOME/.asdf/asdf.sh
 
