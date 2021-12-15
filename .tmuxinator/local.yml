@@ -31,10 +31,10 @@ windows:
         - a:
             - cd ~/dotfiles
             - git pull
-  - max:
+  - happiness:
       layout: main-vertical
       panes:
         - a:
-            # - cd binance
+            - cd happiness
             # - source .env.local && ./bbgo run --config bbgo.yaml
 
