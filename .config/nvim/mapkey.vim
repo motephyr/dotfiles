@@ -158,10 +158,8 @@ function! TerminalPane()
   startinsert
 endfunc
 
-noremap <silent> <leader>x :call TerminalPane()<cr>
-tnoremap <Leader>x <C-\><C-n><C-w><C-p>
-noremap <silent> <M-x> :call TerminalPane()<cr>
-tnoremap <silent> <M-x> <C-\><C-n>:bdelete!<CR>
+noremap <silent> <M-`> :call TerminalPane()<cr>
+tnoremap <silent> <M-`> <C-\><C-n>:bdelete!<CR>
 
 "For javascript
 nnoremap ` viw"hy}iconsole.log('<C-r>h');<Esc>oconsole.log(<C-r>h);<Esc>
