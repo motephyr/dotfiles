@@ -7,7 +7,7 @@ windows:
       panes:
         - a:
             - pg_ctl start
-            - psql -U postgres -h localhost kamo
+            # - psql -U postgres -h localhost kamo
   - kamo:
       layout: main-vertical
       panes:
