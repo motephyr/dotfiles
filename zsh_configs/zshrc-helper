@@ -1,0 +1,43 @@
+alias code='open -b com.microsoft.VSCode "$@"'
+alias vi='nvim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+export FZF_DEFAULT_OPTS='--bind ctrl-a:select-all,ctrl-d:page-down,ctrl-u:page-up'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --glob '!.git/*' --glob '!node_modules/*' --glob '!vendor/*' 2> /dev/null"
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'cat {}'"
+
+#just demo find a file with rg and open in nvim
+frg() {
+  local file
+
+  file="$(rg -l $@ | fzf -0 -1 --preview 'cat {}'| awk -F: '{print $1}')"
+
+  if [[ -n $file ]]
+  then
+     nvim $file
+  fi
+}
+
+#choose mulit file 
+mrg() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg -l $1 | fzf -m --preview-window 'right:60%' --preview 'cat {}' | xargs 
+}
+
+#choose mulit file for change
+mrgr() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg -l $1 | fzf -m --preview-window 'right:60%' --preview 'cat {}' | tr '\n' '\0' | xargs -0 perl -pi -e "s|\Q$1|$2|g"
+}
+
+#use rg check and change all
+rgr() {
+  rg -0 -l $1 | xargs -0 perl -pi -e "s|\Q$1|$2|g"
+}
+
+mkfile() { 
+  mkdir -p $( dirname "$1") && touch "$1"
+  echo "$1"
+}
+

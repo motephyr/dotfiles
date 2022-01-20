@@ -17,12 +17,11 @@ windows:
         - b:
             - cd kamo_all/kamo-front
             - npm run dev
-        - e:
-            - cd kamo_all/kamo_manager
         - c:
-            - cd kamo_all/kamo-candidate
-            - npm run dev
+            - cd kamo_all/kamo_manager
         - d:
+            - cd kamo_all/kamo-candidate
+        - e:
             - cd kamo_all/kamo-admin
             - redis-server
   - dotfiles:
@@ -31,10 +30,10 @@ windows:
         - a:
             - cd ~/dotfiles
             - git pull
-  - happiness:
+  - golang-fiber:
       layout: main-vertical
       panes:
         - a:
-            - cd happiness
+            - cd ../golang/fiber-boilerplate
             # - source .env.local && ./bbgo run --config bbgo.yaml
 
