@@ -15,7 +15,7 @@ frg() {
 
   if [[ -n $file ]]
   then
-     nvim $file
+    nvim $file
   fi
 }
 
@@ -36,8 +36,29 @@ rgr() {
   rg -0 -l $1 | xargs -0 perl -pi -e "s|\Q$1|$2|g"
 }
 
-mkfile() { 
+addfile() { 
   mkdir -p $( dirname "$1") && touch "$1"
   echo "$1"
 }
 
+codefile() {
+  addfile "$1" | xargs code
+}
+
+alias dcp='docker-compose'
+
+backuptolocal() {
+  ### 備分測試機資料
+  NOWTIME=$(date +"%Y%m%d%H%M%S")
+
+  ssh $1 "mkdir -p db_backup && pg_dump -U postgres -h $2 $3 > ~/db_backup/$NOWTIME-$1-$3.sql"
+
+  mkdir -p db_backup 
+  scp $1:~/db_backup/$NOWTIME-$1-$3.sql ./db_backup/
+}
+
+restoretodb(){
+  dropdb -U postgres -h localhost $1 &&
+  createdb -U postgres -h localhost $1 &&
+  psql -U postgres -h localhost $1 < $2
+}

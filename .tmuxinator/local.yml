@@ -13,10 +13,10 @@ windows:
       panes:
         - a:
             - cd kamo_all/kamo
-            - pm2 startOrRestart ecosystem_local.config.js && pm2 logs
+            # - pm2 startOrRestart ecosystem_local.config.js && pm2 logs
         - b:
             - cd kamo_all/kamo-front
-            - npm run dev
+            # - npm run dev
         - c:
             - cd kamo_all/kamo_manager
         - d:
@@ -34,6 +34,6 @@ windows:
       layout: main-vertical
       panes:
         - a:
-            - cd ../golang/fiber-boilerplate
+            - cd ../golang/longcare
             # - source .env.local && ./bbgo run --config bbgo.yaml
 
