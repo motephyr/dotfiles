@@ -12,7 +12,7 @@ windows:
       layout: main-vertical
       panes:
         - a:
-            - cd kamo_all/kamo
+            - cd kamo_all/kamo-server
             # - pm2 startOrRestart ecosystem_local.config.js && pm2 logs
         - b:
             - cd kamo_all/kamo-front
@@ -22,18 +22,19 @@ windows:
         - d:
             - cd kamo_all/kamo-candidate
         - e:
-            - cd kamo_all/kamo-admin
-            - redis-server
+            - cd kamo_all/kamo_test
   - dotfiles:
       layout: main-vertical
       panes:
         - a:
             - cd ~/dotfiles
             - git pull
-  - golang-fiber:
+  - plus_minus:
       layout: main-vertical
       panes:
         - a:
-            - cd ../golang/longcare
+            - cd plus_minus_20230309/plus_minus
+        - b:
+            - cd plus_minus_20230309/plus_minus_front
             # - source .env.local && ./bbgo run --config bbgo.yaml
 

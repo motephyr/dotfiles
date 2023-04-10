@@ -1,5 +1,6 @@
 alias code='open -b com.microsoft.VSCode "$@"'
 alias vi='nvim'
+alias lsal="ls -alht"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
@@ -62,3 +63,13 @@ restoretodb(){
   createdb -U postgres -h localhost $1 &&
   psql -U postgres -h localhost $1 < $2
 }
+
+cconvdir(){
+  for file in $(find . -type f); do
+   case $file in
+    ./.git/* | ./static/* | ./node_modules/* | *.ttf | *.gif | *.jpg | *.png | *.ico | *.woff | *.css) continue;;   ##: Skip files that matched.
+    *) echo $file; cconv -f UTF8-CN -t UTF8-TW -o $file.a $file; mv -f $file.a $file
+   esac                
+done
+}
+
