@@ -66,10 +66,16 @@ restoretodb(){
 
 cconvdir(){
   for file in $(find . -type f); do
-   case $file in
-    ./.git/* | ./static/* | ./node_modules/* | *.ttf | *.gif | *.jpg | *.png | *.ico | *.woff | *.css) continue;;   ##: Skip files that matched.
-    *) echo $file; cconv -f UTF8-CN -t UTF8-TW -o $file.a $file; mv -f $file.a $file
-   esac                
-done
+      case $file in
+          ./.git/*|./static/*|./node_modules/*|*.svg|*.pdf|*.ai|*.ttf|*.gif|*.jpg|*.png|*.ico|*.woff|*.css|*.eps|2|*.scss)
+              continue
+              ;;
+          *)
+              echo "Processing: $file"
+              cconv -f UTF8-TW -t UTF8-CN -o "${file}.a" "$file"
+              mv -f "${file}.a" "$file"
+              ;;
+      esac
+  done
 }
 

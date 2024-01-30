@@ -8,6 +8,12 @@ windows:
         - a:
             - pg_ctl start
             # - psql -U postgres -h localhost kamo
+  - dotfiles:
+      layout: main-vertical
+      panes:
+        - a:
+            - cd ~/dotfiles
+            - git pull
   - kamo:
       layout: main-vertical
       panes:
@@ -18,17 +24,22 @@ windows:
             - cd kamo_all/kamo-front
             # - npm run dev
         - c:
-            - cd kamo_all/kamo_manager
-        - d:
             - cd kamo_all/kamo-candidate
+        - d:
+            - cd kamo_all/kamo_manager
         - e:
-            - cd kamo_all/kamo_test
-  - dotfiles:
+            - cd kamo_all/kamo-test-wright
+  - cccopy:
       layout: main-vertical
       panes:
         - a:
-            - cd ~/dotfiles
-            - git pull
+            - cd cccopy/strapi-cms-v4
+        - b:
+            - cd cccopy/console-v4
+        - c:
+            - cd cccopy/website-v4
+        - d:
+            - cd cccopy/website-static
   - plus_minus:
       layout: main-vertical
       panes:
@@ -36,5 +47,14 @@ windows:
             - cd plus_minus_20230309/plus_minus
         - b:
             - cd plus_minus_20230309/plus_minus_front
-            # - source .env.local && ./bbgo run --config bbgo.yaml
+        - c:
+            - cd plus_minus_20230309/plus_minus_app
+  - freeautogpt:
+        layout: main-vertical
+        panes:
+        - a:
+            - conda activate freeautogpt
+            - cd ~/Projects/AIText/Free-Auto-GPT
+        - b:
+            - cd /opt/homebrew/anaconda3/envs/freeautogpt/lib/python3.10/site-packages/langchain/experimental/autonomous_agents
 
